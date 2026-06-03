@@ -736,29 +736,31 @@
 </head>
 <body>
 
+<div id="panel-voyage" class="tab-panel">
+
   <!-- NAVIGATION -->
   <nav>
     <a href="#" class="nav-logo">a r k</a>
     <ul class="nav-links">
-      <li><a href="#" class="active">The Voyage</a></li>
+      <li><a href="#" class="active" onclick="showTab('voyage',this)">The Voyage</a></li>
       <li>
-        <a href="#">The Itinerary</a>
+        <a href="#" onclick="showTab('itinerary',this)">The Itinerary</a>
         <img class="nav-img" src="passages-nobg.png" alt="The Itinerary">
       </li>
       <li>
-        <a href="#">The Suite</a>
+        <a href="#" onclick="showTab('suite',this)">The Suite</a>
         <img class="nav-img" src="the-suite.webp" alt="The Suite">
       </li>
       <li>
-        <a href="#">Ticket Office</a>
+        <a href="#" onclick="showTab('ticket',this)">Ticket Office</a>
         <img class="nav-img" src="ticket.webp" alt="Ticket Office">
       </li>
       <li>
-        <a href="#">Duty Free</a>
+        <a href="#" onclick="showTab('dutyfree',this)">Duty Free</a>
         <img class="nav-img" src="duty-free.webp" alt="Duty Free">
       </li>
       <li>
-        <a href="#">The Honesty Box</a>
+        <a href="#" onclick="showTab('honestybox',this)">The Honesty Box</a>
         <img class="nav-img" src="honesty-box.webp" alt="The Honesty Box">
       </li>
     </ul>
@@ -911,8 +913,199 @@
     <span class="footer-tagline">ARK Body + Skin. The voyage is yours.</span>
   </footer>
 
+
+</div><!-- /panel-voyage -->
+
+<!-- ═══ TAB PANELS ═══ -->
+
+<div id="panel-itinerary" class="tab-panel" style="display:none;">
+  <section class="tab-hero-section" style="background-image:url('passages-nobg.png')">
+    <div class="tab-hero-overlay">
+      <p class="tab-hero-label">The Itinerary</p>
+      <h2 class="tab-hero-title">Four Seasonal Cruises</h2>
+    </div>
+  </section>
+  <section class="tab-content-section">
+    <div class="items-grid">
+      <div class="item-card"><span>Summer</span></div>
+      <div class="item-card"><span>Autumn</span></div>
+      <div class="item-card"><span>Winter</span></div>
+      <div class="item-card"><span>Spring</span></div>
+    </div>
+  </section>
+</div>
+
+<div id="panel-suite" class="tab-panel" style="display:none;">
+  <section class="tab-hero-section" style="background-image:url('the-suite.webp')">
+    <div class="tab-hero-overlay">
+      <p class="tab-hero-label">The Suite</p>
+      <h2 class="tab-hero-title">Your Private Cabin</h2>
+    </div>
+  </section>
+  <section class="tab-content-section">
+    <div class="items-grid">
+      <div class="item-card"><span>Personal Info</span></div>
+      <div class="item-card"><span>Selfie / Mirror</span></div>
+      <div class="item-card"><span>Statistics</span></div>
+      <div class="item-card"><span>Room Safe</span></div>
+      <div class="item-card"><span>Data</span></div>
+      <div class="item-card"><span>Skin Chat</span></div>
+      <div class="item-card"><span>Updates</span></div>
+    </div>
+  </section>
+</div>
+
+<div id="panel-ticket" class="tab-panel" style="display:none;">
+  <section class="tab-hero-section" style="background-image:url('ticket.webp')">
+    <div class="tab-hero-overlay">
+      <p class="tab-hero-label">Ticket Office</p>
+      <h2 class="tab-hero-title">Book Your Passage</h2>
+    </div>
+  </section>
+  <section class="tab-content-section">
+    <div class="items-grid">
+      <div class="item-card"><span>Pricing</span></div>
+      <div class="item-card"><span>Options</span></div>
+      <div class="item-card"><span>&#188; &middot; &#189; &middot; &#190; &middot; 4/4</span></div>
+      <div class="item-card"><span>Payments</span></div>
+    </div>
+  </section>
+</div>
+
+<div id="panel-dutyfree" class="tab-panel" style="display:none;">
+  <section class="tab-hero-section" style="background-image:url('duty-free.webp')">
+    <div class="tab-hero-overlay">
+      <p class="tab-hero-label">Duty Free</p>
+      <h2 class="tab-hero-title">Explore the Store</h2>
+    </div>
+  </section>
+  <section class="tab-content-section">
+    <div class="items-grid">
+      <div class="item-card"><span>Bolt Ons</span></div>
+      <div class="item-card"><span>Hair Loss / Health</span></div>
+      <div class="item-card"><span>Personal Care</span></div>
+      <div class="item-card"><span>Wellbeing</span></div>
+      <div class="item-card"><span>Sleep</span></div>
+      <div class="item-card"><span>Nutrition</span></div>
+      <div class="item-card"><span>Hero Cosmetic</span></div>
+      <div class="item-card"><span>Top Up Products</span></div>
+      <div class="item-card"><span>Supplements</span></div>
+    </div>
+  </section>
+</div>
+
+<div id="panel-honestybox" class="tab-panel" style="display:none;">
+  <section class="tab-hero-section" style="background-image:url('honesty-box.webp')">
+    <div class="tab-hero-overlay">
+      <p class="tab-hero-label">The Honesty Box</p>
+      <h2 class="tab-hero-title">Knowledge &middot; Sharing &middot; Transparency</h2>
+    </div>
+  </section>
+  <section class="tab-content-section">
+    <div class="items-grid">
+      <div class="item-card"><span>The Science</span></div>
+      <div class="item-card"><span>Sub Box Rationale</span></div>
+      <div class="item-card"><span>Statistics / Data</span></div>
+      <div class="item-card"><span>Demographic Info</span></div>
+      <div class="item-card"><span>Stuff</span></div>
+      <div class="item-card"><span>Brand Info</span></div>
+      <div class="item-card"><span>Stories</span></div>
+      <div class="item-card"><span>Exchange on Product</span></div>
+      <div class="item-card"><span>How To &mdash; Application</span></div>
+      <div class="item-card"><span>How To &mdash; Know How</span></div>
+      <div class="item-card"><span>Safety &amp; Security</span></div>
+    </div>
+  </section>
+</div>
+
+<style>
+  /* TAB PANELS */
+  .tab-hero-section {
+    min-height: 55vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .tab-hero-overlay {
+    width: 100%;
+    background: linear-gradient(to top, rgba(11,17,32,1) 0%, rgba(11,17,32,0.5) 60%, transparent 100%);
+    padding: 60px 80px 52px;
+  }
+  .tab-hero-label {
+    font-family: 'Cormorant SC', serif;
+    font-weight: 300;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tab-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+  .tab-content-section {
+    background: var(--navy);
+    padding: 80px 80px 100px;
+  }
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .item-card {
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 36px 28px;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+  }
+  .item-card::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .item-card:hover {
+    border-color: rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.04);
+  }
+  .item-card span {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.8);
+  }
+</style>
+
+<script>
+function showTab(id, el) {
+  event.preventDefault();
+  document.querySelectorAll('.tab-panel').forEach(function(p) {
+    p.style.display = 'none';
+  });
+  document.getElementById('panel-' + id).style.display = 'block';
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    a.classList.remove('active');
+  });
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
 </body>
 </html>
+
+
 
 
 
