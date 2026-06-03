@@ -545,7 +545,27 @@
 
     /* â”€â”€ EMBARK CTA â”€â”€ */
         /* -- DUTY FREE -- */
-    .duty-free-section {
+        /* -- THE SUITE -- */
+    .suite-section {
+      background: var(--navy-mid);
+      padding: 100px 80px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .suite-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--white);
+      margin-bottom: 48px;
+    }
+    .suite-img-wrap img {
+      width: 100%;
+      max-width: 1100px;
+      display: block;
+      border-radius: 4px;
+    }
+.duty-free-section {
       background: var(--navy);
       padding: 100px 80px;
       border-top: 1px solid rgba(255,255,255,0.06);
@@ -763,6 +783,16 @@
     </div>
   </section>
 
+  <!-- THE SUITE -->
+  <section class="suite-section">
+    <p class="section-label">The Suite</p>
+    <div class="diamond-divider"><span class="diamond-divider-inner">◇</span></div>
+    <h2 class="suite-heading">The Suite</h2>
+    <div class="suite-img-wrap">
+      <img src="the-suite.webp" alt="The ARK Suite">
+    </div>
+  </section>
+
   <!-- MIRROR MOMENT -->
   <section class="mirror-section">
     <span class="section-label">The Mirror Moment</span>
@@ -850,5 +880,6 @@
 
 </body>
 </html>
+
 
 
