@@ -284,7 +284,7 @@
     }
 
     .ticket-section img {
-      max-width: 880px;
+      max-width: 620px;
       width: 100%;
       display: block;
     }
@@ -316,7 +316,7 @@
 
     .itinerary-section img {
       width: 100%;
-      max-width: 1160px;
+      max-width: 820px;
       display: block;
     }
 
@@ -544,7 +544,25 @@
     }
 
     /* â”€â”€ EMBARK CTA â”€â”€ */
-        /* -- DUTY FREE -- */
+            /* -- NAV IMAGES -- */
+    .nav-links li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-img {
+      width: 110px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 3px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+      display: block;
+    }
+    .nav-img:hover { opacity: 1; }
+    nav { align-items: flex-start; padding-top: 14px; background: rgba(11,17,32,0.75); backdrop-filter: blur(6px); }
+/* -- DUTY FREE -- */
         /* -- THE SUITE -- */
     .suite-section {
       background: var(--navy-mid);
@@ -561,7 +579,7 @@
     }
     .suite-img-wrap img {
       width: 100%;
-      max-width: 1100px;
+      max-width: 680px;
       display: block;
       border-radius: 4px;
     }
@@ -580,7 +598,7 @@
     }
     .duty-free-img-wrap img {
       width: 100%;
-      max-width: 1100px;
+      max-width: 680px;
       display: block;
       border-radius: 4px;
     }
@@ -723,11 +741,26 @@
     <a href="#" class="nav-logo">a r k</a>
     <ul class="nav-links">
       <li><a href="#" class="active">The Voyage</a></li>
-      <li><a href="#">The Itinerary</a></li>
-      <li><a href="#">The Suite</a></li>
-      <li><a href="#">Ticket Office</a></li>
-      <li><a href="#">Duty Free</a></li>
-      <li><a href="#">The Honesty Box</a></li>
+      <li>
+        <a href="#">The Itinerary</a>
+        <img class="nav-img" src="passages-nobg.png" alt="The Itinerary">
+      </li>
+      <li>
+        <a href="#">The Suite</a>
+        <img class="nav-img" src="the-suite.webp" alt="The Suite">
+      </li>
+      <li>
+        <a href="#">Ticket Office</a>
+        <img class="nav-img" src="ticket.webp" alt="Ticket Office">
+      </li>
+      <li>
+        <a href="#">Duty Free</a>
+        <img class="nav-img" src="duty-free.webp" alt="Duty Free">
+      </li>
+      <li>
+        <a href="#">The Honesty Box</a>
+        <img class="nav-img" src="honesty-box.webp" alt="The Honesty Box">
+      </li>
     </ul>
   </nav>
 
@@ -757,7 +790,7 @@
   <section class="honesty-section">
     <p class="section-label">The Honesty Statement</p>
     <div class="diamond-divider"><span class="diamond-divider-inner">â—‡</span></div>
-    <img src="honesty-box.webp" alt="ARK's Honesty Box" style="width:100%; max-width:900px; display:block; margin-bottom:52px; border-radius:4px;">
+    <img src="honesty-box.webp" alt="ARK's Honesty Box" style="width:100%; max-width:640px; display:block; margin-bottom:52px; border-radius:4px;">
     <p class="honesty-body">We'll be honest with you. We don't love the idea of a subscription box either. You've probably cancelled a few. So have we. But here's what we've learned about women like us. We are exceptionally good at looking after everyone else first. The cruise continues automatically because you said it should â€” not because we decided it for you. You chose this. We're simply making sure it actually happens. When you're done â€” you disembark. No friction. No guilt. No follow-up call. Until you're ready to sail again.</p>
   </section>
 
@@ -880,6 +913,7 @@
 
 </body>
 </html>
+
 
 
 
