@@ -226,8 +226,8 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
 <nav>
   <a class="nav-logo" onclick="showTab('voyage')">ark</a>
   <ul class="nav-links">
-    <li><a class="act" data-tab="voyage" onclick="showTab('voyage')">The Voyage</a></li>
-    <li><a data-tab="manifest" onclick="showTab('manifest')">The Manifest</a></li>
+    <li><a class="act" data-tab="manifest" onclick="showTab('manifest')">The Manifest</a></li>
+    <li><a data-tab="voyage" onclick="showTab('voyage')">The Voyage</a></li>
     <li><a data-tab="itinerary" onclick="showTab('itinerary')">The Itinerary</a></li>
     <li><a data-tab="suite" onclick="showTab('suite')">The Suite</a></li>
     <li><a data-tab="ticket" onclick="showTab('ticket')">Ticket Office</a></li>
@@ -240,8 +240,8 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
 <!-- MOBILE OVERLAY -->
 <div class="mob-overlay" id="mobNav">
   <span class="mob-close" onclick="document.getElementById('mobNav').classList.remove('open')">Close</span>
-  <div class="mob-item" onclick="showTab('voyage');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Voyage</span><span class="mob-item-desc">What ARK is</span></div>
   <div class="mob-item" onclick="showTab('manifest');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Manifest</span><span class="mob-item-desc">What ARK means</span></div>
+  <div class="mob-item" onclick="showTab('voyage');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Voyage</span><span class="mob-item-desc">What ARK is</span></div>
   <div class="mob-item" onclick="showTab('itinerary');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Itinerary</span><span class="mob-item-desc">Four seasonal cruises</span></div>
   <div class="mob-item" onclick="showTab('suite');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Suite</span><span class="mob-item-desc">Enter your suite</span></div>
   <div class="mob-item" onclick="showTab('ticket');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">Ticket Office</span><span class="mob-item-desc">Your next cruise</span></div>
@@ -251,7 +251,7 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
 
 
 <!-- ═══════════════════════════════ THE VOYAGE ══════════════════════════════ -->
-<div id="panel-voyage" class="tab-panel active">
+<div id="panel-voyage" class="tab-panel">
 
   <section class="hero">
     <div class="hero-c fi">
@@ -412,7 +412,7 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
 
 
 <!-- ═══════════════════════════════ THE MANIFEST ════════════════════════════ -->
-<div id="panel-manifest" class="tab-panel">
+<div id="panel-manifest" class="tab-panel active">
 
   <section class="sec" style="background:var(--navy)">
     <div class="inner-sm">
