@@ -227,6 +227,7 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
   <a class="nav-logo" onclick="showTab('voyage')">ark</a>
   <ul class="nav-links">
     <li><a class="act" data-tab="voyage" onclick="showTab('voyage')">The Voyage</a></li>
+    <li><a data-tab="manifest" onclick="showTab('manifest')">The Manifest</a></li>
     <li><a data-tab="itinerary" onclick="showTab('itinerary')">The Itinerary</a></li>
     <li><a data-tab="suite" onclick="showTab('suite')">The Suite</a></li>
     <li><a data-tab="ticket" onclick="showTab('ticket')">Ticket Office</a></li>
@@ -240,6 +241,7 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
 <div class="mob-overlay" id="mobNav">
   <span class="mob-close" onclick="document.getElementById('mobNav').classList.remove('open')">Close</span>
   <div class="mob-item" onclick="showTab('voyage');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Voyage</span><span class="mob-item-desc">What ARK is</span></div>
+  <div class="mob-item" onclick="showTab('manifest');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Manifest</span><span class="mob-item-desc">What ARK means</span></div>
   <div class="mob-item" onclick="showTab('itinerary');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Itinerary</span><span class="mob-item-desc">Four seasonal cruises</span></div>
   <div class="mob-item" onclick="showTab('suite');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">The Suite</span><span class="mob-item-desc">Enter your suite</span></div>
   <div class="mob-item" onclick="showTab('ticket');document.getElementById('mobNav').classList.remove('open')"><span class="mob-item-title">Ticket Office</span><span class="mob-item-desc">Your next cruise</span></div>
@@ -258,7 +260,7 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
       <div class="hero-rule"></div>
       <p class="hero-hl">Ninety days. Four seasons. One skin, finally understood.</p>
       <p class="hero-body">A clinically tracked voyage for women who have exhausted the promises and are ready for the evidence.</p>
-      <a class="btn" onclick="goTo('v-honesty')">Read the Manifest</a>
+      <a class="btn" onclick="showTab('manifest')">Read the Manifest</a>
     </div>
   </section>
 
@@ -333,6 +335,66 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
       <h2 class="disp" style="max-width:580px;margin:0 auto 18px">Ready to Embark</h2>
       <p class="body" style="max-width:520px;margin:0 auto 36px">You have given enough of your time to products that made promises without proof. This is different.</p>
       <button class="btn" onclick="showTab('ticket')">Purchase Your First Cruise</button>
+    </div>
+  </section>
+
+  <footer><span class="ft-logo">ark</span><p class="ft-tag">ARK Body + Skin. The voyage is yours.</p></footer>
+</div>
+
+
+<!-- ═══════════════════════════════ THE MANIFEST ════════════════════════════ -->
+<div id="panel-manifest" class="tab-panel">
+
+  <section class="sec" style="background:var(--navy)">
+    <div class="inner-sm">
+      <div class="diam fi"><span>◇</span></div>
+      <h1 class="disp fi" style="text-align:center;margin-bottom:6px">ARK — The Manifest</h1>
+      <div class="diam fi"><span>◇</span></div>
+
+      <p class="body fi" style="margin-top:36px;margin-bottom:44px;font-size:1.15rem;line-height:1.9">At its core, to manifest means to make something that was previously theoretical, hidden, or conceptual into something that is clear, visible, or tangible.</p>
+
+      <p class="body fi" style="margin-bottom:36px">The word has three distinct meanings depending on the context in which it is used:</p>
+
+      <!-- 1 -->
+      <div class="fi" style="margin-bottom:44px">
+        <p style="font-family:'EB Garamond',serif;font-size:.72rem;letter-spacing:.28em;color:var(--ws);text-transform:uppercase;margin-bottom:10px">01</p>
+        <h3 class="disp" style="font-size:clamp(1.3rem,2.4vw,1.9rem);margin-bottom:12px">The Spiritual &amp; Self-Help Practice</h3>
+        <p style="font-family:'EB Garamond',serif;font-size:.85rem;letter-spacing:.12em;color:var(--ws);text-transform:uppercase;font-style:italic;margin-bottom:16px">Modern Use</p>
+        <p class="body">In recent years, "manifesting" became a viral wellness concept. It is the practice of using focused thought, visualization, and affirmations to bring a specific goal, opportunity, or desire into your reality. The underlying belief is that a positive, directed mindset helps you actively attract the outcomes you want.</p>
+      </div>
+
+      <div class="rule fi"></div>
+
+      <!-- 2 -->
+      <div class="fi" style="margin:44px 0">
+        <p style="font-family:'EB Garamond',serif;font-size:.72rem;letter-spacing:.28em;color:var(--ws);text-transform:uppercase;margin-bottom:10px">02</p>
+        <h3 class="disp" style="font-size:clamp(1.3rem,2.4vw,1.9rem);margin-bottom:12px">The Traditional Definition</h3>
+        <p style="font-family:'EB Garamond',serif;font-size:.85rem;letter-spacing:.12em;color:var(--ws);text-transform:uppercase;font-style:italic;margin-bottom:16px">Adjective &amp; Verb</p>
+        <p class="body">As a more traditional English word, "manifest" means to show or demonstrate something plainly through signs and actions.</p>
+      </div>
+
+      <div class="rule fi"></div>
+
+      <!-- 3 -->
+      <div class="fi" style="margin:44px 0">
+        <p style="font-family:'EB Garamond',serif;font-size:.72rem;letter-spacing:.28em;color:var(--ws);text-transform:uppercase;margin-bottom:10px">03</p>
+        <h3 class="disp" style="font-size:clamp(1.3rem,2.4vw,1.9rem);margin-bottom:12px">The Travel &amp; Logistics Meaning</h3>
+        <p style="font-family:'EB Garamond',serif;font-size:.85rem;letter-spacing:.12em;color:var(--ws);text-transform:uppercase;font-style:italic;margin-bottom:16px">Noun</p>
+        <p class="body">In the shipping and airline industries, a manifest is an official document. It details the full itinerary of a vehicle, acting as a complete list of all the passengers, crew, or cargo on board.</p>
+      </div>
+
+      <div class="rule fi"></div>
+
+      <!-- Origins -->
+      <div class="fi" style="margin:44px 0 0">
+        <h3 class="disp" style="font-size:clamp(1.3rem,2.4vw,1.9rem);margin-bottom:16px">Origins</h3>
+        <p class="body">The word dates back to the Latin word <em>manifestus</em>, which translates to "clear" or "obvious". It stems from roots meaning "grasped by the hand" — suggesting something is so clear and concrete, you could physically reach out and grab it.</p>
+      </div>
+
+      <div class="diam fi" style="margin-top:56px"><span>◇</span></div>
+      <div style="text-align:center;margin-top:36px" class="fi">
+        <button class="btn" onclick="showTab('voyage')">Return to The Voyage</button>
+      </div>
     </div>
   </section>
 
