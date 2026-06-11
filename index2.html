@@ -164,6 +164,17 @@ input:focus{border-color:var(--sw)}
 
 /* HONESTY BOX */
 .hb-sec{padding:52px 0;border-bottom:.5px solid rgba(232,232,232,.1)}
+
+/* BOOK FLIP */
+.ark-book-wrap{perspective:1400px;width:100%;max-width:560px;margin:48px auto 56px;cursor:pointer}
+.ark-book-inner{display:flex;position:relative;min-height:420px}
+.ark-book-spine{width:22px;background:linear-gradient(to right,#0a0f2e,#1a1a3e,#0a0f2e);border-radius:3px 0 0 3px;flex-shrink:0;box-shadow:inset -4px 0 8px rgba(0,0,0,.4)}
+.ark-book-front{flex:1;background:var(--charcoal);border:1px solid rgba(232,232,232,.18);border-left:none;padding:48px 36px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;z-index:2;transition:transform .75s cubic-bezier(.645,.045,.355,1);transform-origin:left center;transform-style:preserve-3d;backface-visibility:hidden;border-radius:0 4px 4px 0;box-shadow:4px 4px 20px rgba(0,0,0,.4)}
+.ark-book-back{position:absolute;left:22px;right:0;top:0;bottom:0;border:1px solid rgba(232,232,232,.1);border-left:none;overflow:hidden;border-radius:0 4px 4px 0;background:var(--navy)}
+.ark-book-back img{width:100%;height:100%;object-fit:cover;object-position:top}
+.ark-book-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-family:'EB Garamond',serif;font-size:.75rem;letter-spacing:.18em;color:rgba(232,232,232,.35);text-transform:uppercase;white-space:nowrap;transition:opacity .3s}
+.ark-book-wrap:hover .ark-book-front{transform:rotateY(-162deg)}
+.ark-book-wrap:hover .ark-book-hint{opacity:0}
 .hb-h{font-family:'EB Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--sw);letter-spacing:.04em;margin-bottom:20px}
 .hb-pq{font-family:'EB Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--ws);border-left:1.5px solid rgba(192,192,192,.28);padding-left:22px;margin:24px 0;line-height:1.65}
 
@@ -807,6 +818,24 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
       <span class="lbl fi">The Honesty Box</span>
       <h1 class="disp fi">The Honesty Box</h1>
       <p class="body fi" style="font-style:italic;margin-bottom:48px">ARK unfiltered. The conversation skincare usually avoids.</p>
+
+      <!-- BOOK -->
+      <div class="ark-book-wrap fi">
+        <div class="ark-book-inner">
+          <div class="ark-book-spine"></div>
+          <div class="ark-book-back">
+            <img src="ark-skin-biology.png" alt="The Science of Skin Biology">
+          </div>
+          <div class="ark-book-front">
+            <span class="lbl" style="margin-bottom:18px">The Science</span>
+            <h3 class="disp" style="font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:16px;line-height:1.3">The Biology<br>Behind ARK</h3>
+            <div class="diam" style="margin:16px 0"><span>◇</span></div>
+            <p class="body-sm" style="max-width:260px;line-height:1.65">Peer-reviewed skin science.<br>The evidence that drives every formulation.</p>
+            <span class="ark-book-hint">Hover to open</span>
+          </div>
+        </div>
+      </div>
+
       <div class="rule"></div>
       <div class="hb-sec fi"><p class="hb-h">How Skincare Has Evolved (And What That Means for You)</p><p class="body">[Warren to provide copy. Key talking points: AI-driven diagnostics, OBM manufacturing, and digital tracking making personalised skincare genuinely possible for the first time.]</p></div>
       <div class="hb-sec fi"><p class="hb-h">The TEWL Explanation</p><p class="body">[Warren to provide copy. What transepidermal water loss is, why it is the most underreported metric in skincare, and why it matters more than what most brands discuss.]</p><p class="hb-pq">"Your skin barrier is not a problem to be fixed. It is a system to be understood."</p></div>
