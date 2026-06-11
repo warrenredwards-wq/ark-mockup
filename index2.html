@@ -175,14 +175,15 @@ input:focus{border-color:var(--sw)}
 .hb-lightbox-inner img{width:100%;height:auto;display:block;border-radius:4px}
 .hb-lightbox-close{position:absolute;top:12px;right:14px;background:rgba(10,15,46,.7);border:1px solid rgba(232,232,232,.2);color:var(--sw);font-family:'EB Garamond',serif;font-size:1.1rem;letter-spacing:.1em;padding:6px 14px;cursor:pointer;border-radius:2px}
 .hb-lightbox-close:hover{background:rgba(10,15,46,.95)}
-/* book-flip widget */
-.ark-book-row{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;margin:0 auto 56px}
-.ark-book-wrap{perspective:1400px;width:280px;flex-shrink:0;cursor:pointer}
-.ark-book-inner{display:flex;position:relative;min-height:380px}
+/* book-flip widget — landscape format */
+.ark-book-row{display:flex;flex-direction:column;gap:56px;align-items:center;margin:0 auto 56px}
+.ark-book-wrap{perspective:1400px;width:100%;max-width:680px;cursor:pointer}
+.ark-book-inner{display:flex;position:relative;height:380px}
 .ark-book-spine{width:22px;background:linear-gradient(to right,#0a0f2e,#1a1a3e,#0a0f2e);border-radius:3px 0 0 3px;flex-shrink:0;box-shadow:inset -4px 0 8px rgba(0,0,0,.4)}
-.ark-book-front{flex:1;background:var(--charcoal);border:1px solid rgba(232,232,232,.18);border-left:none;padding:36px 28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;z-index:2;transition:transform .75s cubic-bezier(.645,.045,.355,1);transform-origin:left center;transform-style:preserve-3d;backface-visibility:hidden;border-radius:0 4px 4px 0;box-shadow:4px 4px 20px rgba(0,0,0,.4)}
-.ark-book-back{position:absolute;left:22px;right:0;top:0;bottom:0;border:1px solid rgba(232,232,232,.1);border-left:none;overflow:hidden;border-radius:0 4px 4px 0;background:var(--navy)}
-.ark-book-back img{width:100%;height:100%;object-fit:cover;object-position:top}
+.ark-book-front{flex:1;background:var(--charcoal);border:1px solid rgba(232,232,232,.18);border-left:none;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;z-index:2;transition:transform .75s cubic-bezier(.645,.045,.355,1);transform-origin:left center;transform-style:preserve-3d;backface-visibility:hidden;border-radius:0 4px 4px 0;box-shadow:4px 4px 20px rgba(0,0,0,.4)}
+.ark-book-back{position:absolute;left:22px;right:0;top:0;bottom:0;border:1px solid rgba(232,232,232,.1);border-left:none;overflow:hidden;border-radius:0 4px 4px 0;background:#fff;display:flex;align-items:center;justify-content:center}
+.ark-book-back img{width:100%;height:100%;object-fit:contain;object-position:center}
+.ark-book-back-text{width:100%;height:100%;overflow-y:auto;padding:32px 28px;box-sizing:border-box;background:var(--navy)}
 .ark-book-hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);font-family:'EB Garamond',serif;font-size:.72rem;letter-spacing:.18em;color:rgba(232,232,232,.35);text-transform:uppercase;white-space:nowrap;transition:opacity .3s}
 .ark-book-wrap:hover .ark-book-front{transform:rotateY(-162deg)}
 .ark-book-wrap:hover .ark-book-hint{opacity:0}
@@ -875,13 +876,15 @@ footer{background:var(--navy);border-top:.5px solid rgba(232,232,232,.14);paddin
         <div class="ark-book-wrap fi">
           <div class="ark-book-inner">
             <div class="ark-book-spine"></div>
-            <div class="ark-book-back" style="overflow-y:auto;padding:32px 24px;display:flex;flex-direction:column;justify-content:flex-start">
-              <p style="font-family:'EB Garamond',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,232,232,.45);margin-bottom:14px">Articles</p>
-              <h4 style="font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.35;color:var(--sw);margin-bottom:18px">How Skincare Has Evolved<br><span style="font-style:italic;font-size:.9rem;opacity:.7">And What That Means for You</span></h4>
-              <div style="width:28px;height:1px;background:rgba(232,232,232,.2);margin-bottom:18px"></div>
-              <p style="font-family:'EB Garamond',serif;font-size:.8rem;line-height:1.7;color:rgba(232,232,232,.7)">AI-driven diagnostics, OBM manufacturing, and digital tracking have made personalised skincare genuinely possible for the first time.</p>
-              <p style="font-family:'EB Garamond',serif;font-size:.8rem;line-height:1.7;color:rgba(232,232,232,.7);margin-top:12px">The skin is no longer treated as a surface. It is treated as a system — one that can be read, understood, and responded to with precision.</p>
-              <p style="font-family:'EB Garamond',serif;font-size:.8rem;line-height:1.7;color:rgba(232,232,232,.7);margin-top:12px">ARK is built on that shift.</p>
+            <div class="ark-book-back">
+              <div class="ark-book-back-text">
+                <p style="font-family:'EB Garamond',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,232,232,.45);margin-bottom:14px">Articles</p>
+                <h4 style="font-family:'Playfair Display',serif;font-size:1.1rem;line-height:1.35;color:var(--sw);margin-bottom:18px">How Skincare Has Evolved<br><span style="font-style:italic;font-size:.95rem;opacity:.7">And What That Means for You</span></h4>
+                <div style="width:28px;height:1px;background:rgba(232,232,232,.2);margin-bottom:18px"></div>
+                <p style="font-family:'EB Garamond',serif;font-size:.88rem;line-height:1.75;color:rgba(232,232,232,.75)">AI-driven diagnostics, OBM manufacturing, and digital tracking have made personalised skincare genuinely possible for the first time.</p>
+                <p style="font-family:'EB Garamond',serif;font-size:.88rem;line-height:1.75;color:rgba(232,232,232,.75);margin-top:14px">The skin is no longer treated as a surface. It is treated as a system — one that can be read, understood, and responded to with precision.</p>
+                <p style="font-family:'EB Garamond',serif;font-size:.88rem;line-height:1.75;color:rgba(232,232,232,.75);margin-top:14px">ARK is built on that shift.</p>
+              </div>
             </div>
             <div class="ark-book-front">
               <span class="lbl" style="margin-bottom:14px">Articles</span>
