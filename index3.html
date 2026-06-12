@@ -475,11 +475,11 @@ hr { border:none; border-top:.5px solid var(--rule); }
 @media(max-width:900px){ .product-grid{ grid-template-columns:1fr 1fr; } }
 
 /* ─── BOOKS ───────────────────────────────────────────────── */
-.book-row { display:flex; flex-direction:row; gap:48px; justify-content:center; max-width:960px; margin:0 auto; flex-wrap:wrap; }
-.book-wrap { perspective:2200px; width:260px; flex-shrink:0; cursor:pointer; padding:28px 0 40px; }
+.book-row { display:flex; flex-direction:column; gap:80px; max-width:660px; margin:0 auto; }
+.book-wrap { perspective:2200px; width:100%; cursor:pointer; padding:28px 0 40px; }
 /* Resting 3D tilt — book sits at an angle so depth is visible without hovering */
 .book-inner {
-  display:flex; position:relative; height:380px;
+  display:flex; position:relative; height:300px;
   transform:rotateX(4deg) rotateY(-6deg);
   transform-style:preserve-3d;
   transition:transform .4s ease, filter .4s ease;
