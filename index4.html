@@ -227,10 +227,12 @@
       height:420px; overflow:hidden; position:relative; background:#000;
     }
     .dest-strip-img {
-      width:100%; height:100%;
+      position:absolute; inset:0;
       background-size:cover; background-position:center 40%;
-      filter:grayscale(1) contrast(1.15) brightness(.55);
+      filter:grayscale(1) contrast(1.15) brightness(.5);
+      transition:transform 8s ease;
     }
+    .dest-strip:hover .dest-strip-img { transform:scale(1.03); }
     .dest-strip-label {
       position:absolute; bottom:40px; left:80px;
       font-family:'Cormorant Garamond',serif; font-weight:300;
@@ -241,6 +243,87 @@
       position:absolute; bottom:48px; right:80px;
       font-size:.5rem; letter-spacing:.2em; text-transform:uppercase; font-weight:500;
       color:rgba(255,255,255,.28);
+    }
+    /* tall strips */
+    .dest-strip.tall { height:560px; }
+    .dest-strip.short { height:300px; }
+
+    /* ─── CSS PANORAMA STRIPS ─── */
+    /* Open ocean — vast horizon, glittering light */
+    .css-ocean {
+      height:380px; position:relative; overflow:hidden; background:#000;
+      background:
+        radial-gradient(ellipse 180% 18% at 50% 44%, rgba(255,255,255,.52) 0%, transparent 100%),
+        radial-gradient(ellipse 80% 10% at 20% 50%, rgba(200,200,200,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 8%  at 78% 52%, rgba(180,180,180,.14) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 6%  at 45% 57%, rgba(160,160,160,.12) 0%, transparent 60%),
+        linear-gradient(to bottom,
+          #f8f8f8 0%, #e8e8e8 22%, #d0d0d0 34%,
+          #b0b0b0 40%, #888 43%, #666 47%,
+          #4a4a4a 55%, #2e2e2e 68%, #0e0e0e 100%);
+    }
+    .css-ocean-label {
+      position:absolute; bottom:40px; left:80px;
+      font-family:'Cormorant Garamond',serif; font-weight:300;
+      font-size:clamp(2rem,4vw,4rem); color:rgba(255,255,255,.88); letter-spacing:-.01em;
+    }
+    .css-ocean-caption {
+      position:absolute; bottom:48px; right:80px;
+      font-size:.5rem; letter-spacing:.2em; text-transform:uppercase;
+      font-weight:500; color:rgba(255,255,255,.28);
+    }
+
+    /* Alpine peaks — dramatic high-contrast snow and shadow */
+    .css-alpine {
+      height:460px; position:relative; overflow:hidden; background:#000;
+      background:
+        radial-gradient(ellipse 100% 32% at 50% 0%,  rgba(255,255,255,.88) 0%, rgba(255,255,255,0) 100%),
+        radial-gradient(ellipse 48% 22% at 28% 24%, rgba(255,255,255,.52) 0%, transparent 72%),
+        radial-gradient(ellipse 38% 18% at 58% 20%, rgba(255,255,255,.4)  0%, transparent 68%),
+        radial-gradient(ellipse 25% 12% at 75% 32%, rgba(255,255,255,.28) 0%, transparent 62%),
+        radial-gradient(ellipse 80% 20% at 50% 55%, rgba(0,0,0,.35) 0%, transparent 100%),
+        linear-gradient(to bottom,
+          #f2f2f2 0%, #d8d8d8 12%, #bbb 22%,
+          #9a9a9a 30%, #787878 38%, #585858 46%,
+          #3c3c3c 56%, #1e1e1e 70%, #040404 100%);
+    }
+    .css-alpine-label {
+      position:absolute; bottom:40px; left:80px;
+      font-family:'Cormorant Garamond',serif; font-weight:300;
+      font-size:clamp(2rem,4vw,4rem); color:rgba(255,255,255,.88); letter-spacing:-.01em;
+    }
+    .css-alpine-caption {
+      position:absolute; bottom:48px; right:80px;
+      font-size:.5rem; letter-spacing:.2em; text-transform:uppercase;
+      font-weight:500; color:rgba(255,255,255,.28);
+    }
+
+    /* Coastal cliffs — Mediterranean light, chalk white, deep sea */
+    .css-coastal {
+      height:400px; position:relative; overflow:hidden; background:#000;
+      background:
+        radial-gradient(ellipse 140% 30% at 50% 5%,  rgba(255,255,255,.75) 0%, rgba(255,255,255,0) 60%),
+        radial-gradient(ellipse 60% 18% at 15% 38%, rgba(255,255,255,.35) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 12% at 82% 35%, rgba(255,255,255,.25) 0%, transparent 65%),
+        radial-gradient(ellipse 160% 18% at 50% 50%, rgba(100,100,100,.3) 0%, transparent 100%),
+        linear-gradient(to bottom,
+          #f5f5f5 0%, #e5e5e5 14%, #cccc 28%,
+          #aaa 36%, #888 42%, #686868 50%,
+          #484848 60%, #282828 74%, #0a0a0a 100%);
+    }
+
+    /* ─── LOCATION PANORAMIC (full 4-grid image) ─── */
+    .location-panoramic {
+      height:340px; overflow:hidden; position:relative; background:#111;
+    }
+    .location-panoramic-img {
+      position:absolute; inset:0;
+      background-image:url('ark-4-season-locations.png');
+      background-size:cover; background-position:center 30%;
+      filter:grayscale(1) contrast(1.1) brightness(.55);
+    }
+    .location-panoramic-rule {
+      position:absolute; bottom:0; left:0; right:0; height:1px; background:rgba(255,255,255,.12);
     }
 
     /* ─── MANIFEST PILLARS ─── */
@@ -311,19 +394,57 @@
     }
     .season-bg {
       position:absolute; inset:0;
-      background-image:url('ark-4-season-locations.png');
-      background-size:200% 200%;
-      filter:grayscale(1) contrast(1.1) brightness(.55);
-      transition:transform .65s ease, filter .4s ease;
+      transition:transform .65s ease, opacity .4s ease;
     }
-    .season-card:hover .season-bg {
-      transform:scale(1.05);
-      filter:grayscale(1) contrast(1.1) brightness(.7);
+    .season-card:hover .season-bg { transform:scale(1.05); opacity:.85; }
+
+    /* Summer — Amalfi Coast: brilliant sky, cliffs plunging to sea */
+    .season-1 .season-bg {
+      background:
+        radial-gradient(ellipse 160% 22% at 50% 38%, rgba(255,255,255,.58) 0%, transparent 100%),
+        radial-gradient(ellipse 35% 8% at 22% 57%, rgba(210,210,210,.22) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 7% at 72% 60%, rgba(190,190,190,.18) 0%, transparent 65%),
+        linear-gradient(to bottom,
+          #f6f6f6 0%, #ebebeb 12%, #d4d4d4 24%,
+          #b8b8b8 32%, #8a8a8a 39%, #686868 45%,
+          #4e4e4e 55%, #303030 68%, #131313 100%);
     }
-    .season-1 .season-bg { background-position:0% 0%; }
-    .season-2 .season-bg { background-position:100% 0%; }
-    .season-3 .season-bg { background-position:0% 100%; }
-    .season-4 .season-bg { background-position:100% 100%; }
+    /* Autumn — Kyoto: misty temple gardens, layered canopy light */
+    .season-2 .season-bg {
+      background:
+        radial-gradient(ellipse 75% 32% at 28% 16%, rgba(255,255,255,.22) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 22% at 72% 10%, rgba(255,255,255,.14) 0%, transparent 62%),
+        radial-gradient(ellipse 55% 18% at 50% 40%, rgba(0,0,0,.2) 0%, transparent 80%),
+        radial-gradient(ellipse 30% 10% at 60% 62%, rgba(0,0,0,.25) 0%, transparent 70%),
+        linear-gradient(to bottom,
+          #e0e0e0 0%, #c5c5c5 10%, #a8a8a8 20%,
+          #909090 28%, #787878 36%, #585858 46%,
+          #3c3c3c 58%, #222 72%, #080808 100%);
+    }
+    /* Winter — St. Moritz: stark snow peaks, dramatic dark valleys */
+    .season-3 .season-bg {
+      background:
+        radial-gradient(ellipse 100% 28% at 50% 0%, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 100%),
+        radial-gradient(ellipse 42% 18% at 34% 28%, rgba(255,255,255,.5) 0%, transparent 75%),
+        radial-gradient(ellipse 32% 14% at 66% 25%, rgba(255,255,255,.38) 0%, transparent 68%),
+        radial-gradient(ellipse 18% 8%  at 80% 38%, rgba(255,255,255,.22) 0%, transparent 60%),
+        linear-gradient(to bottom,
+          #f2f2f2 0%, #dadada 10%, #bbb 20%,
+          #9a9a9a 30%, #787878 38%, #585858 46%,
+          #3a3a3a 55%, #202020 68%, #060606 100%);
+    }
+    /* Spring — Provence: vast luminous sky, rolling lavender fields */
+    .season-4 .season-bg {
+      background:
+        radial-gradient(ellipse 140% 42% at 50% 0%, rgba(255,255,255,.88) 0%, rgba(255,255,255,0) 56%),
+        radial-gradient(ellipse 160% 14% at 50% 50%, rgba(200,200,200,.38) 0%, transparent 100%),
+        radial-gradient(ellipse 45% 7%  at 22% 62%, rgba(120,120,120,.28) 0%, transparent 72%),
+        radial-gradient(ellipse 55% 7%  at 72% 67%, rgba(100,100,100,.22) 0%, transparent 72%),
+        linear-gradient(to bottom,
+          #f9f9f9 0%, #f2f2f2 16%, #e0e0e0 30%,
+          #cacaca 40%, #aaa 47%, #888 55%,
+          #666 65%, #444 77%, #1c1c1c 100%);
+    }
     .season-overlay {
       position:absolute; inset:0;
       background:linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%);
@@ -646,9 +767,15 @@
     </div>
   </div>
 
-  <!-- Destination strip -->
-  <div class="dest-strip fi">
-    <div class="dest-strip-img" style="background-image:url('ark-super-yacht.png')"></div>
+  <!-- CSS open ocean strip -->
+  <div class="css-ocean fi">
+    <p class="css-ocean-label">Somewhere between departure<br>and arrival.</p>
+    <p class="css-ocean-caption">The open water &nbsp;·&nbsp; ARK 2026</p>
+  </div>
+
+  <!-- Destination strip — super yacht -->
+  <div class="dest-strip tall fi">
+    <div class="dest-strip-img" style="background-image:url('ark-super-yacht.png');background-position:center 35%"></div>
     <p class="dest-strip-label">The voyage is yours.</p>
     <p class="dest-strip-caption">ARK Body + Skin &nbsp;·&nbsp; 2026</p>
   </div>
@@ -747,6 +874,12 @@
 
   </div>
 
+  <!-- CSS alpine strip between pillars and manifesto -->
+  <div class="css-alpine fi">
+    <p class="css-alpine-label">The architecture of trust.</p>
+    <p class="css-alpine-caption">ARK — The Manifest &nbsp;·&nbsp; 2026</p>
+  </div>
+
   <!-- Full manifesto -->
   <div class="manifesto-wrap s-off">
     <p class="caps dim fi" style="margin-bottom:40px">The Manifesto in Full</p>
@@ -777,11 +910,14 @@
 ══════════════════════════════════════════════════════════════ -->
 <div id="panel-itinerary" class="panel">
 
-  <div class="itinerary-header s-black">
+  <div class="itinerary-header s-black" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:url('ark-itinerary-backdrop.png');background-size:cover;background-position:center 30%;filter:grayscale(1) contrast(1.1) brightness(.22);z-index:0"></div>
+    <div style="position:relative;z-index:1">
     <p class="caps dim-w fi" style="margin-bottom:20px">03 · The Itinerary</p>
     <h2 class="fi" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.5rem,5vw,5.5rem);line-height:1.05;color:#fff;letter-spacing:-.01em;max-width:640px;transition-delay:.1s">"The first 30 days are about commitment, not results."</h2>
     <p class="body w fi" style="max-width:560px;margin-top:32px;transition-delay:.2s">ARK tells her on Day 0: your skin is beginning its first cycle. Trust the process. Your next Mirror Moment will show the truth.</p>
-  </div>
+    </div><!-- /z-index wrapper -->
+  </div><!-- /itinerary-header -->
 
   <!-- Timeline -->
   <div class="timeline-row s-black">
@@ -816,6 +952,12 @@
     <div class="dest-strip-img" style="background-image:url('ark-destinations.png')"></div>
     <p class="dest-strip-label">Four seasons. Four destinations.</p>
     <p class="dest-strip-caption">ARK Itinerary &nbsp;·&nbsp; 12-week biological rhythm</p>
+  </div>
+
+  <!-- Location panoramic strip above season cards -->
+  <div class="location-panoramic">
+    <div class="location-panoramic-img"></div>
+    <div class="location-panoramic-rule"></div>
   </div>
 
   <!-- Season cards -->
@@ -881,6 +1023,12 @@
   </div>
 
   <!-- Split -->
+  <!-- Destination strip above suite split -->
+  <div class="dest-strip short fi">
+    <div class="dest-strip-img" style="background-image:url('ark-future-suite.png');background-position:center 20%"></div>
+    <p class="dest-strip-caption">Suite Photography &nbsp;·&nbsp; The Mirror Moment</p>
+  </div>
+
   <div class="suite-split">
     <div class="suite-left fi">
       <p class="caps dim" style="margin-bottom:24px">Biomarker Assessment — Day 0</p>
@@ -962,6 +1110,12 @@
       <p class="ticket4-price">$XXX</p>
       <button class="ticket4-btn">Select Cruise</button>
     </div>
+  </div>
+
+  <!-- CSS ocean strip between tickets and checkout -->
+  <div class="css-ocean" style="height:300px">
+    <p class="css-ocean-label" style="font-size:clamp(1.5rem,3vw,2.8rem)">Choose your departure.<br>The rest follows.</p>
+    <p class="css-ocean-caption">ARK Ticket Office &nbsp;·&nbsp; 2026</p>
   </div>
 
   <!-- Checkout -->
@@ -1072,6 +1226,12 @@
     <p class="caps dim fi" style="margin-bottom:20px">07 · The Honesty Box</p>
     <h2 class="fi" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.5rem,5vw,5.5rem);line-height:1.05;letter-spacing:-.01em;max-width:640px;transition-delay:.1s">ARK unfiltered.<br>The conversation skincare<br>usually avoids.</h2>
     <p class="caps dim fi" style="margin-top:20px;transition-delay:.2s">Hover a book to open it</p>
+  </div>
+
+  <!-- CSS coastal strip above books -->
+  <div class="css-coastal fi">
+    <p style="position:absolute;bottom:40px;left:80px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.8rem);color:rgba(255,255,255,.88);letter-spacing:-.01em">We map your skin,<br>not your identity.</p>
+    <p style="position:absolute;bottom:48px;right:80px;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:rgba(255,255,255,.28)">ARK Honesty Box &nbsp;·&nbsp; 2026</p>
   </div>
 
   <!-- Books -->
