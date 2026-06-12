@@ -6,531 +6,546 @@
 <title>ARK Body + Skin — No. 3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
 /* ─── TOKENS ──────────────────────────────────────────────── */
 :root {
-  --paper:   #f9f6f1;
-  --paper2:  #f3ede4;
-  --ink:     #111111;
-  --mid:     #5a5550;
+  --paper:   #ffffff;
+  --paper2:  #f8f7f5;
+  --ink:     #0f0f0f;
+  --mid:     #484440;
   --faint:   #9a9490;
-  --rule:    #d8d2ca;
+  --rule:    #dbd8d4;
+  --rule-h:  #e8e5e2;   /* hairline rule tint */
   --bronze:  #b8906a;
   --bronze2: #8c6a48;
-  --black:   #0a0a0a;
-  --white:   #ffffff;
+  --black:   #080808;
 }
 
-/* ─── RESET & BASE ────────────────────────────────────────── */
+/* ─── RESET ───────────────────────────────────────────────── */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
 html { scroll-behavior:smooth }
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  overflow-x: hidden;
+  font-family: 'Bodoni Moda', serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* ─── TYPE SCALE ──────────────────────────────────────────── */
+/* ─── TYPE ────────────────────────────────────────────────── */
+.sans {
+  font-family: 'Montserrat', sans-serif;
+}
 .caps {
   font-family: 'Montserrat', sans-serif;
-  font-size: .65rem;
+  font-size: .6rem;
   font-weight: 500;
-  letter-spacing: .22em;
+  letter-spacing: .24em;
   text-transform: uppercase;
   color: var(--faint);
 }
 .headline {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  line-height: 1.06;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 400;
+  line-height: 1.04;
   letter-spacing: -.01em;
 }
-.pull {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 300;
-  line-height: 1.25;
-  color: var(--ink);
-}
 .body {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.15rem;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.05rem;
   font-weight: 400;
-  line-height: 1.78;
+  line-height: 1.82;
   color: var(--mid);
 }
-.body-sm {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  line-height: 1.7;
+.caption {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .56rem;
+  font-weight: 400;
+  letter-spacing: .16em;
   color: var(--faint);
+  text-transform: uppercase;
+  padding-top: 10px;
+  border-top: .5px solid var(--rule);
+  display: block;
+  margin-top: 10px;
 }
 
-/* ─── RULE ELEMENTS ───────────────────────────────────────── */
-hr { border:none; border-top:1px solid var(--rule); }
-.rule-bronze { border:none; border-top:1px solid var(--bronze); opacity:.45; }
-.dot { display:inline-block; width:3px; height:3px; border-radius:50%; background:var(--bronze); vertical-align:middle; margin:0 10px; }
+/* Drop cap */
+.drop-cap::first-letter {
+  float: left;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 5.2rem;
+  font-weight: 400;
+  line-height: .8;
+  margin: 8px 14px 0 0;
+  color: var(--ink);
+}
+
+/* Multi-column body text */
+.col2 {
+  columns: 2;
+  column-gap: 56px;
+  column-rule: .5px solid var(--rule);
+}
+@media(max-width:768px){ .col2 { columns:1; } }
+
+/* ─── HAIRLINE RULES ──────────────────────────────────────── */
+hr { border:none; border-top:.5px solid var(--rule); }
+.rule-bronze { border:none; border-top:.5px solid var(--bronze); opacity:.5; }
+.v-rule { width:.5px; background:var(--rule); align-self:stretch; }
+
+/* ─── PHOTO PLACEHOLDER ───────────────────────────────────── */
+.ph {
+  background: var(--paper2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow: hidden;
+}
+.ph::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(45deg, transparent 0, transparent 28px, rgba(0,0,0,.025) 28px, rgba(0,0,0,.025) 29px),
+    repeating-linear-gradient(-45deg, transparent 0, transparent 28px, rgba(0,0,0,.025) 28px, rgba(0,0,0,.025) 29px);
+}
+.ph-label {
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .56rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.2);
+  text-align: center;
+}
+.ph-hint {
+  position: relative;
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  font-size: .9rem;
+  color: rgba(0,0,0,.12);
+  text-align: center;
+}
 
 /* ─── NAV ─────────────────────────────────────────────────── */
 #nav {
   position: fixed; top:0; left:0; right:0; z-index:900;
-  background: rgba(249,246,241,.96);
+  background: rgba(255,255,255,.97);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: .5px solid var(--rule);
 }
 .nav-inner {
-  max-width: 1320px; margin:0 auto;
+  max-width: 1400px; margin:0 auto;
   padding: 0 40px;
   display: flex; align-items: center; justify-content: space-between;
   height: 52px;
 }
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-size: 1.4rem;
-  letter-spacing: .28em;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 400;
+  font-size: 1.65rem;
+  letter-spacing: .32em;
   color: var(--ink);
   text-transform: uppercase;
   cursor: pointer;
 }
 .nav-tabs {
-  display: flex;
-  list-style: none;
+  display: flex; list-style:none;
 }
 .nav-tabs a {
-  display: block;
-  padding: 0 16px;
-  height: 52px;
-  line-height: 52px;
+  display: block; padding:0 15px; height:52px; line-height:52px;
   font-family: 'Montserrat', sans-serif;
-  font-size: .6rem;
-  font-weight: 500;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--faint);
-  cursor: pointer;
+  font-size: .57rem; font-weight:500;
+  letter-spacing: .2em; text-transform:uppercase;
+  color: var(--faint); cursor:pointer;
   transition: color .2s;
   border-bottom: 1.5px solid transparent;
   white-space: nowrap;
 }
 .nav-tabs a:hover { color: var(--ink); }
-.nav-tabs a.active { color: var(--ink); border-bottom-color: var(--bronze); }
-.nav-issue {
+.nav-tabs a.active { color: var(--ink); border-bottom-color: var(--ink); }
+.nav-right {
   font-family: 'Montserrat', sans-serif;
-  font-size: .58rem;
-  font-weight: 400;
-  letter-spacing: .18em;
-  color: var(--faint);
-  text-transform: uppercase;
+  font-size: .54rem; font-weight:400;
+  letter-spacing: .18em; color: var(--faint);
+  text-transform: uppercase; text-align:right;
 }
 
 /* ─── PANELS ──────────────────────────────────────────────── */
-.panel { display:none; padding-top:52px; animation: appear .35s ease; }
+.panel { display:none; padding-top:52px; animation:appear .3s ease; }
 .panel.active { display:block; }
-@keyframes appear { from { opacity:0; transform:translateY(5px) } to { opacity:1; transform:none } }
+@keyframes appear { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:none} }
 
-/* ─── LAYOUT HELPERS ──────────────────────────────────────── */
-.wrap  { max-width:1320px; margin:0 auto; padding:0 40px; }
-.col   { max-width:760px; }
-.grid2 { display:grid; grid-template-columns:1fr 1fr; }
-.grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; }
+/* ─── LAYOUT ──────────────────────────────────────────────── */
+.wrap { max-width:1320px; margin:0 auto; padding:0 56px; }
+.wrap-sm { max-width:900px; margin:0 auto; padding:0 56px; }
+@media(max-width:768px){ .wrap,.wrap-sm{ padding:0 24px; } }
 
-/* ─── COVER HERO ──────────────────────────────────────────── */
+/* ─── COVER ───────────────────────────────────────────────── */
 .cover {
-  background: var(--black);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  grid-template-rows: auto 1fr auto;
   position: relative;
+  background: var(--black);
   overflow: hidden;
-  padding: 0 0 80px;
 }
-.cover-bg {
+
+/* Cover photo zone — full bleed behind everything */
+.cover-photo {
   position: absolute; inset:0;
+  z-index: 0;
+}
+.cover-photo .ph {
+  width: 100%; height: 100%;
+  background: #1a1a1a;
+}
+.cover-photo .ph::before {
+  background: repeating-linear-gradient(45deg,transparent 0,transparent 40px,rgba(255,255,255,.02) 40px,rgba(255,255,255,.02) 41px),
+              repeating-linear-gradient(-45deg,transparent 0,transparent 40px,rgba(255,255,255,.02) 40px,rgba(255,255,255,.02) 41px);
+}
+.cover-photo .ph-label { color:rgba(255,255,255,.18); font-size:.65rem; }
+.cover-photo .ph-hint  { color:rgba(255,255,255,.1); font-size:1rem; }
+
+/* Gradient overlays so text reads over photo */
+.cover-overlay {
+  position: absolute; inset:0; z-index:1;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 110%, rgba(184,144,106,.18) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 80% at 80% -10%, rgba(184,144,106,.08) 0%, transparent 60%),
-    #0a0a0a;
+    linear-gradient(to bottom, rgba(8,8,8,.6) 0%, rgba(8,8,8,.1) 30%, rgba(8,8,8,.05) 60%, rgba(8,8,8,.75) 100%),
+    linear-gradient(to right, rgba(8,8,8,.45) 0%, transparent 40%);
 }
-.cover-art {
-  position: absolute; inset:0;
-  display: flex; align-items: center; justify-content: center;
+
+/* Masthead strip (row 1) */
+.cover-masthead {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  z-index: 10;
+  padding: 0 56px;
+  height: 44px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: .5px solid rgba(255,255,255,.15);
 }
-.cover-wordmark {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(140px, 24vw, 340px);
-  letter-spacing: .18em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,.12);
+.cover-masthead-left,
+.cover-masthead-right {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .54rem; font-weight: 400;
+  letter-spacing: .22em; text-transform:uppercase;
+  color: rgba(255,255,255,.45);
+  display:flex; gap:20px; align-items:center;
+}
+.cover-masthead-logo {
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 400;
+  font-size: 3.8rem;
+  letter-spacing: .22em;
+  color: #ffffff;
   text-transform: uppercase;
   line-height: 1;
-  user-select: none;
 }
-.cover-content {
-  position: relative; z-index:2;
-  padding: 0 56px;
-  max-width: 900px;
+
+/* Cover lines (left column) */
+.cover-lines {
+  grid-column: 1;
+  grid-row: 2;
+  z-index: 10;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 20px;
+  padding: 40px 0;
+  border-right: .5px solid rgba(255,255,255,.12);
+  margin-top: 44px;
 }
-.cover-issue {
+.cover-line-item {
   font-family: 'Montserrat', sans-serif;
-  font-size: .6rem;
-  font-weight: 500;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--bronze);
-  margin-bottom: 24px;
+  font-size: .5rem; font-weight: 400;
+  letter-spacing: .18em; text-transform:uppercase;
+  color: rgba(255,255,255,.4);
+  white-space: nowrap;
+}
+.cover-line-item strong {
+  font-weight: 600; color: rgba(255,255,255,.7);
+}
+
+/* Main cover content */
+.cover-content {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  z-index: 10;
+  display: flex; flex-direction:column; justify-content: flex-end;
+  padding: 0 0 72px 48px;
+}
+.cover-issue-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .58rem; font-weight:500;
+  letter-spacing: .26em; text-transform:uppercase;
+  color: var(--bronze); margin-bottom:20px;
+  display:flex; align-items:center; gap:12px;
+}
+.cover-issue-label::after {
+  content:''; display:block; width:40px; height:.5px; background:var(--bronze);
 }
 .cover-headline {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(3rem, 7vw, 7rem);
-  line-height: 1.04;
-  color: #f9f6f1;
-  margin-bottom: 32px;
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 400;
+  font-size: clamp(3.4rem, 7.5vw, 8rem);
+  line-height: 1.02;
+  color: #ffffff;
+  margin-bottom: 28px;
 }
 .cover-sub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Bodoni Moda', serif;
   font-style: italic;
-  font-size: clamp(1.2rem, 2vw, 1.65rem);
-  color: rgba(249,246,241,.45);
-  font-weight: 300;
-  max-width: 560px;
-  line-height: 1.5;
+  font-size: clamp(1.1rem, 1.8vw, 1.55rem);
+  color: rgba(255,255,255,.45);
+  font-weight: 400; line-height:1.5;
+  max-width: 480px; margin-bottom: 40px;
 }
-.cover-rule {
-  position: absolute;
-  right: 56px; top: 50%;
-  transform: translateY(-50%);
-  display: flex; flex-direction:column; align-items:center; gap:20px;
-}
-.cover-rule-line {
-  width: 1px; height: 160px;
-  background: linear-gradient(to bottom, transparent, rgba(184,144,106,.5), transparent);
-}
-.cover-rule-text {
+.cover-cta {
+  display: inline-block;
+  padding: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size: .52rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: rgba(184,144,106,.5);
-  writing-mode: vertical-rl;
+  font-size: .58rem; font-weight:600;
+  letter-spacing: .26em; text-transform:uppercase;
+  color: rgba(255,255,255,.6);
+  border-bottom: .5px solid rgba(255,255,255,.3);
+  padding-bottom: 6px; cursor:pointer;
+}
+
+/* Barcode + price (right column) */
+.cover-barcode {
+  grid-column: 3;
+  grid-row: 2;
+  z-index: 10;
+  display: flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  padding: 0 0 48px;
+  gap: 8px;
+  margin-top: 44px;
+  border-left: .5px solid rgba(255,255,255,.12);
+}
+.cover-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .54rem; letter-spacing:.14em;
+  color: rgba(255,255,255,.4); text-transform:uppercase;
 }
 
 /* ─── MARQUEE ─────────────────────────────────────────────── */
 .marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 14px 0;
-  background: var(--paper2);
+  overflow:hidden; white-space:nowrap;
+  border-bottom: .5px solid var(--rule);
+  padding: 12px 0;
+  background: var(--paper);
 }
-.marquee-inner { display:inline-block; animation: marq 32s linear infinite; }
+.marquee-inner { display:inline-block; animation:marq 36s linear infinite; }
 .marquee-inner span {
   font-family: 'Montserrat', sans-serif;
-  font-size: .62rem;
-  font-weight: 400;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--faint);
-  padding: 0 32px;
+  font-size: .58rem; font-weight:400;
+  letter-spacing: .22em; text-transform:uppercase;
+  color: var(--faint); padding:0 28px;
 }
-.marquee-inner span.sep {
-  color: var(--bronze);
-  padding: 0 8px;
-  letter-spacing: 0;
-  font-size: .7rem;
-}
-@keyframes marq { 0% { transform:translateX(0) } 100% { transform:translateX(-50%) } }
+.marquee-inner span.sep { color:var(--bronze); padding:0 6px; }
+@keyframes marq { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-/* ─── EDITORIAL SECTION ───────────────────────────────────── */
-.ed-section { padding: 96px 0; }
-.ed-number {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 7rem;
-  color: var(--rule);
-  line-height: 1;
-  margin-bottom: -20px;
-}
-.ed-kicker {
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 32px;
-}
-.ed-kicker::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
-}
-
-/* ─── STAT BLOCK ──────────────────────────────────────────── */
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--rule);
-}
-.stat-cell {
-  padding: 48px 40px;
-  border-right: 1px solid var(--rule);
-}
-.stat-cell:last-child { border-right: none; }
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 4.5rem;
-  line-height: 1;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.stat-label {
-  font-family: 'Montserrat', sans-serif;
-  font-size: .6rem;
-  font-weight: 500;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--faint);
-  margin-bottom: 12px;
-}
-.stat-body { font-size: .95rem; line-height: 1.65; color: var(--mid); }
-
-/* ─── PULL QUOTE ──────────────────────────────────────────── */
-.pull-block {
-  border-left: 2px solid var(--bronze);
-  padding: 24px 0 24px 40px;
-  margin: 56px 0;
-}
-.pull-block p {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  line-height: 1.3;
-  color: var(--ink);
-}
-.pull-block cite {
-  display: block;
-  margin-top: 16px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: .6rem;
-  letter-spacing: .18em;
-  font-style: normal;
-  color: var(--faint);
-  text-transform: uppercase;
-}
-
-/* ─── SPLIT LAYOUT ────────────────────────────────────────── */
-.split {
+/* ─── EDITORIAL SPREAD ────────────────────────────────────── */
+.spread {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 60vh;
+  min-height: 70vh;
+  border-bottom: .5px solid var(--rule);
 }
-.split-black {
-  background: var(--black);
-  padding: 80px 64px;
-  display: flex; flex-direction:column; justify-content:center;
+.spread-img { position:relative; min-height:480px; }
+.spread-text { padding:80px 64px; display:flex; flex-direction:column; justify-content:center; border-left:.5px solid var(--rule); }
+
+/* ─── PULL QUOTE ──────────────────────────────────────────── */
+.pq {
+  border-top: 1px solid var(--ink);
+  border-bottom: .5px solid var(--rule);
+  padding: 32px 0 28px;
+  margin: 48px 0;
 }
-.split-paper {
-  background: var(--paper2);
-  padding: 80px 64px;
-  display: flex; flex-direction:column; justify-content:center;
+.pq p {
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 400; font-style:italic;
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  line-height: 1.3; color:var(--ink);
+}
+.pq cite {
+  display:block; margin-top:16px;
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem; letter-spacing:.18em;
+  font-style:normal; text-transform:uppercase; color:var(--faint);
 }
 
-/* ─── SEASON PANEL ────────────────────────────────────────── */
-.season-grid { display: grid; grid-template-columns: repeat(4,1fr); }
-.season-panel {
-  padding: 72px 48px;
-  border-right: 1px solid var(--rule);
-  position: relative;
-  overflow: hidden;
+/* ─── STAT STRIP ──────────────────────────────────────────── */
+.stat-strip {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:.5px solid var(--rule); border-bottom:.5px solid var(--rule);
 }
-.season-panel:last-child { border-right:none; }
+.stat-cell {
+  padding:56px 48px; border-right:.5px solid var(--rule);
+}
+.stat-cell:last-child { border-right:none; }
+.stat-num {
+  font-family:'Bodoni Moda',serif; font-weight:400;
+  font-size:5.5rem; line-height:1; color:var(--ink); margin-bottom:6px;
+}
+.stat-label { margin-bottom:14px; }
+.stat-body { font-size:.95rem; line-height:1.72; color:var(--mid); }
+
+/* ─── FEATURE SECTION ─────────────────────────────────────── */
+.feature {
+  padding:104px 0;
+  background:var(--paper);
+  border-bottom:.5px solid var(--rule);
+}
+.section-header {
+  display:flex; align-items:baseline; gap:24px; margin-bottom:56px;
+}
+.section-header::after {
+  content:''; flex:1; height:.5px; background:var(--rule);
+}
+.section-num {
+  font-family:'Bodoni Moda',serif; font-weight:400;
+  font-size:5rem; color:var(--rule); line-height:1;
+}
+.section-title {
+  font-family:'Bodoni Moda',serif; font-weight:400;
+  font-size:clamp(2rem,4vw,3.5rem); color:var(--ink);
+}
+
+/* ─── SEASON GRID ─────────────────────────────────────────── */
+.season-grid { display:grid; grid-template-columns:repeat(4,1fr); }
+.season-cell {
+  padding:64px 40px;
+  border-right:.5px solid var(--rule);
+  border-top:.5px solid var(--rule);
+  display:flex; flex-direction:column;
+}
+.season-cell:last-child { border-right:none; }
 .season-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 5rem;
-  color: var(--rule);
-  line-height: 1;
-  margin-bottom: 24px;
+  font-family:'Bodoni Moda',serif; font-weight:400;
+  font-size:4rem; color:var(--rule); line-height:1; margin-bottom:24px;
 }
-.season-icon { margin-bottom: 24px; }
 .season-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 2.2rem;
-  color: var(--ink);
-  margin-bottom: 16px;
+  font-family:'Bodoni Moda',serif; font-weight:400;
+  font-size:2rem; color:var(--ink); margin-bottom:8px;
 }
+@media(max-width:900px){ .season-grid{ grid-template-columns:1fr 1fr; } }
 
 /* ─── BIOMARKER TABLE ─────────────────────────────────────── */
 .bio-table { width:100%; border-collapse:collapse; }
-.bio-table thead tr { border-bottom: 2px solid var(--ink); }
+.bio-table thead tr { border-bottom:1px solid var(--ink); }
 .bio-table th {
-  font-family: 'Montserrat', sans-serif;
-  font-size: .58rem;
-  font-weight: 600;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--faint);
-  padding: 12px 0;
-  text-align: left;
+  font-family:'Montserrat',sans-serif; font-size:.54rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--faint);
+  padding:10px 0; text-align:left;
 }
 .bio-table td {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
-  color: var(--mid);
-  padding: 18px 0;
-  border-bottom: 1px solid var(--rule);
-  vertical-align: middle;
+  font-family:'Bodoni Moda',serif; font-size:1rem; color:var(--mid);
+  padding:16px 0; border-bottom:.5px solid var(--rule); vertical-align:middle;
 }
-.bio-table td:first-child { color: var(--ink); font-weight: 500; }
-.bio-bar-wrap { width:120px; height:3px; background:var(--rule); border-radius:2px; }
-.bio-bar { height:3px; border-radius:2px; background:var(--bronze); }
+.bio-table td:first-child { color:var(--ink); font-weight:500; }
+.bio-bar-wrap { width:120px; height:2px; background:var(--rule); border-radius:1px; }
+.bio-bar { height:2px; border-radius:1px; background:var(--ink); }
 
-/* ─── PRODUCT CARDS ───────────────────────────────────────── */
+/* ─── PRODUCT BOTTLES (SVG inline) ───────────────────────── */
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:.5px; background:var(--rule); border:.5px solid var(--rule);
 }
 .product-card {
-  background: var(--paper);
-  padding: 56px 40px;
-  display: flex; flex-direction:column;
+  background:var(--paper); padding:56px 40px;
+  display:flex; flex-direction:column;
+  border-right:.5px solid var(--rule);
 }
-.product-art {
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-}
-.product-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: 1.7rem;
-  color: var(--ink);
-  margin-bottom: 8px;
-  letter-spacing: .04em;
-}
-.product-type {
-  font-family: 'Montserrat', sans-serif;
-  font-size: .58rem;
-  font-weight: 500;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--faint);
-  margin-bottom: 16px;
-}
-.product-desc { font-size:1rem; color:var(--mid); line-height:1.65; margin-bottom:24px; flex:1; }
-.product-price {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: var(--bronze);
-}
+.product-card:last-child { border-right:none; }
+.product-art { margin-bottom:40px; display:flex; justify-content:center; }
+.product-name { font-family:'Bodoni Moda',serif; font-weight:400; font-size:1.6rem; color:var(--ink); margin-bottom:4px; }
+.product-type { margin-bottom:16px; }
+.product-desc { font-size:.98rem; line-height:1.72; color:var(--mid); margin-bottom:24px; flex:1; }
+.product-price { font-family:'Bodoni Moda',serif; font-size:1.35rem; font-weight:400; color:var(--bronze); }
+@media(max-width:900px){ .product-grid{ grid-template-columns:1fr 1fr; } }
 
 /* ─── BOOKS ───────────────────────────────────────────────── */
-.book-grid { display:flex; flex-direction:column; gap:64px; max-width:720px; margin:0 auto; }
+.book-row { display:flex; flex-direction:column; gap:72px; max-width:720px; margin:0 auto; }
 .book-wrap { perspective:1400px; width:100%; cursor:pointer; padding:10px 0 8px; }
 .book-inner { display:flex; position:relative; height:380px; }
-.book-inner::before { content:''; position:absolute; top:-9px; left:30px; right:0; height:9px; z-index:10; border-radius:0 2px 0 0; background:repeating-linear-gradient(to bottom,#f9f6f1 0,#f9f6f1 1.5px,#c8a87a 1.5px,#c8a87a 2px); }
-.book-inner::after  { content:''; position:absolute; bottom:-7px; left:30px; right:0; height:7px; z-index:10; background:repeating-linear-gradient(to bottom,#f9f6f1 0,#f9f6f1 1.5px,#c8a87a 1.5px,#c8a87a 2px); }
-.book-spine { width:30px; flex-shrink:0; border-radius:3px 0 0 3px; background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 18px,rgba(0,0,0,.15) 18px,rgba(0,0,0,.15) 19px), linear-gradient(to right,#1a1008,#3a2010,#1a1008); box-shadow:inset -3px 0 8px rgba(0,0,0,.5),3px 0 6px rgba(0,0,0,.3); }
+.book-inner::before { content:''; position:absolute; top:-9px; left:30px; right:0; height:9px; z-index:10; border-radius:0 2px 0 0; background:repeating-linear-gradient(to bottom,#f9f9f7 0,#f9f9f7 1.5px,#c8a87a 1.5px,#c8a87a 2px); }
+.book-inner::after  { content:''; position:absolute; bottom:-7px; left:30px; right:0; height:7px; z-index:10; background:repeating-linear-gradient(to bottom,#f9f9f7 0,#f9f9f7 1.5px,#c8a87a 1.5px,#c8a87a 2px); }
+.book-spine { width:30px; flex-shrink:0; border-radius:3px 0 0 3px; background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 18px,rgba(0,0,0,.13) 18px,rgba(0,0,0,.13) 19px),linear-gradient(to right,#1a1008,#3a2010,#1a1008); box-shadow:inset -3px 0 8px rgba(0,0,0,.45),3px 0 6px rgba(0,0,0,.22); }
 .book-front {
   flex:1;
-  background-color: #f0ece2;
-  background-image:
-    linear-gradient(to bottom,rgba(255,255,255,.25) 0%,rgba(255,255,255,.05) 35%,rgba(0,0,0,.06) 100%),
-    repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(100,65,20,.03) 3px,rgba(100,65,20,.03) 4px),
-    repeating-linear-gradient(90deg,transparent 0,transparent 3px,rgba(100,65,20,.03) 3px,rgba(100,65,20,.03) 4px);
-  border:1px solid rgba(80,40,8,.22); border-left:none;
+  background-color:#f5f2eb;
+  background-image:linear-gradient(to bottom,rgba(255,255,255,.28) 0%,rgba(255,255,255,.04) 35%,rgba(0,0,0,.05) 100%),
+    repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(80,50,10,.025) 3px,rgba(80,50,10,.025) 4px),
+    repeating-linear-gradient(90deg,transparent 0,transparent 3px,rgba(80,50,10,.025) 3px,rgba(80,50,10,.025) 4px);
+  border:.5px solid rgba(80,40,8,.18); border-left:none;
   padding:32px 36px;
   display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
   position:relative; z-index:2;
   transition:transform .75s cubic-bezier(.645,.045,.355,1);
   transform-origin:left center; transform-style:preserve-3d; backface-visibility:hidden;
   border-radius:0 2px 2px 0;
-  box-shadow:6px 8px 32px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.6),inset 4px 0 10px rgba(0,0,0,.06);
+  box-shadow:4px 8px 28px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.6),inset 4px 0 8px rgba(0,0,0,.05);
 }
-.book-front::before { content:''; position:absolute; inset:12px; border:1px solid rgba(80,40,8,.12); border-radius:1px; pointer-events:none; }
-.book-back { position:absolute; left:30px; right:0; top:0; bottom:0; border:1px solid var(--rule); border-left:none; overflow:hidden; border-radius:0 4px 4px 0; background:#fff; display:flex; align-items:center; justify-content:center; }
-.book-back img { width:100%; height:100%; object-fit:contain; object-position:center; }
-.book-back-text { width:100%; height:100%; overflow-y:auto; padding:36px 32px; background:var(--paper); }
-.book-hint { position:absolute; bottom:14px; left:50%; transform:translateX(-50%); font-family:'Montserrat',sans-serif; font-size:.55rem; letter-spacing:.2em; color:rgba(90,45,10,.3); text-transform:uppercase; white-space:nowrap; transition:opacity .3s; }
+.book-front::before { content:''; position:absolute; inset:12px; border:.5px solid rgba(80,40,8,.1); pointer-events:none; }
+.book-back { position:absolute; left:30px; right:0; top:0; bottom:0; border:.5px solid var(--rule); border-left:none; overflow:hidden; border-radius:0 4px 4px 0; background:#fff; display:flex; align-items:center; justify-content:center; }
+.book-back img { width:100%; height:100%; object-fit:contain; }
+.book-hint { position:absolute; bottom:14px; left:50%; transform:translateX(-50%); font-family:'Montserrat',sans-serif; font-size:.52rem; letter-spacing:.2em; color:rgba(90,45,10,.28); text-transform:uppercase; white-space:nowrap; transition:opacity .3s; }
 .book-wrap:hover .book-front { transform:rotateY(-162deg); }
-.book-wrap:hover .book-hint { opacity:0; }
+.book-wrap:hover .book-hint  { opacity:0; }
 
-/* ─── FORM / CHECKOUT ─────────────────────────────────────── */
-.field-group { display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); margin-bottom:1px; }
-.field {
-  background:var(--paper);
-  padding:16px 20px;
-  display:flex; flex-direction:column; gap:4px;
-}
-.field label { font-family:'Montserrat',sans-serif; font-size:.56rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
-.field-val { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--rule); letter-spacing:.04em; }
-.field-val.placeholder { font-style:italic; }
+/* ─── CHECKOUT ────────────────────────────────────────────── */
+.field-wrap { max-width:480px; margin:0 auto; }
+.field-row { display:grid; gap:.5px; background:var(--rule); border:.5px solid var(--rule); margin-bottom:.5px; }
+.field { background:var(--paper2); padding:16px 20px; display:flex; flex-direction:column; gap:4px; }
+.field label { font-family:'Montserrat',sans-serif; font-size:.54rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
+.field-val { font-family:'Bodoni Moda',serif; font-size:1.05rem; color:var(--rule); letter-spacing:.04em; }
 .btn-ark {
-  width:100%; padding:18px;
-  background:var(--ink); border:none;
-  font-family:'Montserrat',sans-serif; font-size:.65rem; font-weight:600;
-  letter-spacing:.22em; text-transform:uppercase;
-  color: var(--paper);
-  cursor:pointer; transition:background .2s;
+  width:100%; padding:18px; background:var(--ink); border:none;
+  font-family:'Montserrat',sans-serif; font-size:.62rem; font-weight:600;
+  letter-spacing:.24em; text-transform:uppercase; color:#fff;
+  cursor:pointer; transition:background .2s; margin-top:.5px;
 }
 .btn-ark:hover { background:#2a2a2a; }
-.btn-outline {
-  padding:14px 32px; border:1px solid var(--ink); background:transparent;
-  font-family:'Montserrat',sans-serif; font-size:.62rem; font-weight:500;
-  letter-spacing:.18em; text-transform:uppercase;
-  color:var(--ink); cursor:pointer; transition:all .2s;
+
+/* ─── SEASON SELECTOR CARDS ───────────────────────────────── */
+.ticket-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.5px; background:var(--rule); border:.5px solid var(--rule); }
+.ticket-card {
+  background:var(--paper); padding:56px 36px;
+  cursor:pointer; transition:background .2s;
+  border-right:.5px solid var(--rule);
+  display:flex; flex-direction:column;
 }
-.btn-outline:hover { background:var(--ink); color:var(--paper); }
+.ticket-card:last-child { border-right:none; }
+.ticket-card:hover { background:var(--paper2); }
+.ticket-num { font-family:'Bodoni Moda',serif; font-weight:400; font-size:4rem; color:var(--rule); line-height:1; margin-bottom:20px; }
+.ticket-name { font-family:'Bodoni Moda',serif; font-weight:400; font-size:1.8rem; color:var(--ink); margin-bottom:6px; }
+.ticket-price { font-family:'Bodoni Moda',serif; font-size:1.5rem; font-weight:400; color:var(--bronze); margin-top:auto; padding-top:24px; }
+@media(max-width:900px){ .ticket-grid{ grid-template-columns:1fr 1fr; } }
 
 /* ─── FOOTER ──────────────────────────────────────────────── */
 footer {
-  border-top:1px solid var(--rule);
-  padding:56px 40px;
+  padding:56px; border-top:.5px solid var(--rule);
   display:flex; align-items:center; justify-content:space-between;
 }
-.ft-left .ft-logo {
-  font-family:'Cormorant Garamond',serif;
-  font-weight:300; font-size:2rem;
-  letter-spacing:.28em; text-transform:uppercase;
-  color:var(--ink); display:block; margin-bottom:6px;
-}
-.ft-tagline { font-family:'Montserrat',sans-serif; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
-.ft-right { font-family:'Montserrat',sans-serif; font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); text-align:right; }
+.ft-logo { font-family:'Bodoni Moda',serif; font-weight:400; font-size:2rem; letter-spacing:.3em; text-transform:uppercase; color:var(--ink); }
+@media(max-width:768px){ footer{ flex-direction:column; gap:16px; text-align:center; } }
 
 /* ─── SCROLL FADE ─────────────────────────────────────────── */
-.fi { opacity:0; transform:translateY(16px); transition:opacity .65s ease, transform .65s ease; }
+.fi { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
 .fi.vis { opacity:1; transform:none; }
 
-/* ─── RESPONSIVE ──────────────────────────────────────────── */
-@media(max-width:1024px) {
-  .season-grid { grid-template-columns:1fr 1fr; }
-  .stat-grid   { grid-template-columns:1fr; }
-  .stat-cell   { border-right:none; border-bottom:1px solid var(--rule); }
-  .split       { grid-template-columns:1fr; }
-  .product-grid{ grid-template-columns:1fr 1fr; }
-}
-@media(max-width:768px) {
-  .nav-tabs { display:none; }
-  .wrap { padding:0 24px; }
-  .cover-content { padding:0 24px; }
-  .product-grid { grid-template-columns:1fr; }
-  .season-grid  { grid-template-columns:1fr; }
-  footer { flex-direction:column; gap:16px; text-align:center; }
-  .ft-right { text-align:center; }
-}
+/* ─── NAV RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:1100px){ .nav-tabs{ display:none; } }
 
 </style>
 </head>
@@ -551,7 +566,10 @@ footer {
       <li><a data-tab="dutyfree"  onclick="showTab('dutyfree')">Duty Free</a></li>
       <li><a data-tab="honesty"   onclick="showTab('honesty')">The Honesty Box</a></li>
     </ul>
-    <span class="nav-issue">Vol. I &nbsp;·&nbsp; No. 3</span>
+    <div class="nav-right">
+      <div>ARK Body + Skin</div>
+      <div style="margin-top:3px">Vol. I &nbsp;·&nbsp; No. 3 &nbsp;·&nbsp; 2024</div>
+    </div>
   </div>
 </nav>
 
@@ -561,29 +579,80 @@ footer {
 ══════════════════════════════════════════════════════════════ -->
 <div id="panel-voyage" class="panel active">
 
-  <!-- COVER -->
+  <!-- ── COVER ─────────────────────────────────────────────── -->
   <div class="cover">
-    <div class="cover-bg"></div>
 
-    <!-- Background outline wordmark -->
-    <div class="cover-art">
-      <span class="cover-wordmark">ARK</span>
+    <!-- PHOTO ZONE — replace this div's contents with an <img> tag -->
+    <div class="cover-photo">
+      <div class="ph" style="width:100%;height:100%;background:#141414">
+        <div class="ph-label">Cover Photography Placeholder</div>
+        <div class="ph-hint">Portrait · Full bleed · High contrast</div>
+        <div class="ph-label" style="margin-top:8px;font-size:.48rem;max-width:260px;text-align:center;line-height:1.8">Replace this div with&nbsp;<code style="font-size:.48rem;background:rgba(255,255,255,.08);padding:2px 6px">&lt;img src="your-cover.jpg"&gt;</code></div>
+      </div>
     </div>
 
-    <!-- Decorative vertical rule + text -->
-    <div class="cover-rule">
-      <div class="cover-rule-line"></div>
-      <span class="cover-rule-text">Body + Skin · 2024</span>
-      <div class="cover-rule-line"></div>
+    <div class="cover-overlay"></div>
+
+    <!-- Masthead strip -->
+    <div class="cover-masthead">
+      <div class="cover-masthead-left">
+        <span>ARK Body + Skin</span>
+        <span>Vol. I</span>
+        <span>Issue 3 · 2024</span>
+      </div>
+      <span class="cover-masthead-logo">ARK</span>
+      <div class="cover-masthead-right">
+        <span>$XX.XX</span>
+        <!-- Barcode SVG -->
+        <svg width="52" height="28" viewBox="0 0 52 28" opacity=".5">
+          <rect x="0"  y="0" width="2"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="3"  y="0" width="1"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="5"  y="0" width="3"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="9"  y="0" width="1"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="11" y="0" width="2"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="14" y="0" width="1"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="16" y="0" width="3"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="20" y="0" width="1"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="22" y="0" width="2"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="25" y="0" width="1"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="27" y="0" width="3"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="31" y="0" width="2"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="34" y="0" width="1"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="36" y="0" width="3"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="40" y="0" width="1"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="42" y="0" width="2"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="45" y="0" width="1"   height="24" fill="rgba(255,255,255,.7)"/>
+          <rect x="47" y="0" width="3"   height="24" fill="rgba(255,255,255,.7)"/>
+          <text x="26" y="28" text-anchor="middle" font-family="'Courier New',monospace" font-size="5" fill="rgba(255,255,255,.5)" letter-spacing=".5">0 12345 67890 5</text>
+        </svg>
+      </div>
     </div>
 
-    <!-- Hero copy -->
+    <!-- Cover lines (left margin) -->
+    <div class="cover-lines">
+      <div class="cover-line-item"><strong>Exclusive</strong> The 16 biomarkers that define your skin</div>
+      <div class="cover-line-item"><strong>Inside</strong> How skincare finally grew up</div>
+      <div class="cover-line-item"><strong>Feature</strong> 90 days · What really changes</div>
+      <div class="cover-line-item">The privacy question skincare avoids</div>
+      <div class="cover-line-item">Four seasons · Four formulations</div>
+    </div>
+
+    <!-- Main cover copy -->
     <div class="cover-content">
-      <p class="cover-issue">ARK &nbsp;·&nbsp; The Voyage &nbsp;·&nbsp; No. 01</p>
+      <p class="cover-issue-label">ARK &nbsp;·&nbsp; The Voyage &nbsp;·&nbsp; No. 01</p>
       <h1 class="cover-headline">She is not<br>a demographic.<br><em>She is a woman.</em></h1>
       <p class="cover-sub">90 days. Four seasons. One skin, finally understood.</p>
+      <span class="cover-cta" onclick="showTab('manifest')">Read the Manifest</span>
     </div>
-  </div>
+
+    <!-- Barcode / price (right margin) -->
+    <div class="cover-barcode">
+      <span class="cover-price">Vol. I</span>
+      <span class="cover-price">No. 3</span>
+      <span class="cover-price">2024</span>
+    </div>
+
+  </div><!-- /cover -->
 
   <!-- MARQUEE -->
   <div class="marquee">
@@ -607,93 +676,68 @@ footer {
     </div>
   </div>
 
-  <!-- INTRO EDITORIAL -->
-  <section class="ed-section" style="background:var(--paper)">
-    <div class="wrap">
-      <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:96px;align-items:start">
-
-        <div class="fi">
-          <div class="ed-number">01</div>
-          <div class="ed-kicker">
-            <span class="caps">The Proposition</span>
-          </div>
-          <!-- SVG compass line art -->
-          <svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" style="margin-top:32px;opacity:.35">
-            <circle cx="90" cy="90" r="82" fill="none" stroke="#111" stroke-width=".7"/>
-            <circle cx="90" cy="90" r="65" fill="none" stroke="#b8906a" stroke-width=".5"/>
-            <circle cx="90" cy="90" r="4" fill="#111"/>
-            <line x1="90" y1="8" x2="90" y2="20" stroke="#111" stroke-width="1.2"/>
-            <line x1="90" y1="160" x2="90" y2="172" stroke="#111" stroke-width="1.2"/>
-            <line x1="8" y1="90" x2="20" y2="90" stroke="#111" stroke-width="1.2"/>
-            <line x1="160" y1="90" x2="172" y2="90" stroke="#111" stroke-width="1.2"/>
-            <line x1="148.8" y1="31.2" x2="140" y2="40" stroke="#b8906a" stroke-width=".6"/>
-            <line x1="148.8" y1="148.8" x2="140" y2="140" stroke="#b8906a" stroke-width=".6"/>
-            <line x1="31.2" y1="148.8" x2="40" y2="140" stroke="#b8906a" stroke-width=".6"/>
-            <line x1="31.2" y1="31.2" x2="40" y2="40" stroke="#b8906a" stroke-width=".6"/>
-            <path d="M90 20 L85 90 L90 78 L95 90 Z" fill="#111"/>
-            <path d="M90 160 L85 90 L90 102 L95 90 Z" fill="rgba(0,0,0,.2)"/>
-            <text x="90" y="14" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="8" fill="#111" letter-spacing="1">N</text>
-            <text x="90" y="175" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="8" fill="#9a9490" letter-spacing="1">S</text>
-            <text x="12" y="94" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="8" fill="#9a9490" letter-spacing="1">W</text>
-            <text x="170" y="94" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="8" fill="#9a9490" letter-spacing="1">E</text>
-          </svg>
-        </div>
-
-        <div>
-          <h2 class="headline fi" style="font-size:clamp(2.4rem,5vw,4.2rem);margin-bottom:36px">
-            ARK is not a destination.<br>It's a voyage.
-          </h2>
-          <div class="pull-block fi">
-            <p>"She has spent decades navigating a skincare industry that never quite spoke to her."</p>
-          </div>
-          <p class="body fi" style="margin-bottom:20px">She is 45 to 65. She is educated, experienced, and she has tried everything. She has read the labels. She has asked the questions. She is tired of promises. She wants clarity, simplicity, dignity, and results.</p>
-          <p class="body fi" style="margin-bottom:20px">ARK gives her that. A 90-day journey with a clear beginning, a structured course, and a real outcome. Not a subscription that drifts. A passage with a purpose.</p>
-          <p class="body fi" style="font-style:italic;color:var(--bronze2)">Three formulations. Four seasons. One skin, finally understood.</p>
-        </div>
+  <!-- EDITORIAL SPREAD: photo left, text right -->
+  <div class="spread fi">
+    <div class="spread-img">
+      <!-- PHOTO ZONE — editorial portrait or product shot -->
+      <div class="ph" style="height:100%;min-height:500px">
+        <div class="ph-label">Editorial Photography</div>
+        <div class="ph-hint">Portrait · Skin close-up · or product</div>
       </div>
+      <span class="caption" style="position:absolute;bottom:0;left:0;right:0;padding:14px 32px;background:rgba(255,255,255,.9)">Photography — ARK Body + Skin &nbsp;·&nbsp; Issue No. 3</span>
     </div>
-  </section>
+    <div class="spread-text">
+      <p class="caps" style="margin-bottom:32px">The Proposition</p>
+      <h2 class="headline fi" style="font-size:clamp(2rem,4.5vw,3.8rem);margin-bottom:40px">ARK is not a<br>destination.<br><em>It's a voyage.</em></h2>
+      <p class="body drop-cap fi" style="margin-bottom:20px">She is 45 to 65. She is educated, experienced, and she has spent decades navigating a skincare industry that never quite spoke to her. She has tried everything. She has read the labels. She has asked the questions.</p>
+      <p class="body fi" style="margin-bottom:20px">She is tired of promises. She wants clarity, simplicity, dignity, and results. ARK gives her that.</p>
+      <p class="body fi" style="font-style:italic;color:var(--bronze2)">Three formulations. Four seasons. One skin, finally understood.</p>
+      <span class="caption fi">ARK Body + Skin &nbsp;·&nbsp; Founding Statement 2024</span>
+    </div>
+  </div>
 
-  <!-- STAT ROW -->
-  <div class="stat-grid fi" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <!-- STAT STRIP -->
+  <div class="stat-strip fi">
     <div class="stat-cell">
-      <p class="stat-label">The Programme</p>
+      <p class="stat-label caps">The Programme</p>
       <p class="stat-num">90</p>
-      <p class="caps" style="margin-bottom:12px">Days per voyage</p>
+      <p class="caps" style="margin-bottom:14px">Days per voyage</p>
       <p class="stat-body">One complete skin renewal cycle. Long enough to measure real change.</p>
     </div>
     <div class="stat-cell">
-      <p class="stat-label">The Precision</p>
+      <p class="stat-label caps">The Precision</p>
       <p class="stat-num">16</p>
-      <p class="caps" style="margin-bottom:12px">Biomarkers assessed</p>
+      <p class="caps" style="margin-bottom:14px">Biomarkers assessed</p>
       <p class="stat-body">AI-read at Day 0, 30, 60, 90. Your formulation responds to what we learn.</p>
     </div>
     <div class="stat-cell">
-      <p class="stat-label">The Formula</p>
+      <p class="stat-label caps">The Formula</p>
       <p class="stat-num">03</p>
-      <p class="caps" style="margin-bottom:12px">Core formulations</p>
-      <p class="stat-body">Morning. Evening. Overnight. Each one calibrated to the season you're sailing.</p>
+      <p class="caps" style="margin-bottom:14px">Core formulations</p>
+      <p class="stat-body">Morning. Evening. Overnight. Each calibrated to the season you're sailing.</p>
     </div>
   </div>
 
-  <!-- COVER TEASE STRIP -->
-  <div style="background:var(--black);padding:80px 0;overflow:hidden;position:relative">
-    <div class="wrap" style="position:relative;z-index:2">
-      <p class="caps fi" style="color:rgba(249,246,241,.3);margin-bottom:32px">The Philosophy</p>
-      <blockquote class="fi" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,5vw,4.5rem);line-height:1.1;color:#f9f6f1;max-width:900px">
-        "Most skincare brands treat women over 45 as an afterthought — or worse, <em>a fear to be monetised.</em>"
+  <!-- FULL-BLEED QUOTE (black panel) -->
+  <div style="background:var(--black);padding:112px 56px;position:relative;overflow:hidden">
+    <div style="max-width:1000px;margin:0 auto">
+      <p class="fi" style="font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:rgba(184,144,106,.6);margin-bottom:36px">The Philosophy</p>
+      <blockquote class="fi" style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(2rem,5.5vw,5rem);line-height:1.08;color:#ffffff;margin-bottom:48px">
+        "Most skincare brands treat women over 45 as an afterthought — or worse,<br><em>a fear to be monetised.</em>"
       </blockquote>
-      <p class="fi" style="font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.2em;color:rgba(184,144,106,.7);text-transform:uppercase;margin-top:36px">ARK — Built differently</p>
+      <hr style="border-color:rgba(255,255,255,.1);max-width:400px;margin:0">
+      <p class="fi" style="font-family:'Montserrat',sans-serif;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:24px">ARK — Built differently · 2024</p>
     </div>
-    <!-- background large text -->
-    <div style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-weight:300;font-size:22vw;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.04);line-height:1;user-select:none;pointer-events:none">ARK</div>
+    <!-- Ghost wordmark background -->
+    <div style="position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Bodoni Moda',serif;font-weight:400;font-size:22vw;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.04);line-height:1;user-select:none;pointer-events:none">ARK</div>
   </div>
 
   <footer>
-    <div class="ft-left"><span class="ft-logo">ARK</span><p class="ft-tagline">Body + Skin &nbsp;·&nbsp; The voyage is yours</p></div>
-    <div class="ft-right"><p>Vol. I &nbsp;·&nbsp; No. 3</p><p style="margin-top:4px">© ARK 2024</p></div>
+    <span class="ft-logo">ARK</span>
+    <span class="caps">Body + Skin &nbsp;·&nbsp; The voyage is yours &nbsp;·&nbsp; Vol. I No. 3</span>
+    <span class="caps">© 2024</span>
   </footer>
-</div>
+</div><!-- /voyage -->
 
 
 <!-- ══════════════════════════════════════════════════════════
@@ -701,81 +745,80 @@ footer {
 ══════════════════════════════════════════════════════════════ -->
 <div id="panel-manifest" class="panel">
 
-  <section style="background:var(--black);padding:120px 0 100px">
-    <div class="wrap">
+  <div style="background:var(--black);padding:120px 56px 104px;position:relative;overflow:hidden">
+    <div style="max-width:1320px;margin:0 auto">
       <p class="caps fi" style="color:rgba(184,144,106,.6);margin-bottom:40px">ARK — The Manifest</p>
-      <h1 class="headline fi" style="font-size:clamp(3rem,8vw,8rem);color:#f9f6f1;margin-bottom:48px;max-width:900px">
-        We didn't build<br>a skincare brand.<br><em>We built a ship.</em>
-      </h1>
+      <h1 class="headline fi" style="font-size:clamp(3.2rem,9vw,9.5rem);color:#ffffff;line-height:1.02;margin-bottom:0">We didn't build<br>a skincare brand.</h1>
+      <h1 class="fi" style="font-family:'Bodoni Moda',serif;font-weight:400;font-style:italic;font-size:clamp(3.2rem,9vw,9.5rem);color:rgba(184,144,106,.8);line-height:1.02;margin-bottom:48px">We built a ship.</h1>
       <hr style="border-color:rgba(255,255,255,.1);margin-bottom:48px">
-      <p class="fi" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.2rem,2vw,1.6rem);color:rgba(249,246,241,.55);max-width:680px;line-height:1.65">Everything that goes onboard has a reason. Every formulation, every assessment, every interaction — positioned with intention. Nothing is filler. Nothing is trend. Every ingredient earns its place on the manifest.</p>
+      <p class="fi" style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(1.15rem,2vw,1.6rem);color:rgba(255,255,255,.45);max-width:700px;line-height:1.7;font-style:italic">Everything that goes onboard has a reason. Every formulation, every assessment, every interaction — positioned with intention. Nothing is filler. Nothing is trend.</p>
     </div>
-  </section>
+  </div>
 
-  <section style="background:var(--paper);padding:96px 0">
-    <div class="wrap">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)" class="fi">
+  <!-- THREE PILLARS with editorial photo zones -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:.5px solid var(--rule)">
 
-        <div style="background:var(--paper);padding:56px 40px">
-          <svg width="40" height="40" viewBox="0 0 40 40" style="margin-bottom:24px">
-            <circle cx="20" cy="20" r="18" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-            <circle cx="20" cy="20" r="8" fill="none" stroke="var(--ink)" stroke-width=".8"/>
-            <line x1="20" y1="2" x2="20" y2="12" stroke="var(--ink)" stroke-width="1"/>
-            <line x1="20" y1="28" x2="20" y2="38" stroke="var(--ink)" stroke-width="1"/>
-            <line x1="2" y1="20" x2="12" y2="20" stroke="var(--ink)" stroke-width="1"/>
-            <line x1="28" y1="20" x2="38" y2="20" stroke="var(--ink)" stroke-width="1"/>
-          </svg>
-          <p class="caps" style="margin-bottom:16px">I. The Science</p>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.9rem;margin-bottom:16px;line-height:1.2">Evidence,<br>not aspiration</h3>
-          <p class="body-sm">Every formulation is grounded in peer-reviewed dermatology. We do not chase trends. We follow the biology. If the evidence doesn't support an ingredient, it isn't on the manifest.</p>
-        </div>
-
-        <div style="background:var(--paper2);padding:56px 40px">
-          <svg width="40" height="40" viewBox="0 0 40 40" style="margin-bottom:24px">
-            <rect x="8" y="4" width="24" height="32" rx="2" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-            <line x1="13" y1="14" x2="27" y2="14" stroke="var(--ink)" stroke-width=".8"/>
-            <line x1="13" y1="20" x2="27" y2="20" stroke="var(--ink)" stroke-width=".8"/>
-            <line x1="13" y1="26" x2="22" y2="26" stroke="var(--ink)" stroke-width=".8"/>
-            <circle cx="20" cy="20" r="3" fill="none" stroke="var(--bronze)" stroke-width=".8"/>
-          </svg>
-          <p class="caps" style="margin-bottom:16px">II. The Precision</p>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.9rem;margin-bottom:16px;line-height:1.2">Your skin.<br>Not hers.</h3>
-          <p class="body-sm">AI-driven biomarker analysis at Day 0, 30, 60, 90. The formulations respond to what we learn about your skin — not what we assume about women like you.</p>
-        </div>
-
-        <div style="background:var(--paper);padding:56px 40px">
-          <svg width="40" height="40" viewBox="0 0 40 40" style="margin-bottom:24px">
-            <path d="M20 4 L36 14 L36 26 L20 36 L4 26 L4 14 Z" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-            <path d="M20 10 L30 16 L30 24 L20 30 L10 24 L10 16 Z" fill="none" stroke="var(--ink)" stroke-width=".7"/>
-            <circle cx="20" cy="20" r="2.5" fill="var(--ink)"/>
-          </svg>
-          <p class="caps" style="margin-bottom:16px">III. The Honesty</p>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.9rem;margin-bottom:16px;line-height:1.2">No glossing<br>over the truth.</h3>
-          <p class="body-sm">We tell you what we know. What we don't. What we're testing. That's not a weakness — it's the architecture of trust.</p>
-        </div>
-
+    <div style="border-right:.5px solid var(--rule)">
+      <div class="ph fi" style="height:340px">
+        <div class="ph-label">Editorial Image I</div>
+        <div class="ph-hint">The Science — laboratory / ingredient</div>
+      </div>
+      <div style="padding:48px 40px">
+        <p class="caps" style="margin-bottom:20px">I. The Science</p>
+        <h3 class="headline fi" style="font-size:1.9rem;margin-bottom:20px">Evidence,<br>not aspiration</h3>
+        <p class="body fi" style="font-size:.95rem">Every formulation is grounded in peer-reviewed dermatology. We do not chase trends. We follow the biology.</p>
+        <span class="caption fi">Formulation laboratory · ARK R&D</span>
       </div>
     </div>
-  </section>
 
-  <!-- Long editorial pull quote -->
-  <section style="background:var(--paper2);padding:96px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
-    <div class="wrap">
-      <div style="max-width:860px;margin:0 auto;text-align:center" class="fi">
-        <p style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.8rem,4vw,3.4rem);font-style:italic;line-height:1.25;color:var(--ink)">
-          "The manifest is our promise.<br>What we carry. Why we carry it.<br>Where we're going."
-        </p>
-        <div style="width:40px;height:1px;background:var(--bronze);margin:40px auto"></div>
-        <p class="caps">ARK Body + Skin · The Manifest</p>
+    <div style="border-right:.5px solid var(--rule);background:var(--paper2)">
+      <div class="ph fi" style="height:340px;background:#eeebe7">
+        <div class="ph-label">Editorial Image II</div>
+        <div class="ph-hint">The Precision — face / skin scan</div>
+      </div>
+      <div style="padding:48px 40px">
+        <p class="caps" style="margin-bottom:20px">II. The Precision</p>
+        <h3 class="headline fi" style="font-size:1.9rem;margin-bottom:20px">Your skin.<br>Not hers.</h3>
+        <p class="body fi" style="font-size:.95rem">AI-driven biomarker analysis at Day 0, 30, 60, 90. The formulation responds to what we learn about your skin.</p>
+        <span class="caption fi">AI skin mapping · Mirror Moment</span>
       </div>
     </div>
-  </section>
+
+    <div>
+      <div class="ph fi" style="height:340px;background:#f0ece7">
+        <div class="ph-label">Editorial Image III</div>
+        <div class="ph-hint">The Honesty — person / document</div>
+      </div>
+      <div style="padding:48px 40px">
+        <p class="caps" style="margin-bottom:20px">III. The Honesty</p>
+        <h3 class="headline fi" style="font-size:1.9rem;margin-bottom:20px">No glossing<br>over the truth.</h3>
+        <p class="body fi" style="font-size:.95rem">We tell you what we know. What we don't. What we're testing. That's not a weakness — it's the architecture of trust.</p>
+        <span class="caption fi">ARK Transparency Report · 2024</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDITORIAL LONG COPY with drop cap + 2-col -->
+  <div style="padding:96px 56px;border-bottom:.5px solid var(--rule)">
+    <div style="max-width:900px;margin:0 auto">
+      <p class="caps fi" style="margin-bottom:8px">The Manifesto in Full</p>
+      <h2 class="headline fi" style="font-size:clamp(1.8rem,4vw,3.5rem);margin-bottom:40px">"The manifest is our promise.<br>What we carry. Why we carry it.<br>Where we're going."</h2>
+      <div class="pq fi"><p>"No brand should claim perfection in year one."</p><cite>ARK — Founding Manifesto, 2024</cite></div>
+      <div class="col2 fi" style="margin-top:48px">
+        <p class="body drop-cap">She doesn't need to be told she's ageing. She knows. She has lived it. What she needs is a brand that has done the work — read the biology, tested the formulations, and arrived with evidence rather than aspiration.</p>
+        <p class="body" style="margin-top:1.5em">ARK was built specifically for the woman who has moved past the promise cycle. She has tried serums that didn't. She has tried routines that didn't. She has followed advice from brands that were never really thinking about her when they designed the product.</p>
+        <p class="body" style="margin-top:1.5em">The manifest is simple: everything we carry has a reason. Every ingredient earns its place. Every claim is backed by data we will share with you, in plain language, without fine print.</p>
+        <p class="body" style="margin-top:1.5em">We tell you what we know. What we don't. What we're testing. That's not a weakness. It's the architecture of trust — and trust, for a woman of her experience, is the only currency that matters.</p>
+      </div>
+    </div>
+  </div>
 
   <footer>
-    <div class="ft-left"><span class="ft-logo">ARK</span><p class="ft-tagline">Body + Skin &nbsp;·&nbsp; The voyage is yours</p></div>
-    <div class="ft-right"><p>Vol. I &nbsp;·&nbsp; No. 3</p></div>
+    <span class="ft-logo">ARK</span>
+    <span class="caps">The Manifest &nbsp;·&nbsp; Vol. I No. 3</span>
+    <span class="caps">© 2024</span>
   </footer>
-</div>
+</div><!-- /manifest -->
 
 
 <!-- ══════════════════════════════════════════════════════════
@@ -783,136 +826,113 @@ footer {
 ══════════════════════════════════════════════════════════════ -->
 <div id="panel-itinerary" class="panel">
 
-  <section style="padding:96px 0;background:var(--paper)">
+  <div class="feature">
     <div class="wrap">
-      <p class="caps fi" style="margin-bottom:8px">ARK — The Itinerary</p>
-      <h1 class="headline fi" style="font-size:clamp(2.8rem,6vw,6rem);margin-bottom:16px">The Itinerary</h1>
-      <hr class="fi" style="margin-bottom:48px">
+      <div class="section-header fi">
+        <span class="section-num">03</span>
+        <h1 class="section-title">The Itinerary</h1>
+      </div>
 
-      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:96px;align-items:start">
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:96px;align-items:start;margin-bottom:80px">
         <div>
-          <div class="pull-block fi">
+          <div class="pq fi">
             <p>"The first 30 days are about commitment, not results."</p>
           </div>
-          <p class="body fi" style="margin-bottom:20px">ARK tells her on Day 0:</p>
-          <blockquote class="fi" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;line-height:1.6;color:var(--mid);padding:28px 32px;border:1px solid var(--rule);background:var(--paper2);margin-bottom:28px">
-            "Your skin is beginning its first cycle. Trust the process. Your next Mirror Moment will show the truth."
-          </blockquote>
-          <p class="body fi">She won't see change yet. She won't know how she's tracking. ARK keeps her honest. This builds trust — not through results, but through transparency.</p>
+          <p class="body drop-cap fi">ARK tells her on Day 0: your skin is beginning its first cycle. Trust the process. Your next Mirror Moment will show the truth. She won't see change yet. She won't know how she's tracking. That is intentional.</p>
+          <p class="body fi" style="margin-top:1.5em">This builds trust. Not through early results, but through transparency. She knows what she's signed up for. She knows when the first reading comes.</p>
+          <p class="body fi" style="margin-top:1.5em;font-style:italic">A 60-day check-in Mirror Moment is automatically scheduled. The formulation adjusts to the new data.</p>
+          <span class="caption fi">ARK Itinerary — 12-week biological rhythm</span>
         </div>
         <div class="fi">
-          <p class="caps" style="margin-bottom:32px">The 12-Week Rhythm</p>
-          <!-- Timeline SVG -->
-          <svg viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px">
-            <line x1="28" y1="0" x2="28" y2="320" stroke="var(--rule)" stroke-width="1"/>
+          <p class="caps" style="margin-bottom:36px">The 12-Week Rhythm</p>
+          <svg viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px">
+            <line x1="24" y1="0" x2="24" y2="340" stroke="var(--rule)" stroke-width=".5"/>
             <!-- Day 0 -->
-            <circle cx="28" cy="40" r="5" fill="var(--ink)"/>
-            <line x1="28" y1="40" x2="50" y2="40" stroke="var(--bronze)" stroke-width=".8"/>
-            <text x="58" y="37" font-family="'Montserrat',sans-serif" font-size="8" fill="var(--faint)" letter-spacing="1">DAY 0</text>
-            <text x="58" y="52" font-family="'Cormorant Garamond',serif" font-size="14" fill="var(--ink)">Mirror Moment — Baseline</text>
+            <circle cx="24" cy="44" r="5" fill="var(--ink)"/>
+            <line x1="24" y1="44" x2="48" y2="44" stroke="var(--bronze)" stroke-width=".7"/>
+            <text x="56" y="41" font-family="'Montserrat',sans-serif" font-size="7.5" fill="var(--faint)" letter-spacing="1.5">DAY 0</text>
+            <text x="56" y="57" font-family="'Bodoni Moda',serif" font-size="14.5" fill="var(--ink)">Mirror Moment — Baseline</text>
             <!-- Day 30 -->
-            <circle cx="28" cy="120" r="4" fill="var(--bronze)" stroke="var(--bronze)" stroke-width="1"/>
-            <line x1="28" y1="120" x2="50" y2="120" stroke="var(--bronze)" stroke-width=".8"/>
-            <text x="58" y="117" font-family="'Montserrat',sans-serif" font-size="8" fill="var(--faint)" letter-spacing="1">DAY 30</text>
-            <text x="58" y="132" font-family="'Cormorant Garamond',serif" font-size="14" fill="var(--ink)">First Cycle Complete</text>
+            <circle cx="24" cy="130" r="4" fill="none" stroke="var(--bronze)" stroke-width="1.2"/>
+            <line x1="24" y1="130" x2="48" y2="130" stroke="var(--bronze)" stroke-width=".7"/>
+            <text x="56" y="127" font-family="'Montserrat',sans-serif" font-size="7.5" fill="var(--faint)" letter-spacing="1.5">DAY 30</text>
+            <text x="56" y="143" font-family="'Bodoni Moda',serif" font-size="14.5" fill="var(--ink)">First Cycle Complete</text>
             <!-- Day 60 -->
-            <circle cx="28" cy="200" r="4" fill="var(--bronze)" stroke="var(--bronze)" stroke-width="1"/>
-            <line x1="28" y1="200" x2="50" y2="200" stroke="var(--bronze)" stroke-width=".8"/>
-            <text x="58" y="197" font-family="'Montserrat',sans-serif" font-size="8" fill="var(--faint)" letter-spacing="1">DAY 60</text>
-            <text x="58" y="212" font-family="'Cormorant Garamond',serif" font-size="14" fill="var(--ink)">Mirror Moment — Progress</text>
+            <circle cx="24" cy="216" r="4" fill="none" stroke="var(--bronze)" stroke-width="1.2"/>
+            <line x1="24" y1="216" x2="48" y2="216" stroke="var(--bronze)" stroke-width=".7"/>
+            <text x="56" y="213" font-family="'Montserrat',sans-serif" font-size="7.5" fill="var(--faint)" letter-spacing="1.5">DAY 60</text>
+            <text x="56" y="229" font-family="'Bodoni Moda',serif" font-size="14.5" fill="var(--ink)">Mirror Moment — Progress</text>
             <!-- Day 90 -->
-            <circle cx="28" cy="280" r="6" fill="var(--ink)"/>
-            <line x1="28" y1="280" x2="50" y2="280" stroke="var(--bronze)" stroke-width=".8"/>
-            <text x="58" y="277" font-family="'Montserrat',sans-serif" font-size="8" fill="var(--faint)" letter-spacing="1">DAY 90</text>
-            <text x="58" y="292" font-family="'Cormorant Garamond',serif" font-size="14" fill="var(--ink)">Voyage Complete</text>
+            <circle cx="24" cy="302" r="5.5" fill="var(--ink)"/>
+            <line x1="24" y1="302" x2="48" y2="302" stroke="var(--bronze)" stroke-width=".7"/>
+            <text x="56" y="299" font-family="'Montserrat',sans-serif" font-size="7.5" fill="var(--faint)" letter-spacing="1.5">DAY 90</text>
+            <text x="56" y="315" font-family="'Bodoni Moda',serif" font-size="14.5" fill="var(--ink)">Voyage Complete</text>
           </svg>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- FOUR SEASONS -->
-  <div class="season-grid" style="border-top:1px solid var(--rule)">
-
-    <div class="season-panel fi">
-      <!-- Summer SVG icon -->
-      <div class="season-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40">
-          <circle cx="20" cy="20" r="7" fill="none" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="20" y1="3" x2="20" y2="8" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="20" y1="32" x2="20" y2="37" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="3" y1="20" x2="8" y2="20" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="32" y1="20" x2="37" y2="20" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="7.9" y1="7.9" x2="11.4" y2="11.4" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="28.6" y1="28.6" x2="32.1" y2="32.1" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="32.1" y1="7.9" x2="28.6" y2="11.4" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="11.4" y1="28.6" x2="7.9" y2="32.1" stroke="var(--ink)" stroke-width="1"/>
-        </svg>
+  <!-- FOUR SEASON PHOTO SPREADS -->
+  <div class="season-grid fi" style="border-top:.5px solid var(--rule)">
+    <div class="season-cell" style="padding:0;flex-direction:column">
+      <div class="ph" style="height:280px;width:100%">
+        <div class="ph-label">Summer Photography</div>
+        <div class="ph-hint">Sunlight · Water · Warmth</div>
       </div>
-      <p class="season-num">01</p>
-      <h3 class="season-name">Summer</h3>
-      <p class="caps" style="margin-bottom:12px">Asia-Pacific · 90 days</p>
-      <p class="body-sm">High humidity. Intense UV. Barrier under siege. The formulation focuses on antioxidant defence, TEWL regulation, and mineral-based sun protection.</p>
+      <div style="padding:40px 36px;flex:1">
+        <p class="season-num">01</p>
+        <h3 class="season-name">Summer</h3>
+        <p class="caps" style="margin-bottom:12px">Asia-Pacific · 90 days</p>
+        <p class="body" style="font-size:.95rem">High humidity. Intense UV. Barrier defence priority.</p>
+        <span class="caption">Cruise 01 · Barrier Defence Formulation</span>
+      </div>
     </div>
-
-    <div class="season-panel fi" style="background:var(--paper2)">
-      <!-- Autumn SVG icon -->
-      <div class="season-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40">
-          <path d="M20 4 C12 4 8 12 10 20 C6 18 4 22 8 26 C10 30 16 32 20 32 C28 32 34 26 34 20 C34 12 28 4 20 4 Z" fill="none" stroke="var(--ink)" stroke-width="1"/>
-          <path d="M20 32 L20 38" stroke="var(--bronze)" stroke-width="1"/>
-          <path d="M20 38 Q24 34 28 36" stroke="var(--bronze)" stroke-width=".8" fill="none"/>
-        </svg>
+    <div class="season-cell" style="padding:0;flex-direction:column;background:var(--paper2)">
+      <div class="ph" style="height:280px;width:100%;background:#eeebe7">
+        <div class="ph-label">Autumn Photography</div>
+        <div class="ph-hint">Golden light · Leaves · Transition</div>
       </div>
-      <p class="season-num">02</p>
-      <h3 class="season-name">Autumn</h3>
-      <p class="caps" style="margin-bottom:12px">Mediterranean · 90 days</p>
-      <p class="body-sm">Cooling air. The skin begins to pull inward. This is the repair window — ceramide restoration, lipid barrier rebuild, and the first signals of seasonal collagen response.</p>
+      <div style="padding:40px 36px;flex:1">
+        <p class="season-num">02</p>
+        <h3 class="season-name">Autumn</h3>
+        <p class="caps" style="margin-bottom:12px">Mediterranean · 90 days</p>
+        <p class="body" style="font-size:.95rem">Cooling air. The barrier rebuild window.</p>
+        <span class="caption">Cruise 02 · Ceramide Restoration</span>
+      </div>
     </div>
-
-    <div class="season-panel fi">
-      <!-- Winter SVG icon -->
-      <div class="season-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40">
-          <line x1="20" y1="4" x2="20" y2="36" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="4" y1="20" x2="36" y2="20" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="7.9" y1="7.9" x2="32.1" y2="32.1" stroke="var(--ink)" stroke-width="1"/>
-          <line x1="32.1" y1="7.9" x2="7.9" y2="32.1" stroke="var(--ink)" stroke-width="1"/>
-          <circle cx="20" cy="20" r="2.5" fill="var(--bronze)"/>
-          <circle cx="20" cy="8" r="1.5" fill="none" stroke="var(--ink)" stroke-width=".7"/>
-          <circle cx="20" cy="32" r="1.5" fill="none" stroke="var(--ink)" stroke-width=".7"/>
-          <circle cx="8" cy="20" r="1.5" fill="none" stroke="var(--ink)" stroke-width=".7"/>
-          <circle cx="32" cy="20" r="1.5" fill="none" stroke="var(--ink)" stroke-width=".7"/>
-        </svg>
+    <div class="season-cell" style="padding:0;flex-direction:column">
+      <div class="ph" style="height:280px;width:100%;background:#e8e8ea">
+        <div class="ph-label">Winter Photography</div>
+        <div class="ph-hint">Cold · Minimal · Ice or frost</div>
       </div>
-      <p class="season-num">03</p>
-      <h3 class="season-name">Winter</h3>
-      <p class="caps" style="margin-bottom:12px">Northern Europe · 90 days</p>
-      <p class="body-sm">Cold, dry, unforgiving. Moisture stripped at every turn. Deep lipid repair takes priority. Occlusive layering, microbiome stabilisation, and intensive overnight recovery.</p>
+      <div style="padding:40px 36px;flex:1">
+        <p class="season-num">03</p>
+        <h3 class="season-name">Winter</h3>
+        <p class="caps" style="margin-bottom:12px">Northern Europe · 90 days</p>
+        <p class="body" style="font-size:.95rem">Cold, dry, unforgiving. Deep lipid repair.</p>
+        <span class="caption">Cruise 03 · Lipid Repair Formulation</span>
+      </div>
     </div>
-
-    <div class="season-panel fi" style="background:var(--paper2)">
-      <!-- Spring SVG icon -->
-      <div class="season-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40">
-          <circle cx="20" cy="18" r="6" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-          <line x1="20" y1="24" x2="20" y2="38" stroke="var(--ink)" stroke-width="1"/>
-          <path d="M20 30 Q26 26 28 20" stroke="var(--ink)" stroke-width=".8" fill="none"/>
-          <path d="M20 30 Q14 26 12 20" stroke="var(--ink)" stroke-width=".8" fill="none"/>
-          <path d="M20 12 Q20 6 14 4 Q16 10 20 12 Z" fill="none" stroke="var(--ink)" stroke-width=".8"/>
-          <path d="M20 12 Q20 6 26 4 Q24 10 20 12 Z" fill="none" stroke="var(--ink)" stroke-width=".8"/>
-        </svg>
+    <div class="season-cell" style="padding:0;flex-direction:column;background:var(--paper2)">
+      <div class="ph" style="height:280px;width:100%;background:#eaece8">
+        <div class="ph-label">Spring Photography</div>
+        <div class="ph-hint">Bloom · Growth · New light</div>
       </div>
-      <p class="season-num">04</p>
-      <h3 class="season-name">Spring</h3>
-      <p class="caps" style="margin-bottom:12px">Southern Hemisphere · 90 days</p>
-      <p class="body-sm">The skin awakens. Cell turnover rises. Pigmentation becomes visible. The spring formulation capitalises on the body's natural resurgence — brightening, firming, renewing.</p>
+      <div style="padding:40px 36px;flex:1">
+        <p class="season-num">04</p>
+        <h3 class="season-name">Spring</h3>
+        <p class="caps" style="margin-bottom:12px">Southern Hemisphere · 90 days</p>
+        <p class="body" style="font-size:.95rem">The skin awakens. Brightening and renewal.</p>
+        <span class="caption">Cruise 04 · Brightening Formulation</span>
+      </div>
     </div>
   </div>
 
   <footer>
-    <div class="ft-left"><span class="ft-logo">ARK</span><p class="ft-tagline">Body + Skin &nbsp;·&nbsp; The voyage is yours</p></div>
-    <div class="ft-right"><p>Vol. I &nbsp;·&nbsp; No. 3</p></div>
+    <span class="ft-logo">ARK</span>
+    <span class="caps">The Itinerary &nbsp;·&nbsp; Vol. I No. 3</span>
+    <span class="caps">© 2024</span>
   </footer>
 </div>
 
@@ -922,123 +942,74 @@ footer {
 ══════════════════════════════════════════════════════════════ -->
 <div id="panel-suite" class="panel">
 
-  <!-- FULL-BLEED BLACK HEADER WITH SCAN ART -->
-  <div style="background:var(--black);padding:96px 0;overflow:hidden;position:relative">
-    <div style="position:absolute;right:0;top:50%;transform:translateY(-50%)">
-      <svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" opacity=".22">
-        <circle cx="250" cy="250" r="220" fill="none" stroke="rgba(255,255,255,.3)" stroke-width=".7"/>
-        <circle cx="250" cy="250" r="180" fill="none" stroke="rgba(184,144,106,.5)" stroke-width=".5"/>
-        <circle cx="250" cy="250" r="140" fill="none" stroke="rgba(255,255,255,.2)" stroke-width=".5"/>
-        <circle cx="250" cy="250" r="100" fill="none" stroke="rgba(184,144,106,.4)" stroke-width=".5"/>
-        <circle cx="250" cy="250" r="60"  fill="none" stroke="rgba(255,255,255,.3)" stroke-width=".5"/>
-        <line x1="30" y1="250" x2="470" y2="250" stroke="rgba(255,255,255,.15)" stroke-width=".6"/>
-        <line x1="250" y1="30" x2="250" y2="470" stroke="rgba(255,255,255,.15)" stroke-width=".6"/>
-        <circle cx="250" cy="250" r="3" fill="rgba(184,144,106,.8)"/>
-        <!-- Data points -->
-        <circle cx="192" cy="196" r="2.5" fill="rgba(184,144,106,.7)"/>
-        <circle cx="308" cy="196" r="2.5" fill="rgba(184,144,106,.7)"/>
-        <circle cx="250" cy="285" r="2.5" fill="rgba(184,144,106,.7)"/>
-        <line x1="192" y1="196" x2="140" y2="165" stroke="rgba(184,144,106,.4)" stroke-width=".6"/>
-        <line x1="308" y1="196" x2="360" y2="165" stroke="rgba(184,144,106,.4)" stroke-width=".6"/>
-      </svg>
+  <div style="background:var(--black);padding:96px 56px;position:relative;overflow:hidden">
+    <div style="max-width:1320px;margin:0 auto;position:relative;z-index:2">
+      <p class="caps fi" style="color:rgba(184,144,106,.6);margin-bottom:36px">ARK — The Suite</p>
+      <h1 class="headline fi" style="font-size:clamp(3rem,8vw,8.5rem);color:#fff;line-height:1.02;max-width:800px">The Mirror<br><em>Moment</em></h1>
     </div>
-    <div class="wrap" style="position:relative;z-index:2">
-      <p class="caps fi" style="color:rgba(184,144,106,.6);margin-bottom:32px">ARK — The Suite</p>
-      <h1 class="headline fi" style="font-size:clamp(3rem,7vw,7rem);color:#f9f6f1;margin-bottom:24px;max-width:700px">The Mirror<br>Moment</h1>
-      <p class="fi" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.1rem,2vw,1.5rem);color:rgba(249,246,241,.45);max-width:560px;line-height:1.65">Before the first formulation is dispatched, ARK reads sixteen biomarkers. Not estimates. Measurements.</p>
-    </div>
+    <!-- Concentric circle art -->
+    <svg width="480" height="480" viewBox="0 0 480 480" style="position:absolute;right:-60px;top:50%;transform:translateY(-50%);opacity:.16">
+      <circle cx="240" cy="240" r="220" fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".6"/>
+      <circle cx="240" cy="240" r="180" fill="none" stroke="rgba(184,144,106,.7)" stroke-width=".6"/>
+      <circle cx="240" cy="240" r="140" fill="none" stroke="rgba(255,255,255,.4)" stroke-width=".6"/>
+      <circle cx="240" cy="240" r="100" fill="none" stroke="rgba(184,144,106,.5)" stroke-width=".6"/>
+      <circle cx="240" cy="240" r="60"  fill="none" stroke="rgba(255,255,255,.5)" stroke-width=".6"/>
+      <circle cx="240" cy="240" r="4"   fill="rgba(184,144,106,.8)"/>
+      <line x1="20"  y1="240" x2="460" y2="240" stroke="rgba(255,255,255,.2)" stroke-width=".5"/>
+      <line x1="240" y1="20"  x2="240" y2="460" stroke="rgba(255,255,255,.2)" stroke-width=".5"/>
+    </svg>
   </div>
 
-  <section style="padding:96px 0;background:var(--paper)">
+  <div class="feature">
     <div class="wrap">
-      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:96px;align-items:start">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
 
+        <!-- Biomarker table -->
         <div>
-          <p class="caps fi" style="margin-bottom:32px">Biomarker Assessment — Day 0</p>
+          <p class="caps fi" style="margin-bottom:36px">Biomarker Assessment — Day 0</p>
           <table class="bio-table fi">
             <thead>
               <tr>
                 <th>Marker</th>
                 <th>Reading</th>
                 <th>Index</th>
-                <th style="width:140px">Score</th>
+                <th style="width:130px">Score</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Skin Hydration</td>
-                <td>68%</td>
-                <td>Normal</td>
-                <td><div class="bio-bar-wrap"><div class="bio-bar" style="width:68%"></div></div></td>
-              </tr>
-              <tr>
-                <td>TEWL</td>
-                <td>14.2 g/m²h</td>
-                <td>Elevated</td>
-                <td><div class="bio-bar-wrap"><div class="bio-bar" style="width:45%;background:var(--bronze2)"></div></div></td>
-              </tr>
-              <tr>
-                <td>Elasticity</td>
-                <td>56 au</td>
-                <td>Low-Normal</td>
-                <td><div class="bio-bar-wrap"><div class="bio-bar" style="width:56%"></div></div></td>
-              </tr>
-              <tr>
-                <td>Melanin Index</td>
-                <td>22</td>
-                <td>Moderate</td>
-                <td><div class="bio-bar-wrap"><div class="bio-bar" style="width:55%"></div></div></td>
-              </tr>
-              <tr>
-                <td>Sebum Level</td>
-                <td>0.8 µg/cm²</td>
-                <td>Balanced</td>
-                <td><div class="bio-bar-wrap"><div class="bio-bar" style="width:78%"></div></div></td>
-              </tr>
-              <tr>
-                <td>Barrier Index</td>
-                <td>7.2 / 10</td>
-                <td>Good</td>
-                <td><div class="bio-bar-wrap"><div class="bio-bar" style="width:72%"></div></div></td>
-              </tr>
-              <tr>
-                <td>Collagen Density</td>
-                <td>41%</td>
-                <td>Low</td>
-                <td><div class="bio-bar-wrap"><div class="bio-bar" style="width:41%;background:var(--bronze2)"></div></div></td>
-              </tr>
+              <tr><td>Skin Hydration</td><td>68%</td><td>Normal</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:68%"></div></div></td></tr>
+              <tr><td>TEWL</td><td>14.2 g/m²h</td><td>Elevated</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:42%;background:var(--bronze)"></div></div></td></tr>
+              <tr><td>Elasticity</td><td>56 au</td><td>Low-Normal</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:56%"></div></div></td></tr>
+              <tr><td>Melanin Index</td><td>22</td><td>Moderate</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:55%"></div></div></td></tr>
+              <tr><td>Sebum Level</td><td>0.8 µg/cm²</td><td>Balanced</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:78%"></div></div></td></tr>
+              <tr><td>Barrier Index</td><td>7.2 / 10</td><td>Good</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:72%"></div></div></td></tr>
+              <tr><td>Collagen Density</td><td>41%</td><td>Low</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:41%;background:var(--bronze)"></div></div></td></tr>
             </tbody>
           </table>
-          <p class="body-sm fi" style="margin-top:20px;font-style:italic">Illustrative values. Yours are read at Day 0.</p>
+          <span class="caption fi">Illustrative values · Yours are read at Day 0</span>
         </div>
 
+        <!-- Right col: photo + copy -->
         <div>
-          <div class="pull-block fi">
-            <p>"Your formulation is built from your data — not a skin type. Not an age bracket. Yours."</p>
+          <!-- PHOTO ZONE — skin scan, face, or technology -->
+          <div class="ph fi" style="height:320px;margin-bottom:40px;background:#f0ece8">
+            <div class="ph-label">Suite Photography</div>
+            <div class="ph-hint">Skin close-up · Scan technology · Mirror</div>
+          </div>
+          <div class="pq fi">
+            <p>"Your formulation is built from your data — not a skin type."</p>
             <cite>ARK — The Suite</cite>
           </div>
-          <p class="body fi" style="margin-bottom:24px">After your Mirror Moment, ARK's AI calibrates the three formulations to your exact biomarker profile. As each 30-day cycle completes, the readings update and the formulations adjust.</p>
-          <!-- SVG radial chart -->
-          <svg viewBox="0 0 200 200" width="200" xmlns="http://www.w3.org/2000/svg" class="fi" style="margin:0 auto;display:block;opacity:.7">
-            <circle cx="100" cy="100" r="80" fill="none" stroke="var(--rule)" stroke-width="1"/>
-            <circle cx="100" cy="100" r="55" fill="none" stroke="var(--rule)" stroke-width=".6"/>
-            <circle cx="100" cy="100" r="30" fill="none" stroke="var(--rule)" stroke-width=".6"/>
-            <!-- Hydration arc -->
-            <circle cx="100" cy="100" r="80" fill="none" stroke="var(--bronze)" stroke-width="5" stroke-dasharray="340 502" stroke-dashoffset="125" stroke-linecap="round" transform="rotate(-90 100 100)" opacity=".8"/>
-            <!-- Elasticity arc -->
-            <circle cx="100" cy="100" r="55" fill="none" stroke="var(--ink)" stroke-width="3" stroke-dasharray="193 345" stroke-dashoffset="86" stroke-linecap="round" transform="rotate(-90 100 100)" opacity=".5"/>
-            <circle cx="100" cy="100" r="3" fill="var(--ink)"/>
-            <text x="100" y="175" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="7" fill="var(--faint)" letter-spacing="1.5">SKIN PROFILE</text>
-          </svg>
+          <p class="body fi">After your Mirror Moment, ARK's AI calibrates the three formulations to your exact biomarker profile. As each 30-day cycle completes, the readings update and the formulations adjust.</p>
         </div>
-
       </div>
     </div>
-  </section>
+  </div>
 
   <footer>
-    <div class="ft-left"><span class="ft-logo">ARK</span><p class="ft-tagline">Body + Skin &nbsp;·&nbsp; The voyage is yours</p></div>
-    <div class="ft-right"><p>Vol. I &nbsp;·&nbsp; No. 3</p></div>
+    <span class="ft-logo">ARK</span>
+    <span class="caps">The Suite &nbsp;·&nbsp; Vol. I No. 3</span>
+    <span class="caps">© 2024</span>
   </footer>
 </div>
 
@@ -1048,80 +1019,78 @@ footer {
 ══════════════════════════════════════════════════════════════ -->
 <div id="panel-ticket" class="panel">
 
-  <section style="padding:96px 0;background:var(--paper)">
+  <div class="feature">
     <div class="wrap">
-      <p class="caps fi" style="margin-bottom:8px">ARK — Ticket Office</p>
-      <h1 class="headline fi" style="font-size:clamp(2.4rem,5vw,5rem);margin-bottom:12px">Book Your Passage</h1>
-      <hr class="fi" style="margin-bottom:48px">
-      <p class="body fi" style="max-width:600px;margin-bottom:56px">Choose your seasonal cruise and authorise your 90-day voyage. The programme continues automatically — because you said it should, not because we decided it for you.</p>
-
-      <!-- Season selector — editorial card style -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)" class="fi">
-        <div class="season-panel" style="border:none;cursor:pointer;transition:background .2s" onmouseover="this.style.background='var(--paper2)'" onmouseout="this.style.background='var(--paper)'">
-          <p class="caps" style="color:var(--bronze);margin-bottom:24px">Cruise 01</p>
-          <p class="season-num" style="font-size:3.5rem">01</p>
-          <h3 class="season-name">Summer</h3>
-          <p class="caps" style="margin-bottom:16px">Asia-Pacific</p>
-          <p class="body-sm" style="margin-bottom:32px">High UV. High humidity. Barrier defence priority.</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--bronze)">$XXX</p>
-        </div>
-        <div class="season-panel" style="border:none;background:var(--paper2);cursor:pointer;transition:background .2s" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='var(--paper2)'">
-          <p class="caps" style="color:var(--bronze);margin-bottom:24px">Cruise 02</p>
-          <p class="season-num" style="font-size:3.5rem">02</p>
-          <h3 class="season-name">Autumn</h3>
-          <p class="caps" style="margin-bottom:16px">Mediterranean</p>
-          <p class="body-sm" style="margin-bottom:32px">Barrier rebuild. Ceramide restoration season.</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--bronze)">$XXX</p>
-        </div>
-        <div class="season-panel" style="border:none;cursor:pointer;transition:background .2s" onmouseover="this.style.background='var(--paper2)'" onmouseout="this.style.background='var(--paper)'">
-          <p class="caps" style="color:var(--bronze);margin-bottom:24px">Cruise 03</p>
-          <p class="season-num" style="font-size:3.5rem">03</p>
-          <h3 class="season-name">Winter</h3>
-          <p class="caps" style="margin-bottom:16px">Northern Europe</p>
-          <p class="body-sm" style="margin-bottom:32px">Deep lipid repair. Microbiome stabilisation.</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--bronze)">$XXX</p>
-        </div>
-        <div class="season-panel" style="border:none;background:var(--paper2);cursor:pointer;transition:background .2s" onmouseover="this.style.background='var(--paper)'" onmouseout="this.style.background='var(--paper2)'">
-          <p class="caps" style="color:var(--bronze);margin-bottom:24px">Cruise 04</p>
-          <p class="season-num" style="font-size:3.5rem">04</p>
-          <h3 class="season-name">Spring</h3>
-          <p class="caps" style="margin-bottom:16px">Southern Hemisphere</p>
-          <p class="body-sm" style="margin-bottom:32px">Brightening. Firming. Seasonal renewal.</p>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--bronze)">$XXX</p>
-        </div>
+      <div class="section-header fi">
+        <span class="section-num">05</span>
+        <h1 class="section-title">Ticket Office</h1>
       </div>
+      <p class="body fi" style="max-width:680px;margin-bottom:8px;font-style:italic">The programme continues automatically — because you said it should, not because we decided it for you.</p>
+      <span class="caption fi" style="border:none;padding:0">Choose your cruise &nbsp;·&nbsp; Authorise your 90-day voyage</span>
     </div>
-  </section>
+  </div>
 
-  <!-- CHECKOUT -->
-  <section style="padding:80px 0;background:var(--paper2);border-top:1px solid var(--rule)">
-    <div class="wrap">
-      <div style="max-width:520px;margin:0 auto">
-        <p class="caps fi" style="margin-bottom:32px;text-align:center">Secure Checkout</p>
-        <!-- Apple / Google Pay -->
-        <button style="width:100%;background:#111;border:none;border-radius:2px;padding:16px;font-family:'-apple-system',sans-serif;font-size:1.1rem;color:#fff;cursor:pointer;margin-bottom:10px">&#63743; Pay</button>
-        <button style="width:100%;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:15px;cursor:pointer;font-family:sans-serif;font-size:.95rem;color:#3c4043;margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-weight:700;font-size:1rem"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span> Pay</button>
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px"><div style="flex:1;height:1px;background:var(--rule)"></div><span style="font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.12em;color:var(--faint);text-transform:uppercase">or pay by card</span><div style="flex:1;height:1px;background:var(--rule)"></div></div>
-        <!-- Card fields -->
-        <div class="field-group fi" style="grid-template-columns:1fr">
-          <div class="field"><label>Card Number</label><span class="field-val placeholder">1234  5678  9012  3456</span></div>
-        </div>
-        <div class="field-group fi" style="grid-template-columns:1fr 1fr">
-          <div class="field"><label>Expiry</label><span class="field-val placeholder">MM / YY</span></div>
-          <div class="field"><label>CVC</label><span class="field-val placeholder">· · ·</span></div>
-        </div>
-        <div class="field-group fi" style="grid-template-columns:1fr;margin-bottom:20px">
-          <div class="field"><label>Name on Card</label><span class="field-val placeholder" style="font-style:italic">Full name</span></div>
-        </div>
-        <button class="btn-ark fi">Authorise My Voyage</button>
-        <p class="fi" style="font-family:'Montserrat',sans-serif;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;text-align:center;color:var(--faint);margin-top:16px">Secured · 256-bit encryption · ARK 2024</p>
-      </div>
+  <div class="ticket-grid fi">
+    <div class="ticket-card">
+      <p class="caps" style="color:var(--bronze);margin-bottom:20px">Cruise 01</p>
+      <p class="ticket-num">01</p>
+      <h3 class="ticket-name">Summer</h3>
+      <p class="caps" style="margin-bottom:12px">Asia-Pacific</p>
+      <p class="body" style="font-size:.9rem;flex:1">High UV. High humidity. Barrier defence priority formulation.</p>
+      <p class="ticket-price">$XXX</p>
     </div>
-  </section>
+    <div class="ticket-card" style="background:var(--paper2)">
+      <p class="caps" style="color:var(--bronze);margin-bottom:20px">Cruise 02</p>
+      <p class="ticket-num">02</p>
+      <h3 class="ticket-name">Autumn</h3>
+      <p class="caps" style="margin-bottom:12px">Mediterranean</p>
+      <p class="body" style="font-size:.9rem;flex:1">Ceramide restoration. Barrier rebuild. Transition season.</p>
+      <p class="ticket-price">$XXX</p>
+    </div>
+    <div class="ticket-card">
+      <p class="caps" style="color:var(--bronze);margin-bottom:20px">Cruise 03</p>
+      <p class="ticket-num">03</p>
+      <h3 class="ticket-name">Winter</h3>
+      <p class="caps" style="margin-bottom:12px">Northern Europe</p>
+      <p class="body" style="font-size:.9rem;flex:1">Deep lipid repair. Microbiome stabilisation. Cold-climate formulation.</p>
+      <p class="ticket-price">$XXX</p>
+    </div>
+    <div class="ticket-card" style="background:var(--paper2)">
+      <p class="caps" style="color:var(--bronze);margin-bottom:20px">Cruise 04</p>
+      <p class="ticket-num">04</p>
+      <h3 class="ticket-name">Spring</h3>
+      <p class="caps" style="margin-bottom:12px">Southern Hemisphere</p>
+      <p class="body" style="font-size:.9rem;flex:1">Brightening and renewal. Pigmentation focus. Seasonal resurgence.</p>
+      <p class="ticket-price">$XXX</p>
+    </div>
+  </div>
+
+  <!-- Checkout -->
+  <div style="padding:80px 56px;background:var(--paper2);border-top:.5px solid var(--rule)">
+    <div class="field-wrap fi">
+      <p class="caps" style="text-align:center;margin-bottom:32px">Secure Checkout</p>
+      <button style="width:100%;background:#111;border:none;border-radius:1px;padding:16px;font-family:'-apple-system',sans-serif;font-size:1.1rem;color:#fff;cursor:pointer;margin-bottom:8px">&#63743; Pay</button>
+      <button style="width:100%;background:var(--paper);border:.5px solid var(--rule);border-radius:1px;padding:15px;cursor:pointer;font-family:sans-serif;font-size:.95rem;color:#3c4043;margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-weight:700;font-size:1rem"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>&nbsp;Pay</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px"><div style="flex:1;height:.5px;background:var(--rule)"></div><span class="caps">or card</span><div style="flex:1;height:.5px;background:var(--rule)"></div></div>
+      <div class="field-row" style="grid-template-columns:1fr">
+        <div class="field"><label>Card Number</label><span class="field-val">1234&nbsp;&nbsp;5678&nbsp;&nbsp;9012&nbsp;&nbsp;3456</span></div>
+      </div>
+      <div class="field-row" style="grid-template-columns:1fr 1fr">
+        <div class="field"><label>Expiry</label><span class="field-val">MM / YY</span></div>
+        <div class="field"><label>CVC</label><span class="field-val">· · ·</span></div>
+      </div>
+      <div class="field-row" style="grid-template-columns:1fr;margin-bottom:0">
+        <div class="field"><label>Name on Card</label><span class="field-val" style="font-style:italic">Full name</span></div>
+      </div>
+      <button class="btn-ark">Authorise My Voyage</button>
+      <p class="caps" style="text-align:center;margin-top:16px;font-size:.52rem">Secured &nbsp;·&nbsp; 256-bit encryption &nbsp;·&nbsp; ARK 2024</p>
+    </div>
+  </div>
 
   <footer>
-    <div class="ft-left"><span class="ft-logo">ARK</span><p class="ft-tagline">Body + Skin &nbsp;·&nbsp; The voyage is yours</p></div>
-    <div class="ft-right"><p>Vol. I &nbsp;·&nbsp; No. 3</p></div>
+    <span class="ft-logo">ARK</span>
+    <span class="caps">Ticket Office &nbsp;·&nbsp; Vol. I No. 3</span>
+    <span class="caps">© 2024</span>
   </footer>
 </div>
 
@@ -1131,129 +1100,108 @@ footer {
 ══════════════════════════════════════════════════════════════ -->
 <div id="panel-dutyfree" class="panel">
 
-  <section style="padding:96px 0;background:var(--paper)">
+  <div class="feature">
     <div class="wrap">
-      <p class="caps fi" style="margin-bottom:8px">ARK — Duty Free</p>
-      <h1 class="headline fi" style="font-size:clamp(2.4rem,5vw,5rem);margin-bottom:12px">Duty Free</h1>
-      <hr class="fi" style="margin-bottom:8px">
-      <p class="body fi" style="font-style:italic;margin-bottom:56px;max-width:640px">Completely optional add-ons. If you want to enhance your voyage, explore these. Not essentials. Choices.</p>
-
-      <div class="product-grid fi">
-
-        <!-- FAB -->
-        <div class="product-card">
-          <div class="product-art">
-            <svg width="60" height="160" viewBox="0 0 60 160">
-              <defs>
-                <linearGradient id="bFab" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#e8e4de"/>
-                  <stop offset="35%" stop-color="#f5f2ed"/>
-                  <stop offset="100%" stop-color="#d8d4ce"/>
-                </linearGradient>
-              </defs>
-              <!-- Cap -->
-              <rect x="18" y="2" width="24" height="14" rx="3" fill="#c8a87a"/>
-              <!-- Neck -->
-              <rect x="22" y="14" width="16" height="8" rx="1" fill="#b8986a"/>
-              <!-- Body -->
-              <rect x="10" y="22" width="40" height="120" rx="6" fill="url(#bFab)" stroke="var(--rule)" stroke-width=".8"/>
-              <!-- Label area -->
-              <rect x="16" y="42" width="28" height="70" rx="2" fill="rgba(255,255,255,.6)" stroke="var(--rule)" stroke-width=".5"/>
-              <text x="30" y="72" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="7" fill="var(--ink)" letter-spacing="1.5">F·A·B</text>
-              <text x="30" y="84" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="8" fill="var(--mid)" font-style="italic">Eye Cream</text>
-              <text x="30" y="96" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="5" fill="var(--faint)" letter-spacing="1">ARK</text>
-              <!-- Shine -->
-              <rect x="12" y="26" width="4" height="60" rx="2" fill="rgba(255,255,255,.4)"/>
-            </svg>
-          </div>
-          <p class="product-type">Optional Add-on</p>
-          <p class="product-name">F·A·B</p>
-          <p class="product-type" style="margin-bottom:16px">Eye Cream · 15ml</p>
-          <p class="product-desc">Peptide-rich, specifically formulated for the periorbital zone. Targets dark circles, puffiness, and the fine-line accumulation that begins in the mid-forties.</p>
-          <p class="product-price">$XX</p>
-        </div>
-
-        <!-- VITA -->
-        <div class="product-card" style="background:var(--paper2)">
-          <div class="product-art">
-            <svg width="60" height="160" viewBox="0 0 60 160">
-              <defs>
-                <linearGradient id="bVita" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#e4e8e4"/>
-                  <stop offset="35%" stop-color="#f2f5f2"/>
-                  <stop offset="100%" stop-color="#d4d8d4"/>
-                </linearGradient>
-              </defs>
-              <rect x="18" y="2" width="24" height="14" rx="3" fill="#8c6a48"/>
-              <rect x="22" y="14" width="16" height="8" rx="1" fill="#7a5a38"/>
-              <rect x="10" y="22" width="40" height="120" rx="6" fill="url(#bVita)" stroke="var(--rule)" stroke-width=".8"/>
-              <rect x="16" y="42" width="28" height="70" rx="2" fill="rgba(255,255,255,.6)" stroke="var(--rule)" stroke-width=".5"/>
-              <text x="30" y="72" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="7" fill="var(--ink)" letter-spacing="1.5">VITA</text>
-              <text x="30" y="84" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="8" fill="var(--mid)" font-style="italic">Toner Pads</text>
-              <text x="30" y="96" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="5" fill="var(--faint)" letter-spacing="1">ARK</text>
-              <rect x="12" y="26" width="4" height="60" rx="2" fill="rgba(255,255,255,.4)"/>
-            </svg>
-          </div>
-          <p class="product-type">Optional Add-on</p>
-          <p class="product-name">VITA</p>
-          <p class="product-type" style="margin-bottom:16px">Toner Pads · 60 pads</p>
-          <p class="product-desc">Pre-soaked Vitamin C and Niacinamide pads. Used after cleansing, before the morning formulation. Brightens, balances, and prepares the canvas.</p>
-          <p class="product-price">$XX</p>
-        </div>
-
-        <!-- RENEW -->
-        <div class="product-card">
-          <div class="product-art">
-            <svg width="60" height="160" viewBox="0 0 60 160">
-              <defs>
-                <linearGradient id="bRenew" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#e8e6e0"/>
-                  <stop offset="35%" stop-color="#f5f3ee"/>
-                  <stop offset="100%" stop-color="#d8d6d0"/>
-                </linearGradient>
-              </defs>
-              <!-- Dropper bottle shape -->
-              <ellipse cx="30" cy="8" rx="6" ry="7" fill="#c8a87a"/>
-              <rect x="27" y="12" width="6" height="12" rx="1" fill="#b8986a"/>
-              <rect x="10" y="24" width="40" height="118" rx="20" fill="url(#bRenew)" stroke="var(--rule)" stroke-width=".8"/>
-              <rect x="16" y="44" width="28" height="60" rx="2" fill="rgba(255,255,255,.6)" stroke="var(--rule)" stroke-width=".5"/>
-              <text x="30" y="68" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="6.5" fill="var(--ink)" letter-spacing="1.5">RENEW</text>
-              <text x="30" y="80" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="8" fill="var(--mid)" font-style="italic">Repair Oil</text>
-              <text x="30" y="92" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="5" fill="var(--faint)" letter-spacing="1">ARK</text>
-              <rect x="12" y="28" width="4" height="56" rx="2" fill="rgba(255,255,255,.4)"/>
-            </svg>
-          </div>
-          <p class="product-type">Optional Add-on</p>
-          <p class="product-name">RENEW</p>
-          <p class="product-type" style="margin-bottom:16px">Repair Oil · 30ml</p>
-          <p class="product-desc">A squalane and rosehip blend applied over the overnight formulation during dry-season voyages. Deep lipid support for skins that run dehydrated in cold climates.</p>
-          <p class="product-price">$XX</p>
-        </div>
-
+      <div class="section-header fi">
+        <span class="section-num">06</span>
+        <h1 class="section-title">Duty Free</h1>
       </div>
+      <p class="body fi" style="font-style:italic;max-width:640px;margin-bottom:8px">Completely optional add-ons. If you want to enhance your voyage, these are the choices. Not essentials.</p>
+      <span class="caption fi" style="border:none;padding:0">ARK supplementary range &nbsp;·&nbsp; 2024</span>
     </div>
-  </section>
+  </div>
 
-  <!-- Checkout widget -->
-  <section style="padding:80px 0;background:var(--paper2);border-top:1px solid var(--rule)">
-    <div class="wrap">
-      <div style="max-width:520px;margin:0 auto">
-        <p class="caps fi" style="text-align:center;margin-bottom:32px">Add to Voyage</p>
-        <button style="width:100%;background:#111;border:none;border-radius:2px;padding:16px;font-family:'-apple-system',sans-serif;font-size:1.1rem;color:#fff;cursor:pointer;margin-bottom:10px">&#63743; Pay</button>
-        <button style="width:100%;background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:15px;cursor:pointer;font-family:sans-serif;font-size:.95rem;color:#3c4043;margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-weight:700;font-size:1rem"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span> Pay</button>
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px"><div style="flex:1;height:1px;background:var(--rule)"></div><span style="font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.12em;color:var(--faint);text-transform:uppercase">or pay by card</span><div style="flex:1;height:1px;background:var(--rule)"></div></div>
-        <div class="field-group fi"><div class="field"><label>Card Number</label><span class="field-val placeholder">1234  5678  9012  3456</span></div></div>
-        <div class="field-group fi" style="grid-template-columns:1fr 1fr"><div class="field"><label>Expiry</label><span class="field-val placeholder">MM / YY</span></div><div class="field"><label>CVC</label><span class="field-val placeholder">· · ·</span></div></div>
-        <div class="field-group fi" style="margin-bottom:20px"><div class="field"><label>Name on Card</label><span class="field-val placeholder" style="font-style:italic">Full name</span></div></div>
-        <button class="btn-ark fi">Complete Purchase</button>
-        <p class="fi" style="font-family:'Montserrat',sans-serif;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;text-align:center;color:var(--faint);margin-top:16px">Secured · 256-bit encryption · ARK 2024</p>
+  <div class="product-grid fi">
+    <!-- FAB -->
+    <div class="product-card">
+      <div class="product-art">
+        <!-- PHOTO ZONE — or keep SVG bottle -->
+        <svg width="60" height="160" viewBox="0 0 60 160">
+          <defs><linearGradient id="bFab" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8e4de"/><stop offset="35%" stop-color="#f5f2ed"/><stop offset="100%" stop-color="#d8d4ce"/></linearGradient></defs>
+          <rect x="18" y="2" width="24" height="14" rx="2" fill="#c8a87a"/>
+          <rect x="22" y="14" width="16" height="8" rx="1" fill="#b8986a"/>
+          <rect x="10" y="22" width="40" height="120" rx="6" fill="url(#bFab)" stroke="var(--rule)" stroke-width=".5"/>
+          <rect x="16" y="42" width="28" height="70" rx="1" fill="rgba(255,255,255,.5)" stroke="var(--rule)" stroke-width=".4"/>
+          <text x="30" y="70" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="6.5" fill="var(--ink)" letter-spacing="2">F·A·B</text>
+          <text x="30" y="83" text-anchor="middle" font-family="'Bodoni Moda',serif" font-size="7.5" fill="var(--mid)" font-style="italic">Eye Cream</text>
+          <text x="30" y="96" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="4.5" fill="var(--faint)" letter-spacing="1.5">ARK</text>
+          <rect x="12" y="26" width="3.5" height="60" rx="1.5" fill="rgba(255,255,255,.4)"/>
+        </svg>
       </div>
+      <p class="product-type caps">Optional Add-on</p>
+      <p class="product-name">F·A·B</p>
+      <p class="product-type caps">Eye Cream · 15ml</p>
+      <p class="product-desc">Peptide-rich, specifically formulated for the periorbital zone. Targets dark circles, puffiness, and fine-line accumulation that begins in the mid-forties.</p>
+      <p class="product-price">$XX</p>
+      <span class="caption">ARK Supplementary Range</span>
     </div>
-  </section>
+
+    <!-- VITA -->
+    <div class="product-card" style="background:var(--paper2)">
+      <div class="product-art">
+        <svg width="60" height="160" viewBox="0 0 60 160">
+          <defs><linearGradient id="bVita" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e4e8e4"/><stop offset="35%" stop-color="#f2f5f2"/><stop offset="100%" stop-color="#d4d8d4"/></linearGradient></defs>
+          <rect x="18" y="2" width="24" height="14" rx="2" fill="#8c6a48"/>
+          <rect x="22" y="14" width="16" height="8" rx="1" fill="#7a5a38"/>
+          <rect x="10" y="22" width="40" height="120" rx="6" fill="url(#bVita)" stroke="var(--rule)" stroke-width=".5"/>
+          <rect x="16" y="42" width="28" height="70" rx="1" fill="rgba(255,255,255,.5)" stroke="var(--rule)" stroke-width=".4"/>
+          <text x="30" y="70" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="6.5" fill="var(--ink)" letter-spacing="2">VITA</text>
+          <text x="30" y="83" text-anchor="middle" font-family="'Bodoni Moda',serif" font-size="7.5" fill="var(--mid)" font-style="italic">Toner Pads</text>
+          <text x="30" y="96" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="4.5" fill="var(--faint)" letter-spacing="1.5">ARK</text>
+          <rect x="12" y="26" width="3.5" height="60" rx="1.5" fill="rgba(255,255,255,.4)"/>
+        </svg>
+      </div>
+      <p class="product-type caps">Optional Add-on</p>
+      <p class="product-name">VITA</p>
+      <p class="product-type caps">Toner Pads · 60 pads</p>
+      <p class="product-desc">Pre-soaked Vitamin C and Niacinamide pads. Used after cleansing, before the morning formulation. Brightens, balances, and prepares the canvas.</p>
+      <p class="product-price">$XX</p>
+      <span class="caption">ARK Supplementary Range</span>
+    </div>
+
+    <!-- RENEW -->
+    <div class="product-card">
+      <div class="product-art">
+        <svg width="60" height="160" viewBox="0 0 60 160">
+          <defs><linearGradient id="bRenew" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8e6e0"/><stop offset="35%" stop-color="#f5f3ee"/><stop offset="100%" stop-color="#d8d6d0"/></linearGradient></defs>
+          <ellipse cx="30" cy="8" rx="6" ry="7" fill="#c8a87a"/>
+          <rect x="27" y="12" width="6" height="12" rx="1" fill="#b8986a"/>
+          <rect x="10" y="24" width="40" height="118" rx="20" fill="url(#bRenew)" stroke="var(--rule)" stroke-width=".5"/>
+          <rect x="16" y="48" width="28" height="56" rx="1" fill="rgba(255,255,255,.5)" stroke="var(--rule)" stroke-width=".4"/>
+          <text x="30" y="66" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="6" fill="var(--ink)" letter-spacing="1.5">RENEW</text>
+          <text x="30" y="79" text-anchor="middle" font-family="'Bodoni Moda',serif" font-size="7.5" fill="var(--mid)" font-style="italic">Repair Oil</text>
+          <text x="30" y="92" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="4.5" fill="var(--faint)" letter-spacing="1.5">ARK</text>
+          <rect x="12" y="28" width="3.5" height="56" rx="1.5" fill="rgba(255,255,255,.4)"/>
+        </svg>
+      </div>
+      <p class="product-type caps">Optional Add-on</p>
+      <p class="product-name">RENEW</p>
+      <p class="product-type caps">Repair Oil · 30ml</p>
+      <p class="product-desc">A squalane and rosehip blend applied over the overnight formulation. Deep lipid support for skins that run dehydrated in cold-climate voyages.</p>
+      <p class="product-price">$XX</p>
+      <span class="caption">ARK Supplementary Range</span>
+    </div>
+  </div>
+
+  <!-- Checkout -->
+  <div style="padding:80px 56px;background:var(--paper2);border-top:.5px solid var(--rule)">
+    <div class="field-wrap fi">
+      <p class="caps" style="text-align:center;margin-bottom:32px">Add to Voyage</p>
+      <button style="width:100%;background:#111;border:none;border-radius:1px;padding:16px;font-family:'-apple-system',sans-serif;font-size:1.1rem;color:#fff;cursor:pointer;margin-bottom:8px">&#63743; Pay</button>
+      <button style="width:100%;background:var(--paper);border:.5px solid var(--rule);border-radius:1px;padding:15px;cursor:pointer;font-family:sans-serif;font-size:.95rem;color:#3c4043;margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-weight:700;font-size:1rem"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>&nbsp;Pay</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px"><div style="flex:1;height:.5px;background:var(--rule)"></div><span class="caps">or card</span><div style="flex:1;height:.5px;background:var(--rule)"></div></div>
+      <div class="field-row"><div class="field"><label>Card Number</label><span class="field-val">1234&nbsp;&nbsp;5678&nbsp;&nbsp;9012&nbsp;&nbsp;3456</span></div></div>
+      <div class="field-row" style="grid-template-columns:1fr 1fr"><div class="field"><label>Expiry</label><span class="field-val">MM / YY</span></div><div class="field"><label>CVC</label><span class="field-val">· · ·</span></div></div>
+      <div class="field-row" style="margin-bottom:0"><div class="field"><label>Name on Card</label><span class="field-val" style="font-style:italic">Full name</span></div></div>
+      <button class="btn-ark">Complete Purchase</button>
+      <p class="caps" style="text-align:center;margin-top:16px;font-size:.52rem">Secured &nbsp;·&nbsp; 256-bit encryption &nbsp;·&nbsp; ARK 2024</p>
+    </div>
+  </div>
 
   <footer>
-    <div class="ft-left"><span class="ft-logo">ARK</span><p class="ft-tagline">Body + Skin &nbsp;·&nbsp; The voyage is yours</p></div>
-    <div class="ft-right"><p>Vol. I &nbsp;·&nbsp; No. 3</p></div>
+    <span class="ft-logo">ARK</span>
+    <span class="caps">Duty Free &nbsp;·&nbsp; Vol. I No. 3</span>
+    <span class="caps">© 2024</span>
   </footer>
 </div>
 
@@ -1263,105 +1211,80 @@ footer {
 ══════════════════════════════════════════════════════════════ -->
 <div id="panel-honesty" class="panel">
 
-  <section style="padding:96px 0;background:var(--paper)">
+  <div class="feature">
     <div class="wrap">
-      <p class="caps fi" style="margin-bottom:8px">ARK — The Honesty Box</p>
-      <h1 class="headline fi" style="font-size:clamp(2.4rem,5vw,5rem);margin-bottom:12px">The Honesty Box</h1>
-      <hr class="fi" style="margin-bottom:8px">
-      <p class="body fi" style="font-style:italic;max-width:640px;margin-bottom:72px">ARK unfiltered. The conversation skincare usually avoids. Open a book.</p>
+      <div class="section-header fi">
+        <span class="section-num">07</span>
+        <h1 class="section-title">The Honesty Box</h1>
+      </div>
+      <p class="body fi" style="font-style:italic;max-width:640px;margin-bottom:8px">ARK unfiltered. The conversation skincare usually avoids.</p>
+      <span class="caption fi" style="border:none;padding:0">Hover a book to open it</span>
+    </div>
+  </div>
 
-      <!-- Chest SVG — clean editorial line art -->
-      <div class="fi" style="max-width:680px;margin:0 auto 72px">
-        <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
-          <!-- Lid open -->
-          <path d="M30 148 Q340 56 650 148" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
-          <path d="M38 152 Q340 64 642 152" fill="var(--paper2)" stroke="var(--rule)" stroke-width=".6"/>
-          <!-- Chest body -->
-          <rect x="30" y="148" width="620" height="96" rx="3" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.2"/>
-          <!-- Interior shadow -->
-          <rect x="38" y="152" width="604" height="16" fill="var(--paper2)" stroke="none"/>
-          <!-- Lock -->
-          <rect x="316" y="178" width="48" height="34" rx="3" fill="none" stroke="var(--bronze)" stroke-width="1.2"/>
-          <path d="M325 178 C325 166 355 166 355 178" fill="none" stroke="var(--bronze)" stroke-width="1.2"/>
-          <circle cx="340" cy="196" r="6" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-          <line x1="340" y1="199" x2="340" y2="206" stroke="var(--bronze)" stroke-width="1"/>
-          <!-- Corner reinforcements -->
-          <path d="M30 148 L30 164 L46 164" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-          <path d="M650 148 L650 164 L634 164" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-          <path d="M30 244 L30 228 L46 228" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-          <path d="M650 244 L650 228 L634 228" fill="none" stroke="var(--bronze)" stroke-width="1"/>
-          <!-- Books inside -->
-          <rect x="68" y="162" width="28" height="70" rx="1" fill="none" stroke="var(--rule)" stroke-width=".8"/>
-          <rect x="100" y="158" width="28" height="74" rx="1" fill="none" stroke="var(--rule)" stroke-width=".8"/>
-          <rect x="132" y="165" width="24" height="67" rx="1" fill="none" stroke="var(--rule)" stroke-width=".8"/>
-          <rect x="160" y="160" width="28" height="72" rx="1" fill="none" stroke="var(--rule)" stroke-width=".8"/>
-          <!-- Label inside lid -->
-          <text x="340" y="108" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="13" fill="rgba(0,0,0,.25)" letter-spacing="4" font-style="italic">ARK's Honesty Box</text>
-          <line x1="280" y1="114" x2="400" y2="114" stroke="rgba(184,144,106,.3)" stroke-width=".6"/>
-        </svg>
+  <!-- Books -->
+  <div style="padding:64px 56px 96px">
+    <div class="book-row fi">
+
+      <div class="book-wrap">
+        <div class="book-inner">
+          <div class="book-spine"></div>
+          <div class="book-back"><img src="ark-skin-biology.png" alt="The Biology Behind ARK"></div>
+          <div class="book-front">
+            <p class="caps" style="margin-bottom:14px;color:rgba(80,40,8,.45)">The Science</p>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(1.3rem,2vw,1.75rem);margin-bottom:16px;line-height:1.2;color:#1a1008">The Biology<br>Behind ARK</h3>
+            <div style="width:28px;height:.5px;background:var(--bronze);margin:0 auto 16px"></div>
+            <p style="font-family:'Bodoni Moda',serif;font-size:.9rem;line-height:1.65;color:rgba(80,40,8,.55);max-width:200px;font-style:italic">Peer-reviewed skin science. The evidence behind every formulation.</p>
+            <span class="book-hint">Hover to open</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Books -->
-      <div class="book-grid">
-
-        <div class="book-wrap fi">
-          <div class="book-inner">
-            <div class="book-spine"></div>
-            <div class="book-back"><img src="ark-skin-biology.png" alt="The Biology Behind ARK"></div>
-            <div class="book-front">
-              <p class="caps" style="margin-bottom:14px;color:rgba(90,45,10,.5);letter-spacing:.18em">The Science</p>
-              <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.3rem,2vw,1.8rem);margin-bottom:14px;line-height:1.25;color:#1a1008">The Biology<br>Behind ARK</h3>
-              <div style="width:32px;height:.5px;background:var(--bronze);margin:14px auto"></div>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;line-height:1.6;color:rgba(90,45,10,.6);max-width:200px">Peer-reviewed skin science. The evidence behind every formulation.</p>
-              <span class="book-hint">Hover to open</span>
-            </div>
+      <div class="book-wrap">
+        <div class="book-inner">
+          <div class="book-spine"></div>
+          <div class="book-back"><img src="ark-modern-skincare.png" alt="How Skincare Grew Up"></div>
+          <div class="book-front" style="background-color:#f0ece2">
+            <p class="caps" style="margin-bottom:14px;color:rgba(80,40,8,.45)">Articles</p>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(1.3rem,2vw,1.75rem);margin-bottom:16px;line-height:1.2;color:#1a1008">How Skincare<br>Grew Up</h3>
+            <div style="width:28px;height:.5px;background:var(--bronze);margin:0 auto 16px"></div>
+            <p style="font-family:'Bodoni Moda',serif;font-size:.9rem;line-height:1.65;color:rgba(80,40,8,.55);max-width:200px;font-style:italic">Forty years of false promises. Why the last few have been different.</p>
+            <span class="book-hint">Hover to open</span>
           </div>
         </div>
-
-        <div class="book-wrap fi">
-          <div class="book-inner">
-            <div class="book-spine"></div>
-            <div class="book-back"><img src="ark-modern-skincare.png" alt="How Skincare Grew Up"></div>
-            <div class="book-front" style="background-color:#eee8d8">
-              <p class="caps" style="margin-bottom:14px;color:rgba(90,45,10,.5);letter-spacing:.18em">Articles</p>
-              <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.3rem,2vw,1.8rem);margin-bottom:14px;line-height:1.25;color:#1a1008">How Skincare<br>Grew Up</h3>
-              <div style="width:32px;height:.5px;background:var(--bronze);margin:14px auto"></div>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;line-height:1.6;color:rgba(90,45,10,.6);max-width:200px">Forty years of false promises. Why the last few have been different.</p>
-              <span class="book-hint">Hover to open</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="book-wrap fi">
-          <div class="book-inner">
-            <div class="book-spine"></div>
-            <div class="book-back"><img src="ark-privacy.png" alt="Your Privacy. Our Promise."></div>
-            <div class="book-front" style="background-color:#f4efe4">
-              <p class="caps" style="margin-bottom:14px;color:rgba(90,45,10,.5);letter-spacing:.18em">Advice</p>
-              <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.3rem,2vw,1.8rem);margin-bottom:14px;line-height:1.25;color:#1a1008">Your Privacy.<br>Our Promise.</h3>
-              <div style="width:32px;height:.5px;background:var(--bronze);margin:14px auto"></div>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;line-height:1.6;color:rgba(90,45,10,.6);max-width:200px">We map your skin, not your identity.</p>
-              <span class="book-hint">Hover to open</span>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <div style="padding:72px 0;border-top:1px solid var(--rule);margin-top:72px" class="fi">
-        <p class="caps" style="margin-bottom:24px">What We Don't Know Yet</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px">
-          <p class="body">We're testing accuracy across different skin tones, climates, and ages. We're measuring whether 90 days is the right cycle for every customer. We're learning as we go, and we'll share what we learn.</p>
-          <p class="body" style="font-style:italic">No brand should claim perfection in year one. We're telling you what we know, what we're measuring, and what we expect to change. That's what an honest manifest looks like.</p>
+      <div class="book-wrap">
+        <div class="book-inner">
+          <div class="book-spine"></div>
+          <div class="book-back"><img src="ark-privacy.png" alt="Your Privacy. Our Promise."></div>
+          <div class="book-front" style="background-color:#f5f1e6">
+            <p class="caps" style="margin-bottom:14px;color:rgba(80,40,8,.45)">Advice</p>
+            <h3 style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(1.3rem,2vw,1.75rem);margin-bottom:16px;line-height:1.2;color:#1a1008">Your Privacy.<br>Our Promise.</h3>
+            <div style="width:28px;height:.5px;background:var(--bronze);margin:0 auto 16px"></div>
+            <p style="font-family:'Bodoni Moda',serif;font-size:.9rem;line-height:1.65;color:rgba(80,40,8,.55);max-width:200px;font-style:italic">We map your skin, not your identity.</p>
+            <span class="book-hint">Hover to open</span>
+          </div>
         </div>
       </div>
 
     </div>
-  </section>
+
+    <!-- Long editorial copy section -->
+    <div style="max-width:900px;margin:96px auto 0;border-top:.5px solid var(--rule);padding-top:72px">
+      <p class="caps fi" style="margin-bottom:24px">What We Don't Know Yet</p>
+      <div class="col2 fi">
+        <p class="body drop-cap">We're testing accuracy across different skin tones, climates, and ages. We're measuring whether 90 days is the right cycle for every customer. We're learning as we go, and we'll share what we learn. No brand should claim perfection in year one.</p>
+        <p class="body" style="margin-top:1.5em">We're telling you what we know, what we're measuring, and what we expect to change. That's what an honest manifest looks like. And for the woman who has been promised perfection by every other brand — honesty, finally, is enough.</p>
+      </div>
+      <span class="caption fi">ARK Transparency Report &nbsp;·&nbsp; 2024</span>
+    </div>
+  </div>
 
   <footer>
-    <div class="ft-left"><span class="ft-logo">ARK</span><p class="ft-tagline">Body + Skin &nbsp;·&nbsp; The voyage is yours</p></div>
-    <div class="ft-right"><p>Vol. I &nbsp;·&nbsp; No. 3</p></div>
+    <span class="ft-logo">ARK</span>
+    <span class="caps">The Honesty Box &nbsp;·&nbsp; Vol. I No. 3</span>
+    <span class="caps">© 2024</span>
   </footer>
 </div>
 
