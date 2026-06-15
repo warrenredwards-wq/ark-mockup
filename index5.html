@@ -335,7 +335,36 @@ footer { padding:56px; border-top:.5px solid var(--rule-h); display:flex; align-
       <div class="hero-rule"></div>
       <p class="hero-hl">Ninety days. Four seasons. One skin, finally understood.</p>
       <p class="hero-body">A clinically tracked voyage for women who have exhausted the promises and are ready for the evidence.</p>
-      <button class="btn" onclick="showTab('manifest')">Read the Manifest</button>
+      <button class="btn" onclick="document.getElementById('mirror-moment-section').scrollIntoView({behavior:'smooth'})">Begin Your Mirror Moment</button>
+    </div>
+  </section>
+
+  <section id="mirror-moment-section" class="sec" style="background:var(--void);text-align:center">
+    <div class="v-inner-sm">
+      <span class="lbl fi" style="display:block;text-align:center">Step One</span>
+      <h2 class="d2 fi" style="max-width:620px;margin:0 auto 16px">Your skin, before the voyage begins.</h2>
+      <p class="b1 fi" style="max-width:560px;margin:0 auto 12px">One selfie. Sixteen biomarkers. No guessing. We send you a private link — you take the photo on your own terms, in your own time.</p>
+      <p class="b1 fi" style="max-width:500px;margin:0 auto 44px;font-style:italic;color:var(--ink)">That photograph becomes your baseline. The before that makes ninety days worth measuring.</p>
+      <div class="phone-row fi">
+        <span class="ph-pfx">+61</span>
+        <input type="tel" placeholder="Enter your number" id="phoneInput">
+        <button class="btn" style="margin-left:8px;white-space:nowrap" onclick="sendLink()">Send My Link</button>
+      </div>
+      <p id="ph-msg" class="caps fi" style="margin-top:12px;font-size:.5rem">Your number is used only to send your analysis link. Never shared.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:760px;margin:64px auto 0;text-align:left" class="fi">
+        <div style="border-left:1.5px solid var(--bronze);padding-left:20px">
+          <div class="tech-num" style="font-size:2rem;margin-bottom:6px">3M+</div>
+          <p class="b2">Facial data points tracked per assessment.</p>
+        </div>
+        <div style="border-left:1.5px solid var(--bronze);padding-left:20px">
+          <div class="tech-num" style="font-size:2rem;margin-bottom:6px">16</div>
+          <p class="b2">Biomarkers read. Not estimated. Read.</p>
+        </div>
+        <div style="border-left:1.5px solid var(--bronze);padding-left:20px">
+          <p class="caps" style="margin-bottom:6px">Peer-reviewed</p>
+          <p class="b2">Published in international dermatological journals.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -447,43 +476,6 @@ footer { padding:56px; border-top:.5px solid var(--rule-h); display:flex; align-
         </div>
         <div class="fi" style="flex:1;max-width:240px">
           <img src="ark-formulation.png" alt="Duty Free" loading="lazy" style="width:100%;opacity:.85">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" style="background:var(--bg3);text-align:center">
-    <div class="v-inner-sm">
-      <span class="lbl fi" style="display:block;text-align:center">The Mirror Moment</span>
-      <h2 class="d2 fi" style="max-width:620px;margin:0 auto 16px">Your skin, before the voyage begins.</h2>
-      <p class="b1 fi" style="max-width:560px;margin:0 auto 44px">We'll send you a private link. Take one selfie. That photograph becomes your baseline — the before that makes ninety days worth measuring.</p>
-      <div class="phone-row fi">
-        <span class="ph-pfx">+61</span>
-        <input type="tel" placeholder="Enter your number" id="phoneInput">
-        <button class="btn" style="margin-left:8px;white-space:nowrap" onclick="sendLink()">Send Link</button>
-      </div>
-      <p id="ph-msg" class="caps fi" style="margin-top:12px;font-size:.5rem">Your number is used only to send your analysis link. Never shared.</p>
-    </div>
-  </section>
-
-  <section class="sec" style="background:var(--bg)">
-    <div class="v-inner">
-      <div class="tech-grid">
-        <div class="tech-stat fi">
-          <div class="tech-num">3M+</div>
-          <p class="b2">Tracked facial data points. The clinical foundation beneath every ARK assessment.</p>
-        </div>
-        <div class="tech-stat fi">
-          <div class="tech-num">90</div>
-          <p class="b2">Days per cruise. Long enough to measure real biological change. Short enough to see it.</p>
-        </div>
-        <div class="tech-stat fi">
-          <div class="tech-num">4</div>
-          <p class="b2">Mirror Moment assessments per cruise — Day 0, 30, 60, 90. Data shapes every decision.</p>
-        </div>
-        <div class="tech-stat fi">
-          <p class="caps" style="margin-bottom:10px">Peer-reviewed</p>
-          <p class="b2">Diagnostic engine published in international dermatological journals.</p>
         </div>
       </div>
     </div>
