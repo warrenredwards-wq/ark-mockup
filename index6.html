@@ -15,15 +15,15 @@
    ──────────────────────────────────────────────────────────── */
 
 :root {
-  --bg:      #0a0f2e;
-  --bg2:     #12103a;
-  --bg3:     #0e0c30;
-  --void:    #05040f;
-  --ink:     #ede8e0;
-  --mid:     #a89ec0;
-  --faint:   #6a6482;
-  --rule:    rgba(200,190,230,.11);
-  --rule-h:  rgba(200,190,230,.22);
+  --bg:      #faf7f3;
+  --bg2:     #f2ece4;
+  --bg3:     #ebe3d8;
+  --void:    #1e1a28;
+  --ink:     #1a1620;
+  --mid:     #5c5468;
+  --faint:   #9890a4;
+  --rule:    rgba(100,90,120,.10);
+  --rule-h:  rgba(100,90,120,.20);
   --bronze:  #b8906a;
   --bronze2: #8c6a48;
   --sum:     #1B4D6B;
@@ -49,7 +49,7 @@ body {
 /* ─── NAV ──────────────────────────────────────────────────── */
 #nav {
   position:fixed; top:0; left:0; right:0; z-index:900;
-  background:rgba(10,15,46,.92);
+  background:rgba(250,247,243,.94);
   backdrop-filter:blur(20px);
   border-bottom:.5px solid var(--rule-h);
 }
@@ -211,7 +211,7 @@ body {
 .field-row  { display:grid; gap:.5px; background:var(--rule-h); margin-bottom:.5px; }
 .field      { background:var(--bg2); padding:16px 20px; display:flex; flex-direction:column; gap:4px; }
 .field label { font-family:'Montserrat',sans-serif; font-size:.52rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
-.field-val   { font-family:'Bodoni Moda',serif; font-size:1.05rem; color:rgba(200,190,230,.25); letter-spacing:.04em; }
+.field-val   { font-family:'Bodoni Moda',serif; font-size:1.05rem; color:rgba(90,80,100,.30); letter-spacing:.04em; }
 .btn-pay { width:100%; padding:18px; background:var(--bronze); border:none; font-family:'Montserrat',sans-serif; font-size:.6rem; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:#fff; cursor:pointer; transition:background .2s; margin-top:.5px; }
 .btn-pay:hover { background:var(--bronze2); }
 
