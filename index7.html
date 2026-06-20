@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARK Body + Skin — No. 7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── TWO FONTS ONLY
+     Bodoni Moda  — all headings, body copy, the ARK wordmark
+     Montserrat   — all caps labels, captions, nav tabs
+   ──────────────────────────────────────────────────────────── */
+
+:root {
+  --bg:      #0a0f2e;
+  --bg2:     #12103a;
+  --bg3:     #0e0c30;
+  --void:    #05040f;
+  --ink:     #ede8e0;
+  --mid:     #a89ec0;
+  --faint:   #6a6482;
+  --rule:    rgba(200,190,230,.11);
+  --rule-h:  rgba(200,190,230,.22);
+  --bronze:  #b8906a;
+  --bronze2: #8c6a48;
+  --sum:     #1B4D6B;
+  --aut:     #C4622D;
+  --win:     #4A5568;
+  --spr:     #2D5A3D;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+html { scroll-behavior:smooth }
+body {
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Bodoni Moda',serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ─── FADE IN ───────────────────────────────────────────────── */
+.fi { opacity:0; transform:translateY(14px); transition:opacity .6s ease,transform .6s ease; }
+.fi.vis { opacity:1; transform:none; }
+
+/* ─── NAV ──────────────────────────────────────────────────── */
+#nav {
+  position:fixed; top:0; left:0; right:0; z-index:900;
+  background:rgba(10,15,46,.92);
+  backdrop-filter:blur(20px);
+  border-bottom:.5px solid var(--rule-h);
+}
+.nav-inner {
+  max-width:1400px; margin:0 auto; padding:0 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  height:56px;
+}
+.nav-logo {
+  font-family:'Bodoni Moda',serif;
+  font-weight:400; font-size:1.7rem; letter-spacing:.32em;
+  color:var(--ink); text-transform:uppercase; cursor:pointer;
+}
+.nav-tabs { display:flex; list-style:none; overflow-x:auto; scrollbar-width:none; }
+.nav-tabs::-webkit-scrollbar { display:none; }
+.nav-tabs a {
+  display:block; padding:0 14px; height:56px; line-height:56px;
+  font-family:'Montserrat',sans-serif; font-size:.56rem; font-weight:500;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--faint); cursor:pointer; transition:color .2s;
+  border-bottom:1.5px solid transparent; white-space:nowrap;
+}
+.nav-tabs a:hover { color:var(--ink); }
+.nav-tabs a.active { color:var(--ink); border-bottom-color:var(--bronze); }
+.nav-right {
+  font-family:'Montserrat',sans-serif; font-size:.52rem; font-weight:400;
+  letter-spacing:.16em; color:var(--faint); text-transform:uppercase;
+  text-align:right; flex-shrink:0; padding-left:20px;
+}
+
+/* ─── PANELS ────────────────────────────────────────────────── */
+.panel { display:none; padding-top:56px; animation:appear .3s ease; }
+.panel.active { display:block; }
+@keyframes appear { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:none} }
+
+/* ─── LAYOUT ─────────────────────────────────────────────────── */
+.wrap    { max-width:1320px; margin:0 auto; padding:0 56px; }
+.wrap-sm { max-width:900px;  margin:0 auto; padding:0 56px; }
+@media(max-width:768px){ .wrap,.wrap-sm{ padding:0 24px; } }
+
+/* ─── BODONI TYPE SCALE ─────────────────────────────────────── */
+
+/* Display — large headings */
+.d1 { font-family:'Bodoni Moda',serif; font-weight:400; font-size:clamp(2.35rem,6.7vw,6.7rem); line-height:1.0; letter-spacing:-.01em; color:var(--ink); }
+.d2 { font-family:'Bodoni Moda',serif; font-weight:400; font-size:clamp(2.4rem,5vw,5rem);   line-height:1.04; letter-spacing:-.01em; color:var(--ink); }
+.d3 { font-family:'Bodoni Moda',serif; font-weight:400; font-size:clamp(1.8rem,3.5vw,3rem); line-height:1.1;  color:var(--ink); }
+.d4 { font-family:'Bodoni Moda',serif; font-weight:400; font-size:clamp(1.4rem,2.5vw,2rem); line-height:1.2;  color:var(--ink); }
+
+/* Body */
+.b1 { font-family:'Bodoni Moda',serif; font-size:1.1rem;  line-height:1.85; color:var(--mid); }
+.b2 { font-family:'Bodoni Moda',serif; font-size:.98rem;  line-height:1.75; color:var(--mid); }
+
+/* Label — always Montserrat */
+.lbl {
+  font-family:'Montserrat',sans-serif; font-size:.58rem; font-weight:500;
+  letter-spacing:.24em; text-transform:uppercase; color:var(--bronze);
+  display:block; margin-bottom:14px;
+}
+.caps {
+  font-family:'Montserrat',sans-serif; font-size:.58rem; font-weight:500;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--faint);
+}
+.caption {
+  font-family:'Montserrat',sans-serif; font-size:.54rem; font-weight:400;
+  letter-spacing:.16em; color:var(--faint); text-transform:uppercase;
+  padding-top:10px; border-top:.5px solid var(--rule-h);
+  display:block; margin-top:10px;
+}
+
+/* Drop cap */
+.drop-cap::first-letter {
+  float:left; font-family:'Bodoni Moda',serif; font-size:5.2rem;
+  font-weight:400; line-height:.82; margin:6px 14px 0 0; color:var(--bronze);
+}
+
+/* Two-column body text */
+.col2 { columns:2; column-gap:56px; column-rule:.5px solid var(--rule-h); }
+@media(max-width:768px){ .col2{ columns:1; } }
+
+/* Pull quote */
+.pq {
+  border-top:1px solid var(--bronze); border-bottom:.5px solid var(--rule-h);
+  padding:32px 0 28px; margin:48px 0;
+}
+.pq p {
+  font-family:'Bodoni Moda',serif; font-weight:400; font-style:italic;
+  font-size:clamp(1.4rem,2.6vw,2.2rem); line-height:1.35; color:var(--ink);
+}
+.pq cite {
+  display:block; margin-top:16px;
+  font-family:'Montserrat',sans-serif; font-size:.54rem;
+  letter-spacing:.18em; font-style:normal; text-transform:uppercase; color:var(--bronze);
+}
+
+/* Buttons */
+.btn {
+  display:inline-block; border:1px solid var(--bronze);
+  padding:13px 32px;
+  font-family:'Montserrat',sans-serif; font-size:.6rem;
+  font-weight:500; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--bronze); background:transparent; cursor:pointer; transition:all .22s;
+}
+.btn:hover { background:var(--bronze); color:var(--void); }
+.btn-solid {
+  display:inline-block; padding:13px 32px;
+  font-family:'Montserrat',sans-serif; font-size:.6rem;
+  font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+  color:#fff; background:var(--bronze); border:none; cursor:pointer; transition:background .2s;
+}
+.btn-solid:hover { background:var(--bronze2); }
+
+/* Divider diamond */
+.diam { display:flex; align-items:center; gap:14px; margin:32px 0; }
+.diam::before,.diam::after { content:''; flex:1; max-width:80px; height:.5px; background:rgba(184,144,106,.28); }
+.diam span { color:rgba(184,144,106,.45); font-size:.55rem; }
+
+/* ─── SECTION HEADER (numbered) ─────────────────────────────── */
+.section-header { display:flex; align-items:baseline; gap:24px; margin-bottom:56px; }
+.section-header::after { content:''; flex:1; height:.5px; background:var(--rule-h); }
+.section-num   { font-family:'Bodoni Moda',serif; font-weight:400; font-size:5rem; color:var(--rule-h); line-height:1; }
+.section-title { font-family:'Bodoni Moda',serif; font-weight:400; font-size:clamp(2rem,4vw,3.5rem); color:var(--ink); }
+
+/* ─── FEATURE PANEL ─────────────────────────────────────────── */
+.feature { padding:104px 0; background:var(--bg); border-bottom:.5px solid var(--rule-h); }
+
+/* ─── SEASON GRID ────────────────────────────────────────────── */
+.season-grid { display:grid; grid-template-columns:repeat(4,1fr); }
+.season-cell { border-right:.5px solid var(--rule-h); border-top:.5px solid var(--rule-h); display:flex; flex-direction:column; }
+.season-cell:last-child { border-right:none; }
+.season-n { font-family:'Bodoni Moda',serif; font-weight:400; font-size:4rem; color:var(--rule-h); line-height:1; margin-bottom:24px; }
+.season-name { font-family:'Bodoni Moda',serif; font-weight:400; font-size:2rem; color:var(--ink); margin-bottom:8px; }
+@media(max-width:900px){ .season-grid{ grid-template-columns:1fr 1fr; } }
+
+/* ─── BIOMARKER TABLE ────────────────────────────────────────── */
+.bio-table { width:100%; border-collapse:collapse; }
+.bio-table thead tr { border-bottom:1px solid var(--bronze); }
+.bio-table th { font-family:'Montserrat',sans-serif; font-size:.52rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); padding:10px 0; text-align:left; }
+.bio-table td { font-family:'Bodoni Moda',serif; font-size:1rem; color:var(--mid); padding:16px 0; border-bottom:.5px solid var(--rule-h); vertical-align:middle; }
+.bio-table td:first-child { color:var(--ink); font-weight:500; }
+.bio-bar-wrap { width:120px; height:2px; background:rgba(200,190,230,.14); border-radius:1px; }
+.bio-bar { height:2px; border-radius:1px; background:var(--bronze); }
+
+/* ─── PRODUCT GRID ───────────────────────────────────────────── */
+.product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.5px; background:var(--rule-h); }
+.product-card { background:var(--bg); padding:56px 40px; display:flex; flex-direction:column; }
+.product-card.alt { background:var(--bg2); }
+.product-art { margin-bottom:40px; display:flex; justify-content:center; }
+@media(max-width:900px){ .product-grid{ grid-template-columns:1fr 1fr; } }
+
+/* ─── TICKET GRID ────────────────────────────────────────────── */
+.ticket-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.5px; background:var(--rule-h); }
+.ticket-card { background:var(--bg); cursor:pointer; transition:background .2s; display:flex; flex-direction:column; }
+.ticket-card.alt { background:var(--bg2); }
+.ticket-card:hover { background:var(--bg3); }
+@media(max-width:900px){ .ticket-grid{ grid-template-columns:1fr 1fr; } }
+
+/* ─── CHECKOUT ───────────────────────────────────────────────── */
+.field-wrap { max-width:480px; margin:0 auto; }
+.field-row  { display:grid; gap:.5px; background:var(--rule-h); margin-bottom:.5px; }
+.field      { background:var(--bg2); padding:16px 20px; display:flex; flex-direction:column; gap:4px; }
+.field label { font-family:'Montserrat',sans-serif; font-size:.52rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
+.field-val   { font-family:'Bodoni Moda',serif; font-size:1.05rem; color:rgba(200,190,230,.25); letter-spacing:.04em; }
+.btn-pay { width:100%; padding:18px; background:var(--bronze); border:none; font-family:'Montserrat',sans-serif; font-size:.6rem; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:#fff; cursor:pointer; transition:background .2s; margin-top:.5px; }
+.btn-pay:hover { background:var(--bronze2); }
+
+/* ─── BOOKS ──────────────────────────────────────────────────── */
+.book-row  { display:flex; flex-direction:column; gap:80px; max-width:660px; margin:0 auto; }
+.book-wrap { perspective:2200px; width:100%; cursor:pointer; padding:28px 0 40px; }
+.book-inner {
+  display:flex; position:relative; height:300px;
+  transform:rotateX(4deg) rotateY(-6deg); transform-style:preserve-3d;
+  transition:transform .4s ease,filter .4s ease;
+  filter:drop-shadow(12px 24px 48px rgba(0,0,0,.7)) drop-shadow(2px 4px 12px rgba(0,0,0,.5));
+}
+.book-wrap:hover .book-inner { transform:rotateX(2deg) rotateY(0deg); filter:drop-shadow(6px 18px 36px rgba(0,0,0,.55)); }
+.book-inner::before {
+  content:''; position:absolute; top:-14px; left:44px; right:-4px; height:14px; z-index:10; border-radius:0 3px 0 0;
+  background:repeating-linear-gradient(to bottom,#faf9f6 0,#faf9f6 2px,#e8e0cc 2px,#e8e0cc 2.8px,#f5f1e8 2.8px,#f5f1e8 5px,#ddd5be 5px,#ddd5be 5.6px,#f2ede2 5.6px,#f2ede2 8px,#d8ceb6 8px,#d8ceb6 8.6px,#eeead8 8.6px,#eeead8 11px,#d4c9aa 11px,#d4c9aa 11.8px,#ece6d8 11.8px,#ece6d8 14px);
+  box-shadow:0 -3px 6px rgba(0,0,0,.3);
+}
+.book-inner::after {
+  content:''; position:absolute; bottom:-12px; left:44px; right:-4px; height:12px; z-index:10;
+  background:repeating-linear-gradient(to bottom,#ece6d8 0,#ece6d8 2.5px,#c8bfa0 2.5px,#c8bfa0 3px,#e8e2d2 3px,#e8e2d2 5.5px,#c0b898 5.5px,#c0b898 6px,#e4ded0 6px,#e4ded0 8.5px,#b8b090 8.5px,#b8b090 9px,#e0dac8 9px,#e0dac8 12px);
+  box-shadow:0 6px 14px rgba(0,0,0,.5);
+}
+.book-spine {
+  width:44px; flex-shrink:0; border-radius:4px 0 0 4px; position:relative;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 36px,rgba(0,0,0,.3) 36px,rgba(0,0,0,.3) 38px,rgba(255,255,255,.04) 38px,rgba(255,255,255,.04) 40px),
+             linear-gradient(to right,#080402 0%,#1e0e06 12%,#3c1e0c 28%,#4e2a12 42%,#3c1e0c 58%,#2a1408 72%,#1a0c05 86%,#0a0502 100%);
+  box-shadow:inset -5px 0 14px rgba(0,0,0,.65),inset 2px 0 6px rgba(255,255,255,.06),-2px 0 8px rgba(0,0,0,.6);
+}
+.book-spine::before { content:''; position:absolute; top:0; left:5px; width:3px; height:100%; background:linear-gradient(to bottom,rgba(255,255,255,.10) 0%,rgba(255,255,255,.04) 40%,transparent 100%); border-radius:2px; }
+.book-front {
+  flex:1; background-size:100% 100%; border:.5px solid rgba(80,40,8,.3); border-left:none;
+  position:relative; z-index:2;
+  transition:transform .75s cubic-bezier(.645,.045,.355,1);
+  transform-origin:left center; transform-style:preserve-3d; backface-visibility:hidden;
+  border-radius:0 3px 3px 0; box-shadow:inset 7px 0 20px rgba(0,0,0,.3);
+}
+.book-front::before { display:none; }
+.book-back { position:absolute; left:44px; right:0; top:0; bottom:0; border:.5px solid var(--rule-h); border-left:none; overflow:hidden; border-radius:0 4px 4px 0; background:#0d0b1e; display:flex; align-items:center; justify-content:center; }
+.book-back img { width:100%; height:100%; object-fit:contain; }
+.book-hint { position:absolute; bottom:14px; left:50%; transform:translateX(-50%); font-family:'Montserrat',sans-serif; font-size:.5rem; letter-spacing:.2em; color:rgba(200,190,230,.28); text-transform:uppercase; white-space:nowrap; transition:opacity .3s; }
+.book-wrap:hover .book-front { transform:rotateY(-162deg); }
+.book-wrap:hover .book-hint  { opacity:0; }
+
+/* ─── FOOTER ────────────────────────────────────────────────── */
+footer { padding:56px; border-top:.5px solid var(--rule-h); display:flex; align-items:center; justify-content:space-between; background:var(--void); }
+.ft-logo { font-family:'Bodoni Moda',serif; font-weight:400; font-size:2rem; letter-spacing:.3em; text-transform:uppercase; color:var(--ink); }
+@media(max-width:768px){ footer{ flex-direction:column; gap:16px; text-align:center; } }
+
+/* ─── HERO ───────────────────────────────────────────────────── */
+.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; background:url('ark-super-yacht.png') center/cover no-repeat; position:relative; padding:80px 40px; }
+.hero::before { content:''; position:absolute; inset:0; background:rgba(5,4,18,.38); }
+.hero-c { position:relative; z-index:1; max-width:760px; }
+.hero-ark { font-family:'Playfair Display',serif; font-weight:400; font-size:clamp(100px,14vw,180px); letter-spacing:.1em; color:var(--ink); line-height:.95; margin-bottom:12px; }
+.hero-sub { font-family:'Montserrat',sans-serif; font-size:.62rem; font-weight:300; letter-spacing:.55em; color:rgba(237,232,224,.6); margin-bottom:36px; text-transform:uppercase; }
+.hero-rule { width:56px; height:1px; background:rgba(184,144,106,.5); margin:0 auto 36px; }
+.hero-hl   { font-family:'Bodoni Moda',serif; font-weight:400; font-style:italic; font-size:clamp(1.4rem,2.4vw,2.1rem); color:var(--ink); line-height:1.42; margin-bottom:18px; }
+.hero-body { font-family:'Bodoni Moda',serif; font-size:1rem; color:rgba(237,232,224,.72); margin-bottom:40px; line-height:1.7; }
+
+/* ─── SECTION UTIL ───────────────────────────────────────────── */
+.sec { padding:80px 0; }
+.v-inner    { max-width:1200px; margin:0 auto; padding:0 56px; }
+.v-inner-sm { max-width:820px;  margin:0 auto; padding:0 56px; }
+@media(max-width:767px){ .v-inner,.v-inner-sm{ padding:0 20px; } .hero{ padding:80px 20px; } }
+
+/* phone input */
+.phone-row { display:flex; max-width:540px; margin:0 auto 10px; }
+.ph-pfx    { border:.5px solid var(--rule-h); border-right:none; padding:12px 16px; font-family:'Bodoni Moda',serif; color:var(--mid); background:var(--bg2); white-space:nowrap; display:flex; align-items:center; }
+.phone-row input { flex:1; border:.5px solid var(--rule-h); background:var(--bg2); color:var(--ink); font-family:'Bodoni Moda',serif; font-size:1rem; padding:12px 16px; outline:none; min-width:0; border-left:none; }
+@media(max-width:767px){ .phone-row{ flex-direction:column; } }
+
+/* stat grid */
+.tech-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; }
+.tech-num  { font-family:'Bodoni Moda',serif; font-size:3rem; font-weight:400; color:var(--ink); line-height:1; margin-bottom:10px; }
+.tech-stat { border-left:.5px solid var(--rule-h); padding-left:22px; }
+@media(max-width:1024px){ .tech-grid{ grid-template-columns:repeat(2,1fr); gap:28px; } }
+@media(max-width:767px){ .tech-grid{ grid-template-columns:1fr; } }
+
+/* season preview cards on voyage */
+.s-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:36px; }
+.s-card { padding:28px 22px; border:.5px solid var(--rule-h); cursor:pointer; transition:border-color .2s; }
+.s-card:hover { border-color:var(--bronze); }
+@media(max-width:900px){ .s-grid{ grid-template-columns:repeat(2,1fr); } }
+
+/* duty free preview */
+.df-prev { display:flex; gap:64px; align-items:center; }
+@media(max-width:1024px){ .df-prev{ flex-direction:column; gap:36px; } }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <span class="nav-logo" onclick="showTab('home')">ark</span>
+    <ul class="nav-tabs">
+      <li><a data-tab="home"     onclick="showTab('home')"     class="active">Home</a></li>
+      <li><a data-tab="howitworks" onclick="showTab('howitworks')">How It Works</a></li>
+      <li><a data-tab="cruise"   onclick="showTab('cruise')">Your Cruise</a></li>
+      <li><a data-tab="addons"   onclick="showTab('addons')">Add-Ons</a></li>
+    </ul>
+    <div class="nav-right">
+      <div>ARK Body + Skin</div>
+      <div style="margin-top:3px">Vol. I &nbsp;·&nbsp; No. 7 &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════ HOME ══════════════ -->
+<div id="panel-home" class="panel active">
+
+  <section class="hero">
+    <div class="hero-c fi">
+      <div class="hero-ark">ark</div>
+      <div class="hero-sub" style="text-transform:lowercase">body &nbsp;+&nbsp; skin</div>
+      <div class="hero-rule"></div>
+      <p class="hero-hl">Ninety days. Four seasons. One skin, finally understood.</p>
+      <p class="hero-body">A clinically tracked 90-day skin plan. Personalised by biology. Measured by results.</p>
+      <button class="btn" onclick="document.getElementById('mirror-moment-section').scrollIntoView({behavior:'smooth'})">Begin Your Mirror Moment</button>
+    </div>
+  </section>
+
+  <section id="mirror-moment-section" class="sec" style="background:var(--void);text-align:center">
+    <div class="v-inner-sm">
+      <span class="lbl fi" style="display:block;text-align:center">The Mirror Moment <span style="font-size:.45em;font-style:italic;letter-spacing:.08em;color:var(--faint);text-transform:none">(a selfie)</span></span>
+      <h2 class="d2 fi" style="max-width:620px;margin:0 auto 16px">Your skin, before the voyage begins.</h2>
+      <p class="b1 fi" style="max-width:560px;margin:0 auto 12px">One selfie. Sixteen biomarkers. No guessing. We send you a private link — you take the photo on your own terms, in your own time.</p>
+      <p class="b1 fi" style="max-width:500px;margin:0 auto 44px;font-style:italic;color:var(--ink)">That photograph becomes your baseline. The before that makes ninety days worth measuring.</p>
+
+      <div class="fi" style="max-width:480px;margin:0 auto 44px;text-align:left">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:baseline;gap:16px">
+            <span style="font-family:'Montserrat',sans-serif;font-size:.52rem;font-weight:600;letter-spacing:.2em;color:var(--bronze);flex-shrink:0">01</span>
+            <p class="b2">The Mirror Moment <span style="font-size:.75em;font-style:italic;color:var(--faint)">(you take one selfie)</span> — privately, on your own phone, in your own time.</p>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:16px">
+            <span style="font-family:'Montserrat',sans-serif;font-size:.52rem;font-weight:600;letter-spacing:.2em;color:var(--bronze);flex-shrink:0">02</span>
+            <p class="b2">ARK reads 16 biomarkers in your skin. Clarity, not guesswork.</p>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:16px">
+            <span style="font-family:'Montserrat',sans-serif;font-size:.52rem;font-weight:600;letter-spacing:.2em;color:var(--bronze);flex-shrink:0">03</span>
+            <p class="b2">You receive a personalised 90-day plan built around your biology.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-row fi">
+        <span class="ph-pfx">+61</span>
+        <input type="tel" placeholder="Enter your number" id="phoneInput">
+        <button class="btn" style="margin-left:8px;white-space:nowrap" onclick="sendLink()">Send My Link</button>
+      </div>
+      <p id="ph-msg" class="caps fi" style="margin-top:12px;font-size:.5rem">Your number is used only to send your analysis link. Never shared.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:760px;margin:64px auto 0;text-align:left" class="fi">
+        <div style="border-left:1.5px solid var(--bronze);padding-left:20px">
+          <div class="tech-num" style="font-size:2rem;margin-bottom:6px">3M+</div>
+          <p class="b2">Facial data points tracked per assessment.</p>
+        </div>
+        <div style="border-left:1.5px solid var(--bronze);padding-left:20px">
+          <div class="tech-num" style="font-size:2rem;margin-bottom:6px">16</div>
+          <p class="b2">Biomarkers read. Not estimated. Read.</p>
+        </div>
+        <div style="border-left:1.5px solid var(--bronze);padding-left:20px">
+          <p class="caps" style="margin-bottom:6px">Peer-reviewed</p>
+          <p class="b2">Published in international dermatological journals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--bg2)">
+    <div class="v-inner-sm">
+      <div class="fi">
+        <span class="lbl">What ARK Is</span>
+        <h2 class="d2" style="margin-bottom:24px">Skin science, finally personalised.</h2>
+        <p class="b1" style="margin-bottom:28px">ARK is a diagnostic skin service for women who want clarity, not more promises. We read 16 biomarkers from a single photo and build a 90-day plan around your biology.</p>
+        <div style="display:grid;gap:20px">
+          <div style="border-left:1.5px solid var(--bronze);padding-left:24px">
+            <h3 class="d4" style="margin-bottom:8px">Diagnose</h3>
+            <p class="b1">Your Mirror Moment — one selfie — analysed by world-class skin AI. Sixteen biomarkers. Real data.</p>
+          </div>
+          <div style="border-left:1.5px solid var(--bronze);padding-left:24px">
+            <h3 class="d4" style="margin-bottom:8px">Advise</h3>
+            <p class="b1">A personalised 90-day plan built on your skin's actual biology, not a marketing profile.</p>
+          </div>
+          <div style="border-left:1.5px solid var(--bronze);padding-left:24px">
+            <h3 class="d4" style="margin-bottom:8px">Curate</h3>
+            <p class="b1">Formulations from global brands matched to your results. Products that fit your skin, not a demographic.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--bg)">
+    <div class="v-inner">
+      <span class="lbl fi">Four Seasonal Plans</span>
+      <h2 class="d2 fi" style="margin-bottom:16px">Your cruise, your season.</h2>
+      <p class="b1 fi" style="max-width:560px;margin-bottom:36px">Each 90-day cruise is tailored to the season your skin is in right now. Click any season to see full details.</p>
+      <div class="s-grid fi">
+        <div onclick="showTab('howitworks')" class="s-card">
+          <div class="season-n" style="color:var(--sum);font-size:2.4rem;margin-bottom:12px">I</div>
+          <h3 class="d4" style="color:var(--ink);margin-bottom:8px">Summer</h3>
+          <p class="b2">Protection, hydration, defence against UV-driven oxidative stress.</p>
+        </div>
+        <div onclick="showTab('howitworks')" class="s-card">
+          <div class="season-n" style="color:var(--aut);font-size:2.4rem;margin-bottom:12px">II</div>
+          <h3 class="d4" style="color:var(--ink);margin-bottom:8px">Autumn</h3>
+          <p class="b2">Repair, renewal, rebuilding collagen and elastin post-summer.</p>
+        </div>
+        <div onclick="showTab('howitworks')" class="s-card">
+          <div class="season-n" style="color:var(--win);font-size:2.4rem;margin-bottom:12px">III</div>
+          <h3 class="d4" style="color:var(--ink);margin-bottom:8px">Winter</h3>
+          <p class="b2">Deep barrier repair, moisture lock, protection from cold and dryness.</p>
+        </div>
+        <div onclick="showTab('howitworks')" class="s-card">
+          <div class="season-n" style="color:var(--spr);font-size:2.4rem;margin-bottom:12px">IV</div>
+          <h3 class="d4" style="color:var(--ink);margin-bottom:8px">Spring</h3>
+          <p class="b2">Brightening, tone correction, preparing skin for the year ahead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--void);text-align:center">
+    <div class="v-inner-sm fi">
+      <span class="lbl" style="display:block;text-align:center;margin-bottom:32px">Begin Here</span>
+      <h2 class="d2" style="max-width:560px;margin:0 auto 20px">Ready to see what your skin is actually telling you?</h2>
+      <p class="b1" style="max-width:500px;margin:0 auto 40px">One photo. Ninety days. Results you can measure.</p>
+      <button class="btn-solid" onclick="showTab('cruise')">View Plans &amp; Pricing</button>
+    </div>
+  </section>
+
+  <footer>
+    <span class="ft-logo">ark</span>
+    <p class="b2">ARK Body + Skin &nbsp;·&nbsp; 2026</p>
+  </footer>
+</div>
+
+
+<!-- ══════════════ HOW IT WORKS ══════════════ -->
+<div id="panel-howitworks" class="panel">
+
+  <div style="background:var(--void);padding:96px 56px 80px">
+    <div class="wrap">
+      <span class="lbl fi">How It Works</span>
+      <h1 class="d1 fi" style="margin-bottom:0">One photo.</h1>
+      <h1 class="d1 fi" style="font-style:italic;color:var(--bronze);margin-bottom:36px">Sixteen answers.</h1>
+      <hr style="border:none;border-top:.5px solid var(--rule-h);margin-bottom:36px">
+      <p class="fi" style="font-family:'Bodoni Moda',serif;font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--mid);max-width:680px;line-height:1.75;font-style:italic">The Mirror Moment reads your skin at Day 0, 30, 60, and 90. Your formulation adjusts with every reading.</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="wrap">
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:96px;align-items:start;margin-bottom:80px">
+        <div>
+          <span class="caps fi" style="display:block;margin-bottom:36px">Biomarker Assessment — Day 0</span>
+          <table class="bio-table fi">
+            <thead>
+              <tr><th>Marker</th><th>Reading</th><th>Index</th><th style="width:130px">Score</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Skin Hydration</td><td>68%</td><td>Normal</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:68%"></div></div></td></tr>
+              <tr><td>TEWL</td><td>14.2 g/m²h</td><td>Elevated</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:42%;opacity:.5"></div></div></td></tr>
+              <tr><td>Elasticity</td><td>56 au</td><td>Low-Normal</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:56%"></div></div></td></tr>
+              <tr><td>Melanin Index</td><td>22</td><td>Moderate</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:55%"></div></div></td></tr>
+              <tr><td>Sebum Level</td><td>0.8 µg/cm²</td><td>Balanced</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:78%"></div></div></td></tr>
+              <tr><td>Barrier Index</td><td>7.2 / 10</td><td>Good</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:72%"></div></div></td></tr>
+              <tr><td>Collagen Density</td><td>41%</td><td>Low</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:41%;opacity:.5"></div></div></td></tr>
+              <tr><td>Pore Texture</td><td>2.4 / 5</td><td>Moderate</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:48%"></div></div></td></tr>
+              <tr><td>UV Damage Index</td><td>31%</td><td>Moderate</td><td><div class="bio-bar-wrap"><div class="bio-bar" style="width:31%;opacity:.6"></div></div></td></tr>
+            </tbody>
+          </table>
+          <span class="caption fi">Illustrative values · Yours are read at Day 0 from your Mirror Moment</span>
+        </div>
+        <div class="fi">
+          <span class="caps" style="display:block;margin-bottom:36px">The 90-Day Rhythm</span>
+          <svg viewBox="0 0 280 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px">
+            <line x1="24" y1="0" x2="24" y2="340" stroke="rgba(200,190,230,.15)" stroke-width=".5"/>
+            <circle cx="24" cy="44"  r="5"   fill="var(--bronze)"/>
+            <line x1="24" y1="44"  x2="48" y2="44"  stroke="var(--bronze)" stroke-width=".7"/>
+            <text x="56" y="41"  font-family="'Montserrat',sans-serif" font-size="7.5" fill="var(--faint)" letter-spacing="1.5">DAY 0</text>
+            <text x="56" y="57"  font-family="'Bodoni Moda',serif" font-size="14" fill="var(--ink)">Mirror Moment — Baseline</text>
+            <circle cx="24" cy="130" r="4"   fill="none" stroke="var(--bronze)" stroke-width="1.2"/>
+            <line x1="24" y1="130" x2="48" y2="130" stroke="var(--bronze)" stroke-width=".7"/>
+            <text x="56" y="127" font-family="'Montserrat',sans-serif" font-size="7.5" fill="var(--faint)" letter-spacing="1.5">DAY 30</text>
+            <text x="56" y="143" font-family="'Bodoni Moda',serif" font-size="14" fill="var(--ink)">Check-in &amp; Formulation Adjust</text>
+            <circle cx="24" cy="216" r="4"   fill="none" stroke="var(--bronze)" stroke-width="1.2"/>
+            <line x1="24" y1="216" x2="48" y2="216" stroke="var(--bronze)" stroke-width=".7"/>
+            <text x="56" y="213" font-family="'Montserrat',sans-serif" font-size="7.5" fill="var(--faint)" letter-spacing="1.5">DAY 60</text>
+            <text x="56" y="229" font-family="'Bodoni Moda',serif" font-size="14" fill="var(--ink)">Mirror Moment — Progress</text>
+            <circle cx="24" cy="302" r="5.5" fill="var(--bronze)"/>
+            <line x1="24" y1="302" x2="48" y2="302" stroke="var(--bronze)" stroke-width=".7"/>
+            <text x="56" y="299" font-family="'Montserrat',sans-serif" font-size="7.5" fill="var(--faint)" letter-spacing="1.5">DAY 90</text>
+            <text x="56" y="315" font-family="'Bodoni Moda',serif" font-size="14" fill="var(--ink)">Full Comparison Report</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="season-grid fi">
+    <div class="season-cell" style="padding:0;background:var(--bg)">
+      <div style="height:280px;background-image:url('ark-4-season-locations.png');background-size:200% 200%;background-position:0% 0%;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,var(--bg) 0%,var(--bg) 28px,transparent 100%)"></div>
+      </div>
+      <div style="padding:40px 36px;flex:1">
+        <p class="season-n" style="color:var(--sum)">01</p>
+        <h3 class="season-name">Summer</h3>
+        <p class="b2">Barrier defence. UV protection. High-humidity formulation.</p>
+        <span class="caption">Plan 01 · Barrier Defence</span>
+      </div>
+    </div>
+    <div class="season-cell" style="padding:0;background:var(--bg2)">
+      <div style="height:280px;background-image:url('ark-4-season-locations.png');background-size:200% 200%;background-position:100% 0%;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,var(--bg2) 0%,var(--bg2) 28px,transparent 100%)"></div>
+      </div>
+      <div style="padding:40px 36px;flex:1">
+        <p class="season-n" style="color:var(--aut)">02</p>
+        <h3 class="season-name">Autumn</h3>
+        <p class="b2">Ceramide restoration. Repair. Barrier rebuild post-summer.</p>
+        <span class="caption">Plan 02 · Ceramide Restoration</span>
+      </div>
+    </div>
+    <div class="season-cell" style="padding:0;background:var(--bg3)">
+      <div style="height:280px;background-image:url('ark-4-season-locations.png');background-size:200% 200%;background-position:0% 100%;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,var(--bg3) 0%,var(--bg3) 28px,transparent 100%)"></div>
+      </div>
+      <div style="padding:40px 36px;flex:1">
+        <p class="season-n" style="color:var(--win)">03</p>
+        <h3 class="season-name">Winter</h3>
+        <p class="b2">Deep lipid repair. Microbiome support. Cold and dry conditions.</p>
+        <span class="caption">Plan 03 · Lipid Repair</span>
+      </div>
+    </div>
+    <div class="season-cell" style="padding:0;background:var(--bg)">
+      <div style="height:280px;background-image:url('ark-4-season-locations.png');background-size:200% 200%;background-position:100% 100%;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,var(--bg) 0%,var(--bg) 28px,transparent 100%)"></div>
+      </div>
+      <div style="padding:40px 36px;flex:1">
+        <p class="season-n" style="color:var(--spr)">04</p>
+        <h3 class="season-name">Spring</h3>
+        <p class="b2">Brightening and renewal. Pigmentation correction. Skin resurgence.</p>
+        <span class="caption">Plan 04 · Brightening</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec" style="background:var(--void);text-align:center">
+    <div class="v-inner-sm fi">
+      <h2 class="d3" style="margin-bottom:20px">Ready to begin?</h2>
+      <button class="btn-solid" onclick="showTab('cruise')" style="margin-right:12px">View Pricing</button>
+      <button class="btn" onclick="showTab('home');setTimeout(function(){document.getElementById('mirror-moment-section').scrollIntoView({behavior:'smooth'})},100)">Start Your Mirror Moment</button>
+    </div>
+  </section>
+
+  <footer>
+    <span class="ft-logo">ark</span>
+    <p class="b2">ARK Body + Skin &nbsp;·&nbsp; 2026</p>
+  </footer>
+</div>
+
+
+<!-- ══════════════ YOUR CRUISE ══════════════ -->
+<div id="panel-cruise" class="panel">
+
+  <div style="background:var(--void);padding:96px 56px 80px">
+    <div class="wrap">
+      <span class="lbl fi">Your Cruise</span>
+      <h1 class="d1 fi" style="margin-bottom:0">Choose your</h1>
+      <h1 class="d1 fi" style="font-style:italic;color:var(--bronze);margin-bottom:36px">90-day plan.</h1>
+      <hr style="border:none;border-top:.5px solid var(--rule-h);margin-bottom:36px">
+      <p class="fi" style="font-family:'Bodoni Moda',serif;font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--mid);max-width:640px;line-height:1.75">Select the season that matches your skin right now. Your Mirror Moment confirms the plan is right for you.</p>
+    </div>
+  </div>
+
+  <div class="ticket-grid fi">
+    <div class="ticket-card">
+      <div style="height:240px;background-image:url('ark-4-season-locations.png');background-size:200% 200%;background-position:0% 0%;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,var(--bg) 0%,var(--bg) 28px,transparent 100%)"></div>
+      </div>
+      <div style="padding:40px 36px;flex:1;display:flex;flex-direction:column">
+        <span class="lbl">Plan 01</span>
+        <p style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:3rem;color:var(--sum);line-height:1;margin-bottom:16px">Sum.</p>
+        <h3 class="d3" style="margin-bottom:12px">Summer</h3>
+        <p class="b2" style="flex:1;margin-bottom:20px">Barrier defence. High-UV formulation. Protection and hydration.</p>
+        <p style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--bronze);margin-bottom:20px">$XXX <span style="font-size:.9rem;color:var(--faint)">/&nbsp;90 days</span></p>
+        <button class="btn-solid" onclick="showTab('cruise')">Select Summer</button>
+      </div>
+    </div>
+    <div class="ticket-card alt">
+      <div style="height:240px;background-image:url('ark-4-season-locations.png');background-size:200% 200%;background-position:100% 0%;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,var(--bg2) 0%,var(--bg2) 28px,transparent 100%)"></div>
+      </div>
+      <div style="padding:40px 36px;flex:1;display:flex;flex-direction:column">
+        <span class="lbl">Plan 02</span>
+        <p style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:3rem;color:var(--aut);line-height:1;margin-bottom:16px">Aut.</p>
+        <h3 class="d3" style="margin-bottom:12px">Autumn</h3>
+        <p class="b2" style="flex:1;margin-bottom:20px">Ceramide restoration. Post-summer repair. Barrier rebuild.</p>
+        <p style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--bronze);margin-bottom:20px">$XXX <span style="font-size:.9rem;color:var(--faint)">/&nbsp;90 days</span></p>
+        <button class="btn-solid" onclick="showTab('cruise')">Select Autumn</button>
+      </div>
+    </div>
+    <div class="ticket-card">
+      <div style="height:240px;background-image:url('ark-4-season-locations.png');background-size:200% 200%;background-position:0% 100%;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,var(--bg) 0%,var(--bg) 28px,transparent 100%)"></div>
+      </div>
+      <div style="padding:40px 36px;flex:1;display:flex;flex-direction:column">
+        <span class="lbl">Plan 03</span>
+        <p style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:3rem;color:var(--win);line-height:1;margin-bottom:16px">Win.</p>
+        <h3 class="d3" style="margin-bottom:12px">Winter</h3>
+        <p class="b2" style="flex:1;margin-bottom:20px">Deep lipid repair. Microbiome stabilisation. Cold-climate formulation.</p>
+        <p style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--bronze);margin-bottom:20px">$XXX <span style="font-size:.9rem;color:var(--faint)">/&nbsp;90 days</span></p>
+        <button class="btn-solid" onclick="showTab('cruise')">Select Winter</button>
+      </div>
+    </div>
+    <div class="ticket-card alt">
+      <div style="height:240px;background-image:url('ark-4-season-locations.png');background-size:200% 200%;background-position:100% 100%;position:relative">
+        <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,var(--bg2) 0%,var(--bg2) 28px,transparent 100%)"></div>
+      </div>
+      <div style="padding:40px 36px;flex:1;display:flex;flex-direction:column">
+        <span class="lbl">Plan 04</span>
+        <p style="font-family:'Bodoni Moda',serif;font-weight:400;font-size:3rem;color:var(--spr);line-height:1;margin-bottom:16px">Spr.</p>
+        <h3 class="d3" style="margin-bottom:12px">Spring</h3>
+        <p class="b2" style="flex:1;margin-bottom:20px">Brightening and renewal. Pigmentation focus. Seasonal resurgence.</p>
+        <p style="font-family:'Bodoni Moda',serif;font-size:1.6rem;color:var(--bronze);margin-bottom:20px">$XXX <span style="font-size:.9rem;color:var(--faint)">/&nbsp;90 days</span></p>
+        <button class="btn-solid" onclick="showTab('cruise')">Select Spring</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:80px 56px;background:var(--bg2);border-top:.5px solid var(--rule-h)">
+    <div class="field-wrap fi">
+      <span class="caps" style="display:block;text-align:center;margin-bottom:32px">Secure Checkout</span>
+      <button style="width:100%;background:#111;border:none;padding:16px;font-family:'-apple-system',sans-serif;font-size:1.1rem;color:#fff;cursor:pointer;margin-bottom:8px">&#63743; Pay</button>
+      <button style="width:100%;background:var(--bg3);border:.5px solid var(--rule-h);padding:15px;cursor:pointer;font-family:sans-serif;font-size:.95rem;color:var(--mid);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-weight:700"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>&nbsp;Pay</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px"><div style="flex:1;height:.5px;background:var(--rule-h)"></div><span class="caps">or card</span><div style="flex:1;height:.5px;background:var(--rule-h)"></div></div>
+      <div class="field-row"><div class="field"><label>Card Number</label><span class="field-val">1234 &nbsp;5678 &nbsp;9012 &nbsp;3456</span></div></div>
+      <div class="field-row" style="grid-template-columns:1fr 1fr"><div class="field"><label>Expiry</label><span class="field-val">MM / YY</span></div><div class="field"><label>CVC</label><span class="field-val">· · ·</span></div></div>
+      <div class="field-row" style="margin-bottom:0"><div class="field"><label>Name on Card</label><span class="field-val" style="font-style:italic">Full name</span></div></div>
+      <button class="btn-pay">Begin My 90-Day Plan</button>
+      <p class="caps" style="text-align:center;margin-top:16px;font-size:.5rem">Secured &nbsp;·&nbsp; 256-bit encryption &nbsp;·&nbsp; ARK 2026</p>
+    </div>
+  </div>
+
+  <footer>
+    <span class="ft-logo">ark</span>
+    <p class="b2">ARK Body + Skin &nbsp;·&nbsp; 2026</p>
+  </footer>
+</div>
+
+
+<!-- ══════════════ ADD-ONS ══════════════ -->
+<div id="panel-addons" class="panel">
+
+  <div style="background:var(--void);padding:96px 56px 80px">
+    <div class="wrap">
+      <span class="lbl fi">Add-Ons</span>
+      <h1 class="d1 fi" style="margin-bottom:0">Enhance your</h1>
+      <h1 class="d1 fi" style="font-style:italic;color:var(--bronze);margin-bottom:36px">plan.</h1>
+      <hr style="border:none;border-top:.5px solid var(--rule-h);margin-bottom:36px">
+      <p class="fi" style="font-family:'Bodoni Moda',serif;font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--mid);max-width:640px;line-height:1.75">Three targeted add-ons. Each chosen to complement your 90-day formulation, not duplicate it.</p>
+    </div>
+  </div>
+
+  <div class="product-grid fi">
+    <div class="product-card">
+      <div class="product-art">
+        <svg width="60" height="160" viewBox="0 0 60 160">
+          <defs><linearGradient id="gFab" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1a1640"/><stop offset="50%" stop-color="#22204e"/><stop offset="100%" stop-color="#141230"/></linearGradient></defs>
+          <rect x="18" y="2" width="24" height="14" rx="2" fill="var(--bronze2)"/>
+          <rect x="22" y="14" width="16" height="8" rx="1" fill="#6a4c30"/>
+          <rect x="10" y="22" width="40" height="120" rx="6" fill="url(#gFab)" stroke="var(--rule-h)" stroke-width=".5"/>
+          <rect x="16" y="42" width="28" height="70" rx="1" fill="rgba(184,144,106,.08)" stroke="rgba(184,144,106,.2)" stroke-width=".4"/>
+          <text x="30" y="70" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="6.5" fill="var(--bronze)" letter-spacing="2">F·A·B</text>
+          <text x="30" y="83" text-anchor="middle" font-family="'Bodoni Moda',serif" font-size="7.5" fill="var(--mid)" font-style="italic">Eye Cream</text>
+          <text x="30" y="96" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="4.5" fill="var(--faint)" letter-spacing="1.5">ARK</text>
+          <rect x="12" y="26" width="3.5" height="60" rx="1.5" fill="rgba(255,255,255,.05)"/>
+        </svg>
+      </div>
+      <span class="caps" style="margin-bottom:4px">Add-On</span>
+      <h3 class="d4" style="margin-bottom:4px">F·A·B</h3>
+      <span class="caps" style="margin-bottom:18px">Eye Cream · 15ml</span>
+      <p class="b2" style="flex:1;margin-bottom:24px">Peptide-rich formulation for the eye zone. Targets dark circles, puffiness, and fine-line accumulation where your plan doesn't reach.</p>
+      <p style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--bronze);margin-bottom:16px">$XX</p>
+      <button class="btn" style="width:100%">Add F·A·B</button>
+    </div>
+    <div class="product-card alt">
+      <div class="product-art">
+        <svg width="60" height="160" viewBox="0 0 60 160">
+          <defs><linearGradient id="gVita" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0e1630"/><stop offset="50%" stop-color="#141e3c"/><stop offset="100%" stop-color="#0a1228"/></linearGradient></defs>
+          <rect x="18" y="2" width="24" height="14" rx="2" fill="var(--bronze)"/>
+          <rect x="22" y="14" width="16" height="8" rx="1" fill="var(--bronze2)"/>
+          <rect x="10" y="22" width="40" height="120" rx="6" fill="url(#gVita)" stroke="var(--rule-h)" stroke-width=".5"/>
+          <rect x="16" y="42" width="28" height="70" rx="1" fill="rgba(184,144,106,.08)" stroke="rgba(184,144,106,.2)" stroke-width=".4"/>
+          <text x="30" y="70" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="6.5" fill="var(--bronze)" letter-spacing="2">VITA</text>
+          <text x="30" y="83" text-anchor="middle" font-family="'Bodoni Moda',serif" font-size="7.5" fill="var(--mid)" font-style="italic">Toner Pads</text>
+          <text x="30" y="96" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="4.5" fill="var(--faint)" letter-spacing="1.5">ARK</text>
+          <rect x="12" y="26" width="3.5" height="60" rx="1.5" fill="rgba(255,255,255,.05)"/>
+        </svg>
+      </div>
+      <span class="caps" style="margin-bottom:4px">Add-On</span>
+      <h3 class="d4" style="margin-bottom:4px">VITA</h3>
+      <span class="caps" style="margin-bottom:18px">Toner Pads · 60 pads</span>
+      <p class="b2" style="flex:1;margin-bottom:24px">Vitamin C and Niacinamide pre-soaked pads. Applied after cleansing, before your morning formulation. Brightens and preps.</p>
+      <p style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--bronze);margin-bottom:16px">$XX</p>
+      <button class="btn" style="width:100%">Add VITA</button>
+    </div>
+    <div class="product-card">
+      <div class="product-art">
+        <svg width="60" height="160" viewBox="0 0 60 160">
+          <defs><linearGradient id="gRenew" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1a1640"/><stop offset="50%" stop-color="#22204e"/><stop offset="100%" stop-color="#141230"/></linearGradient></defs>
+          <ellipse cx="30" cy="8" rx="6" ry="7" fill="var(--bronze)"/>
+          <rect x="27" y="12" width="6" height="12" rx="1" fill="var(--bronze2)"/>
+          <rect x="10" y="24" width="40" height="118" rx="20" fill="url(#gRenew)" stroke="var(--rule-h)" stroke-width=".5"/>
+          <rect x="16" y="48" width="28" height="56" rx="1" fill="rgba(184,144,106,.08)" stroke="rgba(184,144,106,.2)" stroke-width=".4"/>
+          <text x="30" y="66" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="6" fill="var(--bronze)" letter-spacing="1.5">RENEW</text>
+          <text x="30" y="79" text-anchor="middle" font-family="'Bodoni Moda',serif" font-size="7.5" fill="var(--mid)" font-style="italic">Repair Oil</text>
+          <text x="30" y="92" text-anchor="middle" font-family="'Montserrat',sans-serif" font-size="4.5" fill="var(--faint)" letter-spacing="1.5">ARK</text>
+          <rect x="12" y="28" width="3.5" height="56" rx="1.5" fill="rgba(255,255,255,.05)"/>
+        </svg>
+      </div>
+      <span class="caps" style="margin-bottom:4px">Add-On</span>
+      <h3 class="d4" style="margin-bottom:4px">RENEW</h3>
+      <span class="caps" style="margin-bottom:18px">Repair Oil · 30ml</span>
+      <p class="b2" style="flex:1;margin-bottom:24px">Squalane and rosehip blend for overnight application. Deep lipid support, particularly suited to winter and cold-climate plans.</p>
+      <p style="font-family:'Bodoni Moda',serif;font-size:1.35rem;color:var(--bronze);margin-bottom:16px">$XX</p>
+      <button class="btn" style="width:100%">Add RENEW</button>
+    </div>
+  </div>
+
+  <div style="padding:80px 56px;background:var(--bg2);border-top:.5px solid var(--rule-h)">
+    <div class="field-wrap fi">
+      <span class="caps" style="display:block;text-align:center;margin-bottom:32px">Add to Order</span>
+      <button style="width:100%;background:#111;border:none;padding:16px;font-family:'-apple-system',sans-serif;font-size:1.1rem;color:#fff;cursor:pointer;margin-bottom:8px">&#63743; Pay</button>
+      <button style="width:100%;background:var(--bg3);border:.5px solid var(--rule-h);padding:15px;cursor:pointer;font-family:sans-serif;font-size:.95rem;color:var(--mid);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:6px"><span style="font-weight:700"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>&nbsp;Pay</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px"><div style="flex:1;height:.5px;background:var(--rule-h)"></div><span class="caps">or card</span><div style="flex:1;height:.5px;background:var(--rule-h)"></div></div>
+      <div class="field-row"><div class="field"><label>Card Number</label><span class="field-val">1234 &nbsp;5678 &nbsp;9012 &nbsp;3456</span></div></div>
+      <div class="field-row" style="grid-template-columns:1fr 1fr"><div class="field"><label>Expiry</label><span class="field-val">MM / YY</span></div><div class="field"><label>CVC</label><span class="field-val">· · ·</span></div></div>
+      <div class="field-row" style="margin-bottom:0"><div class="field"><label>Name on Card</label><span class="field-val" style="font-style:italic">Full name</span></div></div>
+      <button class="btn-pay">Complete Purchase</button>
+      <p class="caps" style="text-align:center;margin-top:16px;font-size:.5rem">Secured &nbsp;·&nbsp; 256-bit encryption &nbsp;·&nbsp; ARK 2026</p>
+    </div>
+  </div>
+
+  <footer>
+    <span class="ft-logo">ark</span>
+    <p class="b2">ARK Body + Skin &nbsp;·&nbsp; 2026</p>
+  </footer>
+</div>
+
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.nav-tabs a').forEach(function(a){a.classList.remove('active')});
+  var panel=document.getElementById('panel-'+id);
+  if(panel){panel.classList.add('active');window.scrollTo({top:0,behavior:'instant'})}
+  var link=document.querySelector('[data-tab="'+id+'"]');
+  if(link){link.classList.add('active')}
+  setTimeout(checkFade,60);
+}
+function checkFade(){
+  var active=document.querySelector('.panel.active');
+  if(!active)return;
+  active.querySelectorAll('.fi').forEach(function(el){
+    var r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight-40){el.classList.add('vis')}
+  });
+}
+window.addEventListener('scroll',checkFade,{passive:true});
+document.addEventListener('DOMContentLoaded',function(){setTimeout(checkFade,80);});
+setTimeout(checkFade,120);
+function sendLink(){
+  var v=document.getElementById('phoneInput').value.trim();
+  var m=document.getElementById('ph-msg');
+  if(!v){m.textContent='Please enter your mobile number.';m.style.color='#c4622d';return;}
+  m.textContent='Link sent. Check your messages.';m.style.color='var(--bronze)';
+  document.getElementById('phoneInput').value='';
+}
+</script>
+</body>
+</html>
