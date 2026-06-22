@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARK Body + Skin — No. 9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box }
+html { scroll-behavior:smooth }
+body {
+  background:#fff;
+  color:#1a1a1a;
+  font-family:'Crimson Text',serif;
+  font-size:18px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* NAV */
+nav {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  height:56px;
+  background:#fff;
+  border-bottom:1px solid #e8e8e8;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 56px;
+}
+.nav-logo {
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:#000;
+  cursor:pointer;
+}
+.nav-tabs {
+  list-style:none;
+  display:flex;
+  gap:48px;
+}
+.nav-tabs a {
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:400;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#666;
+  text-decoration:none;
+  cursor:pointer;
+  transition:color .2s;
+  padding-bottom:2px;
+  border-bottom:1px solid transparent;
+}
+.nav-tabs a:hover { color:#000; border-bottom-color:#000; }
+.nav-tabs a.active { color:#000; border-bottom:1px solid #000; }
+
+/* PANELS */
+.panel { display:none; padding-top:56px; }
+.panel.active { display:block; }
+
+/* LAYOUT */
+.hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 40px;
+  background:#fff;
+}
+.hero-content {
+  max-width:720px;
+}
+.hero-headline {
+  font-size:clamp(2.2rem,5vw,4rem);
+  line-height:1.2;
+  margin-bottom:32px;
+  font-weight:600;
+  color:#000;
+}
+.hero-subheading {
+  font-size:clamp(1.1rem,2.5vw,1.4rem);
+  line-height:1.5;
+  color:#666;
+  margin-bottom:40px;
+  font-weight:400;
+  font-style:italic;
+}
+
+/* SECTIONS */
+.section {
+  padding:96px 56px;
+  max-width:1200px;
+  margin:0 auto;
+}
+.section.alt { background:#f9f9f9; }
+.section-label {
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#999;
+  margin-bottom:24px;
+  display:block;
+}
+.section-title {
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  line-height:1.3;
+  margin-bottom:32px;
+  font-weight:600;
+}
+.section-body {
+  font-size:1.05rem;
+  line-height:1.85;
+  color:#333;
+  max-width:680px;
+  margin-bottom:40px;
+}
+
+/* BUTTONS */
+.btn {
+  display:inline-block;
+  padding:16px 40px;
+  background:#000;
+  color:#fff;
+  text-decoration:none;
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  cursor:pointer;
+  border:1px solid #000;
+  transition:all .2s;
+}
+.btn:hover { background:#fff; color:#000; }
+.btn-outline {
+  background:transparent;
+  color:#000;
+  border:1px solid #000;
+}
+.btn-outline:hover { background:#000; color:#fff; }
+
+/* DELIVERABLES LIST */
+.deliverables {
+  background:#fff;
+  padding:40px;
+  border:1px solid #e8e8e8;
+  margin:40px 0;
+  max-width:600px;
+}
+.deliverables li {
+  list-style:none;
+  padding:12px 0;
+  border-bottom:1px solid #f0f0f0;
+  font-size:1rem;
+  line-height:1.6;
+}
+.deliverables li:last-child { border-bottom:none; }
+.deliverables li::before {
+  content:"•";
+  display:inline-block;
+  width:20px;
+  color:#999;
+  font-weight:bold;
+}
+
+/* PRICING */
+.price-box {
+  background:#000;
+  color:#fff;
+  padding:32px 40px;
+  text-align:center;
+  margin:40px 0;
+  max-width:400px;
+  margin-left:0;
+}
+.price-amount {
+  font-size:2.4rem;
+  font-weight:600;
+  margin-bottom:8px;
+}
+.price-label {
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:#aaa;
+}
+
+/* GRID */
+.three-col {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:48px;
+  margin:48px 0;
+}
+.three-col h3 {
+  font-size:1.4rem;
+  margin-bottom:16px;
+  font-weight:600;
+}
+.three-col p {
+  font-size:1rem;
+  color:#555;
+  line-height:1.7;
+}
+
+/* FOOTER */
+footer {
+  padding:56px;
+  background:#000;
+  color:#fff;
+  text-align:center;
+  border-top:1px solid #333;
+}
+footer p {
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  letter-spacing:.08em;
+}
+
+/* MOCKUP SWITCHER */
+.switcher {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1001;
+  height:28px;
+  background:#fff;
+  border-bottom:.5px solid #e8e8e8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+}
+.switcher a {
+  font-family:'Inter',sans-serif;
+  font-size:.48rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:0 18px;
+  height:28px;
+  line-height:28px;
+  color:#999;
+  text-decoration:none;
+  border-left:.5px solid #e8e8e8;
+  transition:all .2s;
+}
+.switcher a:first-child { border-left:none; }
+.switcher a.active {
+  color:#000;
+  font-weight:600;
+  background:#f0f0f0;
+}
+.switcher a:hover { color:#000; }
+
+nav { top:28px; }
+.panel { padding-top:84px; }
+</style>
+</head>
+<body>
+
+<!-- MOCKUP SWITCHER -->
+<div class="switcher">
+  <a href="index5.html">No. 5</a>
+  <a href="index6.html">No. 6</a>
+  <a href="index7.html">No. 7</a>
+  <a href="index8.html">No. 8</a>
+  <a href="index9.html" class="active">No. 9</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo" onclick="showTab('home')">ARK</span>
+  <ul class="nav-tabs">
+    <li><a data-tab="home" onclick="showTab('home')" class="active">The Approach</a></li>
+    <li><a data-tab="ritual" onclick="showTab('ritual')">The Ritual</a></li>
+    <li><a data-tab="collection" onclick="showTab('collection')">Your Collection</a></li>
+    <li><a data-tab="cohort" onclick="showTab('cohort')">The Community</a></li>
+  </ul>
+</nav>
+
+<!-- HOME PANEL -->
+<div id="panel-home" class="panel active">
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-headline">The beauty industry forgot you. We didn't.</h1>
+      <p class="hero-subheading">A 90-day diagnostic program built on honesty, precision, and your actual skin biology.</p>
+      <button class="btn" onclick="showTab('ritual')">Start Your Assessment</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-label">What is ARK?</span>
+    <h2 class="section-title">Precision over promises.</h2>
+    <p class="section-body">You're not a skin type. You're a person with specific biomarkers that change over time. We read 16 of them from a single photo, then build your 90-day plan around what's actually happening in your skin—not what marketing says should happen.</p>
+    <p class="section-body">No guessing. No generic routines. No products that don't fit your biology.</p>
+  </section>
+
+  <section class="section alt">
+    <span class="section-label">Why 90 Days?</span>
+    <h2 class="section-title">Your skin moves in biological cycles.</h2>
+    <p class="section-body">Your skin renews every 50 days. Real change requires time, rhythm, consistency—not a new product every week. Ninety days is long enough to see measurable biological change. Short enough to know if it's working.</p>
+  </section>
+
+  <section class="section">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title">Four moments. One journey.</h2>
+    <div class="three-col">
+      <div>
+        <h3>Day 0: Mirror Moment</h3>
+        <p>You take one selfie. Our AI reads 16 biomarkers. You get your baseline—the before that makes 90 days worth measuring.</p>
+      </div>
+      <div>
+        <h3>Days 1–29: Ritual Begins</h3>
+        <p>Your personalized Ritual Box arrives with 2–3 products matched to your biomarkers. Personalized coaching check-ins guide you through the first month.</p>
+      </div>
+      <div>
+        <h3>Day 30 & 60: Check-ins</h3>
+        <p>Mirror Moments at Day 30 and 60. Your biomarkers update. Your formulation adjusts. Coaching touchpoints keep you on track.</p>
+      </div>
+      <div>
+        <h3>Day 90: Assessment</h3>
+        <p>Full re-assessment. See your progress measured in biomarkers, not hopes. Decide what's next.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <span class="section-label">What You Actually Get</span>
+    <h2 class="section-title">Deliverables.</h2>
+    <ul class="deliverables">
+      <li>Mirror Moment diagnostic assessment (Day 0 selfie + 16 biomarker read)</li>
+      <li>2–3 Ritual Box products (personalized to your biomarkers)</li>
+      <li>Biomarker tracking (Day 0, 30, 60, 90 selfies + progress report)</li>
+      <li>Personalized coaching touchpoints between assessments</li>
+      <li>Day 90 re-assessment + next steps guidance</li>
+      <li>No lock-in. You decide to continue or step away.</li>
+    </ul>
+    <div class="price-box">
+      <div class="price-amount">$290</div>
+      <div class="price-label">90-Day Program</div>
+    </div>
+    <button class="btn" onclick="showTab('ritual')">Reserve Your Place</button>
+  </section>
+
+</div>
+
+<!-- RITUAL PANEL -->
+<div id="panel-ritual" class="panel">
+
+  <section class="section">
+    <span class="section-label">The Ritual</span>
+    <h2 class="section-title">Your personalized skincare plan.</h2>
+    <p class="section-body">Based on your Day 0 biomarkers, we curate 2–3 products from global brands specifically matched to what your skin needs right now. Not generic "oily" or "dry" buckets. Your actual biology.</p>
+  </section>
+
+  <section class="section alt">
+    <span class="section-label">Active Engagement</span>
+    <h2 class="section-title">You're not alone in this.</h2>
+    <p class="section-body">Between your Day 0, 30, 60, and 90 assessments, you'll receive personalized coaching check-ins. We track how your skin is responding and adjust guidance based on real data—not guessing.</p>
+    <p class="section-body"><strong>Your timeline:</strong> Day 0 (Assessment) → Days 1–29 (Coaching touchpoint) → Day 30 (Check-in) → Days 31–59 (Coaching touchpoint) → Day 60 (Assessment) → Days 61–89 (Coaching touchpoint) → Day 90 (Full re-assessment)</p>
+  </section>
+
+  <section class="section">
+    <span class="section-label">Product Curation</span>
+    <h2 class="section-title">Brands we trust. Formulations that work.</h2>
+    <p class="section-body">We don't invent products. We curate them. Every brand in your Ritual Box is chosen for clinical efficacy and ingredient transparency—then personalized to your 16 biomarkers.</p>
+  </section>
+
+  <section class="section alt">
+    <button class="btn" onclick="showTab('collection')">See Ritual Boxes</button>
+  </section>
+
+</div>
+
+<!-- COLLECTION PANEL -->
+<div id="panel-collection" class="panel">
+
+  <section class="section">
+    <span class="section-label">Your Collection</span>
+    <h2 class="section-title">What's in your box.</h2>
+    <p class="section-body">Your Ritual Box contains 2–3 products matched to your specific biomarkers. They arrive at Day 1 of your 90-day program and adjust at Day 60 based on how your skin has responded.</p>
+  </section>
+
+  <section class="section alt">
+    <h3 style="font-size:1.4rem;margin-bottom:20px">Ritual Box Contents (Illustrative)</h3>
+    <div class="three-col">
+      <div>
+        <h3 style="font-weight:600">Hydration Base</h3>
+        <p>Hyaluronic acid + peptide complex. Applied to damp skin, AM & PM.</p>
+      </div>
+      <div>
+        <h3 style="font-weight:600">Barrier Repair</h3>
+        <p>Ceramide-rich moisturizer. Stabilizes skin barrier, reduces TEWL.</p>
+      </div>
+      <div>
+        <h3 style="font-weight:600">Targeted Treatment</h3>
+        <p>Depends on your biomarkers. Could be brightening, firming, or repair.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <button class="btn" onclick="showTab('home')">Start Your Assessment</button>
+  </section>
+
+</div>
+
+<!-- COHORT PANEL -->
+<div id="panel-cohort" class="panel">
+
+  <section class="section">
+    <span class="section-label">The Community</span>
+    <h2 class="section-title">You're not the only one.</h2>
+    <p class="section-body">Women 45+ who've moved past the promise cycle. Who want clarity over marketing. Who trust science and respect their time.</p>
+  </section>
+
+  <section class="section alt">
+    <h3 style="font-size:1.4rem;margin-bottom:20px">What Members Say</h3>
+    <blockquote style="font-style:italic;font-size:1.1rem;line-height:1.8;max-width:680px;margin:40px 0">
+      "For the first time, someone actually looked at *my* skin, not a category. The coaching between check-ins made all the difference."
+    </blockquote>
+  </section>
+
+  <section class="section">
+    <button class="btn" onclick="showTab('ritual')">Join Us</button>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>ARK Body + Skin &nbsp;·&nbsp; Diagnostic skincare for women who know better &nbsp;·&nbsp; 2026</p>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tabs a').forEach(a => a.classList.remove('active'));
+  const panel = document.getElementById('panel-' + id);
+  const link = document.querySelector('[data-tab="' + id + '"]');
+  if (panel) { panel.classList.add('active'); window.scrollTo({top:0, behavior:'instant'}); }
+  if (link) { link.classList.add('active'); }
+}
+</script>
+</body>
+</html>
